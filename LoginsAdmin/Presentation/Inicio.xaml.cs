@@ -19,9 +19,16 @@ namespace LoginsAdmin.Presentation
             InitializeComponent();
         }
 
-        private void btnAgregarServicio_Clicked(object sender, EventArgs e)
+        private async void btnAgregarServicio_Clicked(object sender, EventArgs e)
         {
-            this.Content = new Detalles();
+            if(await this.DisplayAlert(
+                "Agregar Servicio",
+                "¿Está seguro que desea agregar un nuevo servicio?",
+                "Agregar",
+                "Cancelar"))
+            {
+                this.Content = new Detalles();
+            }
         }
 
     }

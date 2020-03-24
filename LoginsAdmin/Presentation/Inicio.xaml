@@ -8,7 +8,7 @@
     <StackLayout 
         BackgroundColor="#7DA7F5" Orientation="Vertical" 
         x:Name="StackPrincipal"
-        Spacing="20"
+        Spacing="10"
     >
         
         <Label 
