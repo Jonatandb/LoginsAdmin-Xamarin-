@@ -1,7 +1,5 @@
-﻿using System;
+﻿using LoginsAdmin.Presentation;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace LoginsAdmin
 {
     public partial class App : Application
@@ -10,7 +8,7 @@ namespace LoginsAdmin
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Inicio();
         }
 
         protected override void OnStart()
