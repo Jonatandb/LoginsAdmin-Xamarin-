@@ -4,40 +4,154 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundColor="#404040"
              x:Class="LoginsAdmin.Presentation.Inicio">
-    <StackLayout 
-        BackgroundColor="#7DA7F5" Orientation="Vertical" 
-        x:Name="StackPrincipal"
-        Spacing="10"
-    >
-        
-        <Label 
-            Text="LoginsAdmin" 
-            TextColor="#1C41D7" 
-            FontSize="Title" 
-            HorizontalTextAlignment="Center" 
-            FontAttributes="Bold"
-        />
-        
-        <Entry 
-            Placeholder="Nombre, Email, Observaciones..." 
-            FontAttributes="Italic" 
-            BackgroundColor="White"/>
-        
-        <ListView 
-            BackgroundColor="LightGray"
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout 
+            BackgroundColor="#7DA7F5" 
+            Orientation="Vertical" 
+            x:Name="StackPrincipal"
         >
-            <ListView.ItemTemplate>
-                <DataTemplate></DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <Button
-            x:Name="btnAgregarServicio"
-            Text="Agregar Servicio"
-            Clicked="btnAgregarServicio_Clicked"
-            HeightRequest="80"
-        />
+            <StackLayout>
+ 
+            <Label 
+                Text="LoginsAdmin" 
+                TextColor="#1C41D7" 
+                FontSize="Title" 
+                HorizontalTextAlignment="Center" 
+                FontAttributes="Bold"
+            />
+            </StackLayout>
+            
+            <Entry 
+                x:Name="txtBusqueda"
+                Placeholder="Buscar por nombre, usuario, etc." 
+                FontAttributes="Italic"
+                FontSize="Caption" 
+                BackgroundColor="White"
+                TextChanged="txtBusqueda_TextChanged"
+                Focused="txtBusqueda_Focused"
+                Margin="0, 10, 0, 0"/>
 
-    </StackLayout>
+            <Grid Padding="0" 
+                  RowSpacing="1" 
+                  ColumnSpacing="1" 
+                  Margin="5, 0 ,5 ,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="22" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            
+                <Label 
+                    Grid.Row="0" 
+                    x:Name="lblEstado"
+                    FontSize="Caption" 
+                    Text="(Estado...)" 
+                    TextColor="Gray"
+                    TextDecorations="Underline"
+                    FontAttributes="Italic"
+                    Margin="5, 0, 0, 0"
+                />
+
+                <ListView 
+                    Grid.Row="1"
+                    x:Name="lstServicios"
+                    BackgroundColor="WhiteSmoke"
+                    SelectionMode="Single"
+                    ItemSelected="lstServicios_ItemSelected"
+                >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="25">
+                                <StackLayout Padding="0">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding User}" FontAttributes="Italic"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label 
+                    Grid.Row="2" 
+                    x:Name="lblAgrgear"
+                    Text="Datos del servicio:" 
+                    TextColor="Black"
+                    FontSize="Caption" 
+                    TextDecorations="Underline"
+                    Margin="5, 5, 0, 0"
+                />
+
+                <Entry 
+                    Grid.Row="3"
+                    x:Name="txtNombreServicio"
+                    Placeholder="Servicio" 
+                    FontAttributes="Italic" 
+                    FontSize="Micro" 
+                    Margin="5, 0, 0, 0"
+                />
+
+                <Entry 
+                    Grid.Row="4"
+                    x:Name="txtUsuarioServicio"
+                    Placeholder="Usuario" 
+                    FontAttributes="Italic" 
+                    FontSize="Micro" 
+
+                    Margin="5, 0, 0, 0"
+                />
+                
+                <Entry 
+                    Grid.Row="5"
+                    x:Name="txtClaveServicio"
+                    Placeholder="Contraseña" 
+                    FontAttributes="Italic" 
+                    FontSize="Micro" 
+                    Margin="5, 0, 0, 0"
+                />
+
+                <Entry 
+                    Grid.Row="6"
+                    x:Name="txtExtraDataServicio"
+                    Placeholder="Otros datos" 
+                    FontAttributes="Italic" 
+                    FontSize="Micro" 
+                    Margin="5, 0, 0, 0"
+                />
+                
+                <Button 
+                    x:Name="btnAgregarServicio"
+                    Text="Agregar"
+                    Grid.Row="7"
+                    Clicked="btnAgregarServicio_Clicked"
+                    Margin="5, 0, 0, 0"
+                />
+
+                <StackLayout
+                    Grid.Row="8"
+                    HorizontalOptions="Center">
+                    <Label 
+                        Text="Hecho con ♥ por Jonatandb@gmail.com" 
+                        FontSize="Micro"
+                        TextColor="#1C41D7"/>
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
