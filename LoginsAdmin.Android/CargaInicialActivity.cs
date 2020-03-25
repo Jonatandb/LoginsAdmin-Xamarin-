@@ -16,19 +16,11 @@ namespace LoginsAdmin.Droid
     [Activity(Theme = "@style/LoginsAdmin.PantallaDeCargaInicial", MainLauncher = true, NoHistory = true, Label = "LoginsAdmin", Icon = "@mipmap/icon" )]
     public class CargaInicialActivity : AppCompatActivity
     {
-        //protected override void OnCreate(Bundle savedInstanceState)
-        //{
-        //    base.OnCreate(savedInstanceState);
-
-        //    // Create your application here
-        //}
-
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnCreate(savedInstanceState, persistentState);
         }
 
-        // Launches the startup task
         protected override void OnResume()
         {
             base.OnResume();
