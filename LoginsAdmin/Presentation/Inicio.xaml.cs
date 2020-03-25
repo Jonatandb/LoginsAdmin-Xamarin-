@@ -61,7 +61,7 @@ namespace LoginsAdmin.Presentation
         private async void btnAgregarServicio_Clicked(object sender, EventArgs e)
         {
             //basic validation to ensure a name was entered
-            if (string.IsNullOrEmpty(txtNombreServicio.Text))
+            if (string.IsNullOrEmpty(txtNombreServicio.Text) || string.IsNullOrEmpty(txtNombreServicio.Text.Trim()))
             {
                 await this.DisplayAlert(
                                     "Atención",
