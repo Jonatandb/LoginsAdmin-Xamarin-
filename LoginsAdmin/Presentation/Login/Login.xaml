@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LoginsAdmin.Presentation.Login"
+             BackgroundColor="#7DA7F5">
+    <ContentPage.Content>
+        <StackLayout 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand"
+            Margin="15, 0, 15, 0">
+            <Label 
+                Grid.Column="1"
+                Text="LoginsAdmin" 
+                TextColor="#1C41D7" 
+                FontSize="Title" 
+                HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold" 
+            />
+            <StackLayout x:Name="stackCrearClave" IsVisible="False">
+                <Label 
+                    Text="Bienvenido!" 
+                    FontSize="Title"/>
+                <Label FontSize="Body"
+                       Text="Para utilizar esta aplicación debe crear una contraseña, que luego le será solicitada en cada ingreso."
+                       />
+                <Label FontAttributes="Bold"
+                      FontSize="Caption"
+                       TextColor="Red"
+                      Text="No la olvide, ya que la misma no podrá ser reestablecida ni recuperada!"/>
+                <Entry x:Name="txtNewPassword" Placeholder="Contraseña" TextChanged="txtNewPassword_TextChanged"/>
+                <Button x:Name="btnEstablecerPassword" Text="Crear contraseña" Clicked="btnEstablecerPassword_Clicked" IsEnabled="False"/>
+            </StackLayout>
+
+            <StackLayout x:Name="stackIngresarClave" IsVisible="False">
+                <Entry x:Name="txtPassword" IsPassword="True" Placeholder="Ingrese la contraseña" TextChanged="txtPassword_TextChanged"/>
+                <Button x:Name="btnAcceder" Text="Continuar" Clicked="btnAcceder_Clicked" IsEnabled="False"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

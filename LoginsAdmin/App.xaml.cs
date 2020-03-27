@@ -8,15 +8,33 @@ namespace LoginsAdmin
     {
         string dbPath => FileAccessHelper.GetLocalFilePath("loginsadmin.db3");
 
+        public static bool IsUserLoggedIn { get; set; }
+
         public static RepositoryServicios RepoServicios { get; private set; }
 
         public App()
         {
             InitializeComponent();
-
-            RepoServicios = new RepositoryServicios(dbPath);
-
-            MainPage = new Inicio();
+            try
+            {
+                RepoServicios = new RepositoryServicios(dbPath);
+                if (!IsUserLoggedIn)
+                {
+                    ContentPage loginPage = new Login();
+                    NavigationPage.SetHasBackButton(loginPage, false);
+                    NavigationPage.SetHasNavigationBar(loginPage, false);
+                    MainPage = new NavigationPage(loginPage);
+                }
+                else
+                {
+                    MainPage = new Inicio();
+                }
+            }
+            catch (System.Exception)
+            {
+                // Se produjo algún error relacionado con las tablas...
+                MainPage = new ErrorSQLite();
+            }
         }
 
         protected override void OnStart()

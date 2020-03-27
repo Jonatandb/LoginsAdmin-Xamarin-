@@ -1,15 +1,15 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 
 namespace LoginsAdmin.Droid
 {
-    [Activity(Label = "LoginsAdmin", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(  Label = "LoginsAdmin", 
+                Icon = "@mipmap/icon", 
+                Theme = "@style/MainTheme", 
+                ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, 
+                ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
