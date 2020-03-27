@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
@@ -13,7 +14,7 @@ using Android.Widget;
 
 namespace LoginsAdmin.Droid
 {
-    [Activity(Theme = "@style/LoginsAdmin.PantallaDeCargaInicial", MainLauncher = true, NoHistory = true, Label = "LoginsAdmin", Icon = "@mipmap/icon" )]
+    [Activity(Theme = "@style/LoginsAdmin.PantallaDeCargaInicial", MainLauncher = true, NoHistory = true, Label = "LoginsAdmin", Icon = "@mipmap/icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CargaInicialActivity : AppCompatActivity
     {
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
