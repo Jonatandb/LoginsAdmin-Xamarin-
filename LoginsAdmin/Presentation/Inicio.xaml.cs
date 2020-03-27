@@ -1,11 +1,6 @@
 ﻿using LoginsAdmin.Domain.Models;
-using LoginsAdmin.Repository;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,15 +18,24 @@ namespace LoginsAdmin.Presentation
             idServicioSeleccionado = -1;
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.IsUserLoggedIn = false;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
             RecargarGrilla();
         }
 
-        private async void RecargarGrilla(string textoABuscar = "")
+        //private async void RecargarGrilla(string textoABuscar = "")
+        private void RecargarGrilla(string textoABuscar = "")
         {
+            //Task<List<Servicio>> servicios = App.RepoServicios.ObtenerServicios(textoABuscar);
             List<Servicio> servicios = App.RepoServicios.ObtenerServicios(textoABuscar);
+            //lstServicios.ItemsSource = servicios.Result;
             lstServicios.ItemsSource = servicios;
             if (Int32.TryParse(App.RepoServicios.StatusMessage, out int cantidadRegistros))
             {
@@ -51,7 +55,8 @@ namespace LoginsAdmin.Presentation
             }
             else
             {
-                await this.DisplayAlert(
+                //await this.DisplayAlert(
+                this.DisplayAlert(
                                     "Atención",
                                     App.RepoServicios.StatusMessage,
                                     "Cerrar");
@@ -60,7 +65,6 @@ namespace LoginsAdmin.Presentation
 
         private async void btnAgregarServicio_Clicked(object sender, EventArgs e)
         {
-            //basic validation to ensure a name was entered
             if (string.IsNullOrEmpty(txtNombreServicio.Text) || string.IsNullOrEmpty(txtNombreServicio.Text.Trim()))
             {
                 await this.DisplayAlert(
