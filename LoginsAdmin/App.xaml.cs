@@ -1,6 +1,7 @@
 ﻿using LoginsAdmin.Presentation;
 using LoginsAdmin.Repository;
 using LoginsAdmin.Utils;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 namespace LoginsAdmin
 {
@@ -12,12 +13,13 @@ namespace LoginsAdmin
 
         public static RepositoryServicios RepoServicios { get; private set; }
 
-        public App()
+        public App(string downloadsPath)
         {
             InitializeComponent();
             try
             {
                 RepoServicios = new RepositoryServicios(dbPath);
+                FileAccessHelper.ExportDataAsync(downloadsPath).Wait();
                 if (!IsUserLoggedIn)
                 {
                     ContentPage loginPage = new Login();

@@ -169,6 +169,7 @@
                         TextColor="#1C41D7"/>
                 </StackLayout>
             </Grid>
+            <Button Text="Delete DB" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

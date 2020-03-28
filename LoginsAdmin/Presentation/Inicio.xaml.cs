@@ -1,9 +1,9 @@
 ﻿using LoginsAdmin.Domain.Models;
 using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace LoginsAdmin.Presentation
 {
@@ -121,6 +121,13 @@ namespace LoginsAdmin.Presentation
         private void txtBusqueda_Focused(object sender, FocusEventArgs e)
         {
             lstServicios.SelectedItem = null;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            // https://www.techrepublic.com/blog/software-engineer/export-sqlite-data-from-your-android-device/
+
+
         }
     }
 }
