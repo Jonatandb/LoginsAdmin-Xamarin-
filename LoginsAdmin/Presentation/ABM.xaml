@@ -5,13 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.Inicio"
-             x:Name="ParentView">
-    
+             x:Class="LoginsAdmin.Presentation.ABM">
+
     <ContentPage.BindingContext>
-        <local:InicioViewModel/>
+        <local:ABMViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <AbsoluteLayout 
             BackgroundColor="#7DA7F5" 
@@ -23,11 +22,9 @@
                 ColumnSpacing="1" 
                 Margin="5, 0, 5, 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3*" />   <!-- Header -->
                     <RowDefinition Height="20*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="*" />   <!-- Footer -->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -71,50 +68,39 @@
 
                 </Grid>
 
-                <!-- SearchBar -->
-                <SearchBar Grid.Row="1"
-                            Placeholder="Buscar por nombre, usuario, etc."
-                            TextColor="White"
-                            Text="{Binding SearchText}"/>
+                <StackLayout 
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    VerticalOptions="Fill">
+                    
+                    <Label Text="Datos del servicio:" 
+                           FontAttributes="Bold" 
+                           TextDecorations="Underline" 
+                           TextColor="White"/>
 
-                <!--Estado--> 
-                <Label 
-                    Grid.Row="2" 
-                    FontSize="Caption" 
-                    TextColor="White"
-                    TextDecorations="Underline"
-                    FontAttributes="Italic"
-                    Text="{Binding ResultSearchText}"
-                    MaxLines="1"/>
+                    <StackLayout BackgroundColor="#448fff"
+                        Orientation="Vertical">
+                        <Label Text="Nombre del servicio:" />
+                        <Entry Text="{Binding Nombre}"/>
 
-                <!-- Grilla -->
-                <ListView  SeparatorColor="Blue" 
-                    Grid.Row="3"
-                    BackgroundColor="#448fff"
-                    SelectionMode="Single"
-                    ItemsSource="{Binding Servicios}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="1" Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                    <Label Text=" - "/>
-                                    <Label Text="{Binding User}" />
-                                    <Button Text="Editar" 
-                                            Command="{Binding BindingContext.EditServiceCommand, Source={x:Reference ParentView}}" 
-                                            CommandParameter="{Binding .}"/>
-                                    <Button Text="Eliminar" 
-                                            Command="{Binding BindingContext.DeleteServiceCommand, Source={x:Reference ParentView}}" 
-                                            CommandParameter="{Binding Id}"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        <Label Text="Usuario:" />
+                        <Entry Text="{Binding Usuario}"/>
+
+                        <Label Text="Clave:" />
+                        <Entry Text="{Binding Clave}"/>
+
+                        <Label Text="Otros datos:" />
+                        <Editor Text="{Binding OtrosDatos}" HeightRequest="150"/>
+                    </StackLayout>
+
+                    <Button Text="Guardar"
+                            Command="{Binding GuardarCommand}"/>
+
+                </StackLayout>
 
                 <!-- Footer -->
                 <StackLayout 
-                    Grid.Row="4">
+                    Grid.Row="2">
                     <Label
                         x:Name="lblAbout"
                         Text="Hecho con ♥ por Jonatandb@gmail.com" 
@@ -124,13 +110,6 @@
                         VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Grid>
-            <!-- Botón agregar -->
-            <ImageButton 
-                Source="ic_add_white" 
-                BackgroundColor="Transparent"
-                AbsoluteLayout.LayoutFlags="PositionProportional"  
-                AbsoluteLayout.LayoutBounds=".90,.92,50,50" 
-                Command="{Binding AddServiceCommand}"/>
         </AbsoluteLayout>
 
     </ContentPage.Content>

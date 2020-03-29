@@ -2,57 +2,67 @@
 using System;
 using System.Collections.Generic;
 using SQLite;
-using System.Threading.Tasks;
 
 namespace LoginsAdmin.Repository
 {
     public class RepositoryServicios
     {
-        //SQLiteAsyncConnection conn;
         SQLiteConnection conn;
 
         public string StatusMessage { get; set; }
 
         public RepositoryServicios(string dbPath)
         {
-            //conn = new SQLiteAsyncConnection(dbPath);
             conn = new SQLiteConnection(dbPath);
-            //conn.CreateTableAsync<Usuario>();
             conn.CreateTable<Usuario>();
-            //conn.CreateTableAsync<Servicio>();
             conn.CreateTable<Servicio>();
         }
 
-        //public async void AgregarServicio(Servicio nuevoServicio)
-        public void AgregarServicio(Servicio nuevoServicio)
+        public bool AgregarEditarServicio(Servicio servicio)
         {
-            int result;
             StatusMessage = "";
+            int result;
             try
             {
-                if(nuevoServicio.Id == -1)
+                if (servicio.Id == -1)
                 {
-                    //result = await conn.InsertAsync(nuevoServicio);
-                    result = conn.Insert(nuevoServicio);
+                    result = conn.Insert(servicio);
                     StatusMessage = "Servicio agregado correctamente.";
                 }
                 else
                 {
-                    //result = await conn.UpdateAsync(nuevoServicio);
-                    result = conn.Update(nuevoServicio);
+                    result = conn.Update(servicio);
                     StatusMessage = "Servicio actualizado correctamente.";
                 }
             }
             catch (Exception ex)
             {
-                if(ex.Message == "Constraint")
-                    StatusMessage = string.Format("Ya existe un servicio con el nombre {0}", nuevoServicio.Name);
+                if (ex.Message == "Constraint")
+                    StatusMessage = string.Format("Ya existe un servicio con el nombre {0}", servicio.Name);
                 else
-                    StatusMessage = string.Format("No se pudo agregar el servicio {0}.\n\nDetalles del error: \n{1}", nuevoServicio.Name, ex.Message);
+                    StatusMessage = string.Format("No se pudo agregar el servicio {0}.\n\nDetalles del error: \n{1}", servicio.Name, ex.Message);
+                result = 0;
             }
+            return result != 0;
         }
 
-        //public async Task<List<Servicio>> ObtenerServicios(string textoABuscar = "")
+        public bool EliminarServicio(int serviceId)
+        {
+            StatusMessage = "";
+            int result;
+            try
+            {
+                result = conn.Delete(new Servicio() { Id = serviceId });
+                StatusMessage = "Servicio eliminado correctamente.";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("No se pudo eliminar el servicio.\n\nDetalles del error: \n{0}", ex.Message);
+                result = 0;
+            }
+            return result != 0;
+        }
+
         public List<Servicio> ObtenerServicios(string textoABuscar = "")
         {
             StatusMessage = "";
@@ -61,19 +71,16 @@ namespace LoginsAdmin.Repository
                 List<Servicio> listadoServicios = new List<Servicio>();
                 if (string.IsNullOrEmpty(textoABuscar))
                 {
-          //          listadoServicios = await conn.Table<Servicio>().OrderBy(s => s.Name).ToListAsync();
                     listadoServicios = conn.Table<Servicio>().OrderBy(s => s.Name).ToList();
                 }
                 else
                 {
-                   textoABuscar = textoABuscar.ToLowerInvariant();
-                    //listadoServicios = await conn.Table<Servicio>().Where(
+                   textoABuscar = textoABuscar.Trim().ToLowerInvariant();
                     listadoServicios = conn.Table<Servicio>().Where(
                         s => s.Name != "" && (s.Name.ToLower().Contains(textoABuscar)
                                                 || s.User.ToLower().Contains(textoABuscar)
                                                 || s.Password.ToLower().Contains(textoABuscar)
                                                 || s.ExtraData.ToLower().Contains(textoABuscar)
-                                            //)).OrderBy(s => s.Name).ToListAsync();
                                             )).OrderBy(s => s.Name).ToList();
                 }
                 StatusMessage = listadoServicios.Count.ToString();
@@ -87,25 +94,21 @@ namespace LoginsAdmin.Repository
             return new List<Servicio>();
         }
 
-        //public async Task<Usuario> ObtenerUsuarioPrincipal()
         public Usuario ObtenerUsuarioPrincipal()
         {
             StatusMessage = "";
             try
             {
-                //Usuario usuario = await conn.FindAsync<Usuario>(1);
                 Usuario usuario = conn.Find<Usuario>(1);
                 
                 // Si no lo encontré, lo creo con una clave por defecto:
                 if(usuario == null)
                 {
-                    //await conn.InsertAsync(new Usuario()
                     conn.Insert(new Usuario()
                     {
                         UserName = "jonatandb",
                         Password = "loginsadmindefaultpassword"
                     });
-                    //usuario = await conn.FindAsync<Usuario>(1);
                     usuario = conn.Find<Usuario>(1);
                 }
                 // /*DEBUG*/ usuario.Password = "loginsadmindefaultpassword";                /// ***** Fuerzo a que siempre se pida crear una clave
@@ -118,17 +121,14 @@ namespace LoginsAdmin.Repository
             return null;
         }
 
-        //public async Task<bool> EstablecerClaveUsuarioPrincipal(string password)
         public bool EstablecerClaveUsuarioPrincipal(string password)
         {
             bool result = false;
             StatusMessage = "";
             try
             {
-                //Usuario usuario = await conn.FindAsync<Usuario>(1);
                 Usuario usuario = conn.Find<Usuario>(1);
                 usuario.Password = password;
-                //await conn.UpdateAsync(usuario);
                 conn.Update(usuario);
                 result = true;
             }
@@ -140,8 +140,8 @@ namespace LoginsAdmin.Repository
 
         public bool Login(string password)
         {
-            bool result = false;
             StatusMessage = "";
+            bool result = false;
             try
             {
                 Usuario usuario = conn.Find<Usuario>(1);

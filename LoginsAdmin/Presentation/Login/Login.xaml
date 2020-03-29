@@ -36,7 +36,7 @@
             </StackLayout>
 
             <StackLayout x:Name="stackIngresarClave" IsVisible="False">
-                <Entry x:Name="txtPassword" IsPassword="True" Placeholder="Ingrese la contraseña" TextChanged="txtPassword_TextChanged"/>
+                <Entry x:Name="txtPassword" IsPassword="True" Placeholder="Ingrese la contraseña" TextChanged="txtPassword_TextChanged" TextColor="White"/>
                 <Button x:Name="btnAcceder" Text="Continuar" Clicked="btnAcceder_Clicked" IsEnabled="False"/>
             </StackLayout>
         </StackLayout>

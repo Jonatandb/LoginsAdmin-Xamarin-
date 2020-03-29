@@ -18,6 +18,12 @@ namespace LoginsAdmin.Presentation
             InitializeComponent();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.IsUserLoggedIn = false;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -96,13 +102,13 @@ namespace LoginsAdmin.Presentation
             this.btnEstablecerPassword.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
         }
 
-        private void btnAcceder_Clicked(object sender, EventArgs e)
+        private async void btnAcceder_Clicked(object sender, EventArgs e)
         {
             if (!App.RepoServicios.Login(this.txtPassword.Text.Trim()))
             {
                 if(App.RepoServicios.StatusMessage != "")
                 {
-                    this.DisplayAlert(
+                    await this.DisplayAlert(
                         "Atención",
                         "Se produjo un error al iniciar sesión.\n\nPor favor contactarse con jonatandb@gmail.com\n\nDetalles del error: \n" + App.RepoServicios.StatusMessage,
                         "Cerrar");
@@ -111,7 +117,7 @@ namespace LoginsAdmin.Presentation
                 {
                     // Error al iniciar sesión
 
-                    this.DisplayAlert(
+                    await this.DisplayAlert(
                         "Atención",
                         "Contraseña incorrecta",
                         "Reintentar");
@@ -122,7 +128,6 @@ namespace LoginsAdmin.Presentation
             else
             {
                 PantallaPrincipal();
-                this.txtPassword.Text = "";
             }
         }
 
@@ -137,14 +142,14 @@ namespace LoginsAdmin.Presentation
         /// <summary>
         /// Carga de la pantalla principal
         /// </summary>
-        private async void PantallaPrincipal()
+        private void PantallaPrincipal()
         {
             App.IsUserLoggedIn = true;
             ContentPage mainPage = new Inicio();
             NavigationPage.SetHasBackButton(mainPage, false);
             NavigationPage.SetHasNavigationBar(mainPage, false);
             Navigation.InsertPageBefore(mainPage, this);
-            await Navigation.PopAsync();
+            Navigation.PopAsync();
         }
 
     }
