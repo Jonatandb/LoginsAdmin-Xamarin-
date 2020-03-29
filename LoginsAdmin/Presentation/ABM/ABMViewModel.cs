@@ -8,9 +8,12 @@ namespace LoginsAdmin.Presentation.ViewModels
 {
     public class ABMViewModel : INotifyPropertyChanged
     {
+        int _id;
         string _nombre, _usuario, _clave, _otrosDatos;
 
         private Servicio ServiceToEdit { get; set; }
+        public bool IsEditMode { get => ServiceToEdit != null; }
+        public bool IsValidServiceName { get => !string.IsNullOrWhiteSpace(Nombre); }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -33,7 +36,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                 {
                     Servicio servicio = new Servicio
                     {
-                        Id = ServiceToEdit != null ? ServiceToEdit.Id : -1,
+                        Id = IsEditMode ? ServiceToEdit.Id : -1,
                         Name = Nombre.Trim(),
                         User = Usuario.Trim(),
                         Password = Clave.Trim(),
@@ -58,20 +61,25 @@ namespace LoginsAdmin.Presentation.ViewModels
                 }
             });
 
-            EliminarCommand = new Command((idService) =>
+            EliminarCommand = new Command(() =>
             {
-                if (App.RepoServicios.EliminarServicio((int)idService))
+                if(IsEditMode)
                 {
-                    Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                App.RepoServicios.StatusMessage,
-                                                                "Cerrar");
-                    RefrescarGrilla();
-                }
-                else
-                {
-                    Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                App.RepoServicios.StatusMessage,
-                                                                "Cerrar");
+                    if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
+                    {
+                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                                                                    App.RepoServicios.StatusMessage,
+                                                                    "Cerrar");
+                        RefrescarGrilla();
+
+                        Application.Current.MainPage.Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                                                                    App.RepoServicios.StatusMessage,
+                                                                    "Cerrar");
+                    }
                 }
             });
         }
@@ -81,10 +89,12 @@ namespace LoginsAdmin.Presentation.ViewModels
             if (service != null)
             {
                 ServiceToEdit = service;
+                Id = ServiceToEdit.Id;
                 Nombre = ServiceToEdit.Name;
                 Usuario = ServiceToEdit.User;
                 Clave = ServiceToEdit.Password;
                 OtrosDatos = ServiceToEdit.ExtraData;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEditMode)));
             }
         }
 
@@ -93,14 +103,23 @@ namespace LoginsAdmin.Presentation.ViewModels
             ServicesModified?.Invoke(null, null);
         }
 
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+            }
+        }
+
         public string Nombre
         {
             get => _nombre;
             set
             {
                 _nombre = value;
-                var args = new PropertyChangedEventArgs(nameof(Nombre));
-                PropertyChanged?.Invoke(this, args);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Nombre)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsValidServiceName)));
             } 
         }
 
@@ -110,8 +129,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             set
             {
                 _usuario= value;
-                var args = new PropertyChangedEventArgs(nameof(Usuario));
-                PropertyChanged?.Invoke(this, args);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Usuario)));
             }
         }
 
@@ -121,8 +139,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             set
             {
                 _clave= value;
-                var args = new PropertyChangedEventArgs(nameof(Clave));
-                PropertyChanged?.Invoke(this, args);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Clave)));
             }
         }
 
@@ -132,8 +149,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             set
             {
                 _otrosDatos= value;
-                var args = new PropertyChangedEventArgs(nameof(OtrosDatos));
-                PropertyChanged?.Invoke(this, args);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OtrosDatos)));
             }
         }
 

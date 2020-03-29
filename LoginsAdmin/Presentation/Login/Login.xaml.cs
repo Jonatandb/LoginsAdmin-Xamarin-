@@ -1,9 +1,5 @@
 ﻿using LoginsAdmin.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -29,7 +25,6 @@ namespace LoginsAdmin.Presentation
             base.OnAppearing();
             this.stackCrearClave.IsVisible = false;
             this.stackIngresarClave.IsVisible = false;
-            //Usuario usuario = await App.RepoServicios.ObtenerUsuarioPrincipal();
             Usuario usuario = App.RepoServicios.ObtenerUsuarioPrincipal();
             if(usuario == null)
             {
@@ -42,7 +37,7 @@ namespace LoginsAdmin.Presentation
             {
                 if(usuario.Password == "loginsadmindefaultpassword")
                 {
-                    // Todavía no se estableció una contraseña, por lo que solicito que se cree una nueva:
+                    // Todavía no se estableció una contraseña, solicito que se cree una nueva:
 
                     usuario.Password = "";
                     this.stackCrearClave.IsVisible = true;
@@ -58,8 +53,6 @@ namespace LoginsAdmin.Presentation
         {
             if (string.IsNullOrEmpty(this.txtNewPassword.Text))
             {
-                // No se ingresó una clave válida
-
                 await this.DisplayAlert(
                                     "Atención",
                                     "Se requiere que al menos se especifíque una contraseña.",
@@ -68,14 +61,9 @@ namespace LoginsAdmin.Presentation
             }
             else
             {
-                // Guardo la nueva clave
-
                 string nuevaClave = this.txtNewPassword.Text.Trim();
-                //if (! await App.RepoServicios.EstablecerClaveUsuarioPrincipal(nuevaClave))
                 if ( ! App.RepoServicios.EstablecerClaveUsuarioPrincipal(nuevaClave))
                 {
-                    // No se pudo actualizar el registro
-
                     await this.DisplayAlert(
                         "Atención",
                         "Se produjo un error al establecer la contraseña.\n\nPor favor contactarse con jonatandb@gmail.com\n\n" + App.RepoServicios.StatusMessage,
@@ -83,8 +71,6 @@ namespace LoginsAdmin.Presentation
                 }
                 else
                 {
-                    // Clave actualizada exitosamente
-
                     await this.DisplayAlert(
                         "LoginsAdmin",
                         "Contraseña: '" + nuevaClave + "', establecida exitosamente!",
@@ -93,13 +79,6 @@ namespace LoginsAdmin.Presentation
                     PantallaPrincipal();
                 }
             }
-        }
-
-        private void txtNewPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // El botón de Crear contraseña solo aparece habilitado si se ingresa texto
-
-            this.btnEstablecerPassword.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
         }
 
         private async void btnAcceder_Clicked(object sender, EventArgs e)
@@ -115,8 +94,6 @@ namespace LoginsAdmin.Presentation
                 }   
                 else
                 {
-                    // Error al iniciar sesión
-
                     await this.DisplayAlert(
                         "Atención",
                         "Contraseña incorrecta",
@@ -137,6 +114,13 @@ namespace LoginsAdmin.Presentation
 
             this.btnAcceder.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
 
+        }
+
+        private void txtNewPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // El botón de Crear contraseña solo aparece habilitado si se ingresa texto
+
+            this.btnEstablecerPassword.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
         }
 
         /// <summary>

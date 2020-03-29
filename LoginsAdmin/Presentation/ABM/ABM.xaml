@@ -12,28 +12,28 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <AbsoluteLayout 
+        <StackLayout 
             BackgroundColor="#7DA7F5" 
             Padding="0"
-            Margin="0">
+            Margin="0"
+            Orientation="Vertical">
             <Grid 
                 Padding="0" 
                 RowSpacing="1" 
                 ColumnSpacing="1" 
                 Margin="5, 0, 5, 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />   <!-- Header -->
-                    <RowDefinition Height="20*" />
-                    <RowDefinition Height="*" />   <!-- Footer -->
+                    <RowDefinition Height="70"/>    <!-- Header -->
+                    <RowDefinition Height="10*" />  <!-- Datos del servicio -->
+                    <RowDefinition Height="4*" />   <!-- Guardar - Eliminar -->
+                    <RowDefinition Height="20" />   <!-- Footer -->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Header -->
-                <Grid
-                    Margin="5,0,0,10"
-                    Grid.Row="0">
+                <Grid Grid.Row="0" BackgroundColor="#7DA7F5"  Padding="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -65,42 +65,60 @@
                             VerticalTextAlignment="Center"
                             FontAttributes="Bold"/>
                     </Grid>
-
                 </Grid>
 
-                <StackLayout 
-                    Grid.Row="1"
-                    Orientation="Vertical"
-                    VerticalOptions="Fill">
-                    
-                    <Label Text="Datos del servicio:" 
-                           FontAttributes="Bold" 
-                           TextDecorations="Underline" 
-                           TextColor="White"/>
+                <!-- Datos del servicio -->
+                <Grid Grid.Row="1" BackgroundColor="#448fff" Padding="5" VerticalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <StackLayout BackgroundColor="#448fff"
+                    <StackLayout 
+                        Grid.Row="0"
                         Orientation="Vertical">
-                        <Label Text="Nombre del servicio:" />
-                        <Entry Text="{Binding Nombre}"/>
-
-                        <Label Text="Usuario:" />
-                        <Entry Text="{Binding Usuario}"/>
-
-                        <Label Text="Clave:" />
-                        <Entry Text="{Binding Clave}"/>
-
-                        <Label Text="Otros datos:" />
-                        <Editor Text="{Binding OtrosDatos}" HeightRequest="150"/>
+                        <Label Text="Nombre del servicio:" TextColor="White"/>
+                        <Entry Text="{Binding Nombre}" MaxLength="200"/>
                     </StackLayout>
 
+                    <StackLayout 
+                        Grid.Row="1"
+                        Orientation="Vertical">
+                        <Label Text="Usuario:" TextColor="White"/>
+                        <Entry Text="{Binding Usuario}" MaxLength="200"/>
+                    </StackLayout>
+
+                    <StackLayout 
+                        Grid.Row="2"
+                        Orientation="Vertical">
+                        <Label Text="Clave:" TextColor="White"/>
+                        <Entry Text="{Binding Clave}" MaxLength="200"/>
+                    </StackLayout>
+
+                    <StackLayout 
+                        Grid.Row="3"
+                        Orientation="Vertical">
+                        <Label Text="Otros datos:" TextColor="White"/>
+                        <Editor Text="{Binding OtrosDatos}"/>
+                    </StackLayout>
+                </Grid>
+
+                <!-- Guardar - Eliminar -->
+                <StackLayout Grid.Row="2" BackgroundColor="#7DA7F5" Orientation="Vertical">
                     <Button Text="Guardar"
-                            Command="{Binding GuardarCommand}"/>
-
+                        Command="{Binding GuardarCommand}" IsEnabled="{Binding IsValidServiceName}"/>
+                    <Button Text="Eliminar"
+                        Command="{Binding EliminarCommand}" IsVisible="{Binding IsEditMode}"/>
                 </StackLayout>
-
+                
                 <!-- Footer -->
-                <StackLayout 
-                    Grid.Row="2">
+                <StackLayout Grid.Row="3" BackgroundColor="#7DA7F5" VerticalOptions="Fill" >
                     <Label
                         x:Name="lblAbout"
                         Text="Hecho con ♥ por Jonatandb@gmail.com" 
@@ -110,7 +128,7 @@
                         VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Grid>
-        </AbsoluteLayout>
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

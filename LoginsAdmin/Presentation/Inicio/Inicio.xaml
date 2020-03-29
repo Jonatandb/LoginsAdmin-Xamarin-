@@ -92,21 +92,33 @@
                     Grid.Row="3"
                     BackgroundColor="#448fff"
                     SelectionMode="Single"
-                    ItemsSource="{Binding Servicios}">
+                    x:Name="GrillaServicios"
+                    ItemsSource="{Binding Servicios}"
+                    ItemTapped="GrillaServicios_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="1" Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                    <Label Text=" - "/>
-                                    <Label Text="{Binding User}" />
-                                    <Button Text="Editar" 
-                                            Command="{Binding BindingContext.EditServiceCommand, Source={x:Reference ParentView}}" 
-                                            CommandParameter="{Binding .}"/>
-                                    <Button Text="Eliminar" 
-                                            Command="{Binding BindingContext.DeleteServiceCommand, Source={x:Reference ParentView}}" 
-                                            CommandParameter="{Binding Id}"/>
-                                </StackLayout>
+                                <Grid Margin="1" BackgroundColor="WhiteSmoke" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    
+                                    <BoxView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                                             HeightRequest="20" WidthRequest="20"
+                                             BackgroundColor="#7DA7F5"/>
+                                    
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding Name}" FontSize="Body"/>
+
+                                    <Label Grid.Row="1" Grid.Column="1"
+                                           Text="{Binding User}" FontSize="Micro" />
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -124,9 +136,9 @@
                         VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Grid>
-            <!-- Botón agregar -->
+
             <ImageButton 
-                Source="ic_add_white" 
+                Source="AddButton" 
                 BackgroundColor="Transparent"
                 AbsoluteLayout.LayoutFlags="PositionProportional"  
                 AbsoluteLayout.LayoutBounds=".90,.92,50,50" 

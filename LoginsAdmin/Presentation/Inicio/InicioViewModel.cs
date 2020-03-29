@@ -12,46 +12,42 @@ namespace LoginsAdmin.Presentation.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand AddServiceCommand { get; }
         public ICommand EditServiceCommand { get; }
-        public ICommand DeleteServiceCommand { get; }
         public ObservableCollection<Servicio> Servicios { get; }
-
+        public Servicio SelectedService { get; set; }
         public InicioViewModel()
         {
             Servicios = new ObservableCollection<Servicio>();
 
             AddServiceCommand = new Command(() =>
             {
-                ContentPage ABM = new ABM();
-                ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
-                NavigationPage.SetHasBackButton(ABM, false);
-                NavigationPage.SetHasNavigationBar(ABM, false);
-                Application.Current.MainPage.Navigation.PushAsync(ABM);
+                SelectedService = null;
+                ShowABM();
+                SearchText = "";
             });
 
-            EditServiceCommand = new Command(service =>
+            EditServiceCommand = new Command(() =>
             {
-                ContentPage ABM = new ABM();
-                ((ABMViewModel)ABM.BindingContext).SetServiceToEdit((Servicio) service);
-                ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
-                NavigationPage.SetHasBackButton(ABM, false);
-                NavigationPage.SetHasNavigationBar(ABM, false);
-                Application.Current.MainPage.Navigation.PushAsync(ABM);
+                ShowABM();
+                SearchText = "";
             });
+        }
 
-            DeleteServiceCommand = new Command( (serviceId) =>
-            {
-                ABMViewModel abmVM = new ABMViewModel();
-                abmVM.ServicesModified += RecargarGrilla;
-                abmVM.EliminarCommand.Execute(serviceId);
-            });
+        private void ShowABM()
+        {
+            ContentPage ABM = new ABM();
+            ((ABMViewModel)ABM.BindingContext).SetServiceToEdit(SelectedService);
+            ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
+            NavigationPage.SetHasBackButton(ABM, false);
+            NavigationPage.SetHasNavigationBar(ABM, false);
+            Application.Current.MainPage.Navigation.PushAsync(ABM);
         }
 
         public void RecargarGrilla(object sender = null, object e = null)
         {
+            SelectedService = null;
             Servicios.Clear();
             App.RepoServicios.ObtenerServicios(SearchText).ForEach(s => Servicios.Add(s));
-            var args2 = new PropertyChangedEventArgs(nameof(ResultSearchText));
-            PropertyChanged(nameof(ResultSearchText), args2);
+            PropertyChanged(nameof(ResultSearchText), new PropertyChangedEventArgs(nameof(ResultSearchText)));
         }
 
         public string SearchText
@@ -83,7 +79,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                 else
                     if (Servicios.Count == 0)
                     {
-                        return "Ningún resultado";              // ¿Agrego texto clickeable que diga "Click aquí para crear el servicio + SearchText"? ************
+                        return "Ningún resultado";
                     }
                     else 
                     { 
