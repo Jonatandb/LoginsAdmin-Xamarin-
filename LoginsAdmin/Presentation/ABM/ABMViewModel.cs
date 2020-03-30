@@ -63,7 +63,7 @@ namespace LoginsAdmin.Presentation.ViewModels
 
             EliminarCommand = new Command( async () =>
             {
-                bool respuesta = await Application.Current.MainPage.DisplayAlert("Atención", "¿Seguro que desea eliminar este servicio?", "Si", "No");
+                bool respuesta = await Application.Current.MainPage.DisplayAlert("Atención", "¿Está seguro que desea eliminar este servicio?", "Si", "No");
                 if(respuesta)
                 {
                     if (IsEditMode)

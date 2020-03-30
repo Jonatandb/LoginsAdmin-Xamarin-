@@ -23,8 +23,9 @@
                 FontAttributes="Bold"/>
             <Label 
                 Text="Administrador de credenciales by Jonatandb"
-                FontSize="Micro"/>
-            <StackLayout x:Name="stackCrearClave" IsVisible="False" Margin="0, 30, 0, 30">
+                FontSize="Micro"
+                HorizontalOptions="Center" />
+            <StackLayout x:Name="stackCrearClave" IsVisible="False" Margin="0, 10, 0, 30">
                 <Label 
                     Text="Bienvenido!" 
                     FontSize="Title"/>
@@ -39,6 +40,7 @@
                        TextChanged="txtNewPassword_TextChanged" 
                        HorizontalOptions="Center" 
                        HorizontalTextAlignment="Center"
+                       Completed="btnEstablecerPassword_Clicked"
                        />
                 <Button x:Name="btnEstablecerPassword" Text="Crear contraseña" Clicked="btnEstablecerPassword_Clicked" IsEnabled="False"/>
             </StackLayout>
@@ -50,6 +52,7 @@
                        TextChanged="txtPassword_TextChanged" 
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="CenterAndExpand"
+                       Completed="btnAcceder_Clicked"
                        />
                 <Button x:Name="btnAcceder" Text="Continuar" Clicked="btnAcceder_Clicked" IsEnabled="False"/>
             </StackLayout>

@@ -1,7 +1,10 @@
 # LoginsAdmin (Xamarin)
+
+
 Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
 <img src="Screenshot_V0.4.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+
 
 ### Páginas consultadas:
 
@@ -49,6 +52,11 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://xamarinhelp.com/xamarin-forms-user-control/" target="_blank">Xamarin Forms User Control</a>
 
+ - <a href="https://css-tricks.com/snippets/html/mailto-links/" target="_blank">Mailto Links</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/app-lifecycle/?tabs=vswin" target="_blank">Tutorial sobre el ciclo de vida de las aplicaciones de Xamarin.Forms</a>
+
+
 ### Pendientes y "Nice to have":
 
 	- Refactorizar login para agregar ViewModel
@@ -70,6 +78,7 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
     - Centrar la contraseña a medida que es ingresada
         https://forums.xamarin.com/discussion/42438/align-center-text-entry
         https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
+
 
 ### Otras pruebas:
 - Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:

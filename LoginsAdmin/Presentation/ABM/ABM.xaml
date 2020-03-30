@@ -119,7 +119,7 @@
                 </StackLayout>
                 
                 <!-- Footer -->
-                <StackLayout Grid.Row="3" BackgroundColor="#7DA7F5" VerticalOptions="Fill" >
+                <StackLayout Grid.Row="3" BackgroundColor="#7DA7F5" VerticalOptions="Fill">
                     <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>                
                 </StackLayout>
             </Grid>

@@ -22,7 +22,7 @@ namespace LoginsAdmin.Presentation._Controles
                     switch (action)
                     {
                         case "Email":
-                            url = "mailto:jonatandb@gmail.com";
+                            url = "mailto:jonatandb@gmail.com?subject=Acerca%20de%20LoginsAdmin&body=Hola%20Jonatandb!,%20";
                             break;
                         case "Github":
                             url = "https://github.com/Jonatandb";
