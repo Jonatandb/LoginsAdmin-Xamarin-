@@ -26,13 +26,45 @@ namespace LoginsAdmin.Repository
             {
                 if (servicio.Id == -1)
                 {
-                    result = conn.Insert(servicio);
-                    StatusMessage = "Servicio agregado correctamente.";
+                    Servicio temp = conn.Find<Servicio>(s => s.Name.ToLower() == servicio.Name.ToLower());
+                    if (temp == null)
+                    {
+
+                        result = conn.Insert(servicio);
+                        StatusMessage = "Servicio agregado correctamente.";
+                    }
+                    else
+                    {
+                        throw new Exception("Constraint");
+                    }
                 }
                 else
                 {
-                    result = conn.Update(servicio);
-                    StatusMessage = "Servicio actualizado correctamente.";
+                    bool shouldUpdate = false;
+                    Servicio temp = conn.Find<Servicio>(s => s.Name.ToLower() == servicio.Name.ToLower());
+                    if (temp == null)
+                    {
+                        // El nuevo nombre es único
+                        shouldUpdate = true;
+                    }
+                    else
+                    {
+                        // El nuevo nombre pertenece a un servicio existente
+                        if(temp.Id == servicio.Id)
+                        {
+                            // Dejaron el nombre igual
+                            shouldUpdate = true;
+                        }
+                    }
+                    if (shouldUpdate)
+                    {
+                        result = conn.Update(servicio);
+                        StatusMessage = "Servicio actualizado correctamente.";
+                    }
+                    else
+                    {
+                        throw new Exception("Constraint");
+                    }
                 }
             }
             catch (Exception ex)

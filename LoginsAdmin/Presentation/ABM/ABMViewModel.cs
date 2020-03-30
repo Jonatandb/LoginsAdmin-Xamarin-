@@ -24,11 +24,11 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public ABMViewModel()
         {
-            GuardarCommand = new Command(() =>
+            GuardarCommand = new Command(async () =>
             {
                 if (string.IsNullOrWhiteSpace(Nombre))
                 {
-                    App.Current.MainPage.DisplayAlert("Atención",
+                    await App.Current.MainPage.DisplayAlert("Atención",
                                                       "Se requiere que al menos se especifíque un nombre para el servicio.",
                                                       "Aceptar");
                 }
@@ -45,40 +45,44 @@ namespace LoginsAdmin.Presentation.ViewModels
 
                     if (App.RepoServicios.AgregarEditarServicio(servicio))
                     {
-                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                        await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
                                                                   App.RepoServicios.StatusMessage,
                                                                   "Cerrar");
                         RefrescarGrilla();
 
-                        Application.Current.MainPage.Navigation.PopAsync();
+                        await Application.Current.MainPage.Navigation.PopAsync();
                     }
                     else
                     {
-                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                        await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
                                                                   App.RepoServicios.StatusMessage,
                                                                   "Cerrar");
                     }
                 }
             });
 
-            EliminarCommand = new Command(() =>
+            EliminarCommand = new Command( async () =>
             {
-                if(IsEditMode)
+                bool respuesta = await Application.Current.MainPage.DisplayAlert("Atención", "¿Seguro que desea eliminar este servicio?", "Si", "No");
+                if(respuesta)
                 {
-                    if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
+                    if (IsEditMode)
                     {
-                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                    App.RepoServicios.StatusMessage,
-                                                                    "Cerrar");
-                        RefrescarGrilla();
+                        if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
+                        {
+                            await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                                                                        App.RepoServicios.StatusMessage,
+                                                                        "Cerrar");
+                            RefrescarGrilla();
 
-                        Application.Current.MainPage.Navigation.PopAsync();
-                    }
-                    else
-                    {
-                        Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                    App.RepoServicios.StatusMessage,
-                                                                    "Cerrar");
+                            await Application.Current.MainPage.Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
+                                                                        App.RepoServicios.StatusMessage,
+                                                                        "Cerrar");
+                        }
                     }
                 }
             });

@@ -43,8 +43,9 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
  
  - <a href="https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.cell?view=xamarin-forms">Cell Class</a>
 
-### Pendientes y "Nice to have":
+ - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/pop-ups/?tabs=vswin">Tutorial sobre los elementos emergentes de Xamarin.Forms</a>
 
+### Pendientes y "Nice to have":
 
 	- Refactorizar login para agregar ViewModel
 	- Exportación/Importación de datos
@@ -61,4 +62,14 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 	- Corregir altura filas grilla principal, los nombres muestran las letras cortadas, ej: g
 	- Corregir diseño abm, el campo otros datos no deja editar correctamente, no se ve completo tampoco
 		- Agregar ScrollView a campo Otros datos, porque cuando son muchos no se pueden leer ni copiar	
+    - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
 
+### Otras pruebas:
+- Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:
+  - Alias:		Jonatandb
+  - Contraseña:	loginsadmin
+  - Nombre:		Jonatandb@gmail.com
+  - Validez:	30 años
+   - Ruta de keys:	C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android
+   - Ruta de apks generados: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android\Archives\2020-03-29\LoginsAdmin.Android 3-29-20 1.06 AM.apkarchive
+- ** Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
