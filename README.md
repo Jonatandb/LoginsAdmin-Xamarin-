@@ -1,7 +1,7 @@
 # LoginsAdmin (Xamarin)
 Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
-<img src="Screenshot.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+<img src="Screenshot_V0.4.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ### Páginas consultadas:
 
@@ -31,17 +31,34 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://stackoverflow.com/questions/46332349/xamarin-button-command-inside-of-listview-itemtemplate-not-firing" target="_blank">Xamarin Button Command (inside of ListView.ItemTemplate) Not Firing</a>
 
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/stack-layout">Xamarin.Forms StackLayout</a>
+ 
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/webview?tabs=windows">Xamarin.Forms WebView</a>
+ 
+ - <a href="https://docs.microsoft.com/es-es/learn/modules/display-collections-in-xamarin-forms-apps-with-listview/">Representación de colecciones en aplicaciones de Xamarin.Forms con ListView</a>
+ 
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/app-fundamentals/custom-renderer/viewcell">Personalización de ViewCell</a>
+ 
+ - <a href="https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.viewcell?view=xamarin-forms">ViewCell Class</a>
+ 
+ - <a href="https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.cell?view=xamarin-forms">Cell Class</a>
 
 ### Pendientes y "Nice to have":
-	- Refactor de grilla para que al clickear un Servicio, permita editar y/o eliminar
-		-	Ver modo de selección de la grilla
+
+
 	- Refactorizar login para agregar ViewModel
-	- Que no se pueda clickear en guardar si no se escribió un nombre de servicio
-		- Usar CanExcecute() para habilitar boton de Guardar
-	- Limitar maxlength al menos en el nombre de los servicios
 	- Exportación/Importación de datos
 	- Que se pueda configurar:
 		- Que se pueda elegir que la busqueda respete mayusculas
 		- Reestablecer scroll de la grilla al agregar un servicio
 		- Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
 		- Que se pida confirmación al eliminar un servicio
+	- Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
+		https://www.google.com/s2/favicons?domain=www.google.com
+	- ¿Agrego texto clickeable que diga "Click aquí para crear el servicio + SearchText" cuando no exista el servicio buscado?
+	- Agregar íconos para copiar al portapapeles los valores de los campos
+		https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
+	- Corregir altura filas grilla principal, los nombres muestran las letras cortadas, ej: g
+	- Corregir diseño abm, el campo otros datos no deja editar correctamente, no se ve completo tampoco
+		- Agregar ScrollView a campo Otros datos, porque cuando son muchos no se pueden leer ni copiar	
+
