@@ -14,12 +14,6 @@ namespace LoginsAdmin.Presentation
             InitializeComponent();
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            App.IsUserLoggedIn = false;
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -47,6 +41,12 @@ namespace LoginsAdmin.Presentation
                     this.stackIngresarClave.IsVisible = true;
                 }
             }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.IsUserLoggedIn = false;
         }
 
         private async void btnEstablecerPassword_Clicked(object sender, EventArgs e)

@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.ABM">
 
@@ -119,13 +120,7 @@
                 
                 <!-- Footer -->
                 <StackLayout Grid.Row="3" BackgroundColor="#7DA7F5" VerticalOptions="Fill" >
-                    <Label
-                        x:Name="lblAbout"
-                        Text="Hecho con ♥ por Jonatandb@gmail.com" 
-                        FontSize="Micro"
-                        TextColor="#1C41D7"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"/>
+                    <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>                
                 </StackLayout>
             </Grid>
         </StackLayout>

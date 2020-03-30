@@ -3,6 +3,8 @@ using System.ComponentModel;
 using LoginsAdmin.Domain.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System;
+using Xamarin.Essentials;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
@@ -18,7 +20,7 @@ namespace LoginsAdmin.Presentation.ViewModels
         {
             Servicios = new ObservableCollection<Servicio>();
 
-            AddServiceCommand = new Command(() =>
+            AddServiceCommand = new Command(async () =>
             {
                 SelectedService = null;
                 ShowABM();

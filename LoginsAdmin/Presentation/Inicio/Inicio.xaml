@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.Inicio"
              x:Name="ParentView">
@@ -34,9 +35,8 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Header -->
-                <Grid
-                    Margin="5,0,0,10"
-                    Grid.Row="0">
+                <Grid Grid.Row="0"
+                    Margin="5,0,0,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -78,8 +78,7 @@
                             Text="{Binding SearchText}"/>
 
                 <!--Estado--> 
-                <Label 
-                    Grid.Row="2" 
+                <Label Grid.Row="2" 
                     FontSize="Caption" 
                     TextColor="White"
                     TextDecorations="Underline"
@@ -88,8 +87,8 @@
                     MaxLines="1"/>
 
                 <!-- Grilla -->
-                <ListView  SeparatorColor="Blue" 
-                    Grid.Row="3"
+                <ListView  Grid.Row="3"
+                    SeparatorColor="Blue" 
                     BackgroundColor="#448fff"
                     SelectionMode="Single"
                     x:Name="GrillaServicios"
@@ -125,15 +124,8 @@
                 </ListView>
 
                 <!-- Footer -->
-                <StackLayout 
-                    Grid.Row="4">
-                    <Label
-                        x:Name="lblAbout"
-                        Text="Hecho con ♥ por Jonatandb@gmail.com" 
-                        FontSize="Micro"
-                        TextColor="#1C41D7"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"/>
+                <StackLayout Grid.Row="4">
+                    <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Grid>
 

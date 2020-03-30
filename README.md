@@ -45,6 +45,10 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/pop-ups/?tabs=vswin">Tutorial sobre los elementos emergentes de Xamarin.Forms</a>
 
+ - <a href="https://xamarinhelp.com/hyperlink-in-xamarin-forms-label/" target="_blank">Hyperlink in Xamarin.Forms Label</a>
+
+ - <a href="https://xamarinhelp.com/xamarin-forms-user-control/" target="_blank">Xamarin Forms User Control</a>
+
 ### Pendientes y "Nice to have":
 
 	- Refactorizar login para agregar ViewModel
@@ -63,6 +67,9 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 	- Corregir diseño abm, el campo otros datos no deja editar correctamente, no se ve completo tampoco
 		- Agregar ScrollView a campo Otros datos, porque cuando son muchos no se pueden leer ni copiar	
     - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
+    - Centrar la contraseña a medida que es ingresada
+        https://forums.xamarin.com/discussion/42438/align-center-text-entry
+        https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
 
 ### Otras pruebas:
 - Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:

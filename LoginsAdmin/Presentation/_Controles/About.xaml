@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Xamarin Forms User Control-->
+<!--https://xamarinhelp.com/xamarin-forms-user-control/-->
+<!--Thanks Adam Pedley! https://xamarinhelp.com/author/xamarinhelp/-->
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:LoginsAdmin.Presentation._Controles"
+             mc:Ignorable="d"
+             x:Class="LoginsAdmin.Presentation._Controles.About">
+
+    <StackLayout.BindingContext>
+        <local:AboutViewModel/>
+    </StackLayout.BindingContext>
+
+    <Label>
+        <Label.FormattedText>
+            <FormattedString>
+                <Span Text="Hecho con ♥ por " FontSize="Micro"/>
+                <Span Text="jonatandb@gmail.com"
+                                    TextColor="Blue"
+                                    TextDecorations="Underline"
+                                    FontSize="Micro">
+                    <Span.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AboutCommand}"
+                                        CommandParameter="mailto:jonatandb@gmail.com" />
+                    </Span.GestureRecognizers>
+                </Span>
+            </FormattedString>
+        </Label.FormattedText>
+    </Label>
+</StackLayout>
