@@ -111,7 +111,7 @@
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="1" Orientation="Horizontal" BackgroundColor="White">
-                                        <Label  VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"
+                                        <Label  VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Margin="5, 0, 0, 0"
                                                Text="{Binding Name}" FontSize="Body" BackgroundColor="White"/>
 
                                         <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Margin="0, 0, 5, 0"
