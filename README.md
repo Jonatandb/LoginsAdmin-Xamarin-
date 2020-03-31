@@ -3,12 +3,12 @@
 
 Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
-<img src="Screenshot_V0.4.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+<img src="Screenshot_v0.5-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ---
 
 ## Última versión:
-- v0.4-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.4-alpha">Agregado de ABM de Servicios</a>
+- v0.5-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.5-alpha">Agregado de ABM de Servicios</a>
 
 ---	
 
@@ -73,13 +73,14 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://www.youtube.com/watch?v=pr03CYqhFr4&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=2&t=0s">Xamarin.Forms 101: Data Binding | The Xamarin Show</a>
 
+ - <a href="https://forums.xamarin.com/discussion/11102/what-is-equivalent-to-getapplicationcontext-in-xamarin-android" target="_blank">What is equivalent to getApplicationContext() in Xamarin Android</a>
+
 ---	
 
 
 ### Pendientes y "Nice to have":
 
     - Corregir:
-        - Altura filas grilla principal, los nombres muestran las letras cortadas, ej: g
         - Diseño abm, el campo otros datos no deja editar correctamente, ni se ve completo tampoco
             - Posible fix: Agregar ScrollView a campo Otros datos
         - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.

@@ -97,26 +97,26 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="1" BackgroundColor="WhiteSmoke" >
+                                <Grid Margin="5" ColumnSpacing="5" >
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="34"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    
-                                    <BoxView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
-                                             HeightRequest="20" WidthRequest="20"
-                                             BackgroundColor="#7DA7F5"/>
-                                    
-                                    <Label Grid.Row="0" Grid.Column="1"
-                                           Text="{Binding Name}" FontSize="Body"/>
 
-                                    <Label Grid.Row="1" Grid.Column="1"
-                                           Text="{Binding User}" FontSize="Micro" />
+                                    <StackLayout Grid.Column="0" BackgroundColor="#7DA7F5" >
+                                        <BoxView HeightRequest="34" WidthRequest="34" BackgroundColor="#7DA7F5" HorizontalOptions="Start"/>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" BackgroundColor="White">
+                                        <Label  VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"
+                                               Text="{Binding Name}" FontSize="Body" BackgroundColor="White"/>
+
+                                        <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                                               Text="{Binding User}" FontSize="Micro"/>
+                                    </StackLayout>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -133,7 +133,7 @@
                 Source="AddButton" 
                 BackgroundColor="Transparent"
                 AbsoluteLayout.LayoutFlags="PositionProportional"  
-                AbsoluteLayout.LayoutBounds=".90,.92,50,50" 
+                AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
                 Command="{Binding AddEditServiceCommand}"/>
         </AbsoluteLayout>
 

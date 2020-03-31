@@ -15,7 +15,7 @@ namespace LoginsAdmin.Presentation._Controles
 
             AboutCommand = new Command(async () =>
             {
-                string action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin by Jonatandb", "Aceptar", null, "Email", "Github", "LinkedIn");
+                string action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin (" + AppInfo.VersionString + ")", "Aceptar", null, "Email", "Github", "LinkedIn");
                 if (!string.IsNullOrEmpty(action))
                 {
                     string url;
