@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using LoginsAdmin.Domain.Models;
 using System.Windows.Input;
-using System;
+using System.Threading.Tasks;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
@@ -11,16 +11,13 @@ namespace LoginsAdmin.Presentation.ViewModels
         int _id;
         string _nombre, _usuario, _clave, _otrosDatos;
 
-        private Servicio ServiceToEdit { get; set; }
-        public bool IsEditMode { get => ServiceToEdit != null; }
-        public bool IsValidServiceName { get => !string.IsNullOrWhiteSpace(Nombre); }
-
+        public delegate void ServicesModifiedEventHandler();
+        public event ServicesModifiedEventHandler ServicesModified;
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public event EventHandler ServicesModified;
 
         public ICommand GuardarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
+
 
         public ABMViewModel()
         {
@@ -48,9 +45,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                         await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
                                                                   App.RepoServicios.StatusMessage,
                                                                   "Cerrar");
-                        RefrescarGrilla();
-
-                        await Application.Current.MainPage.Navigation.PopAsync();
+                        await Volver();
                     }
                     else
                     {
@@ -70,12 +65,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                     {
                         if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
                         {
-                            await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                        App.RepoServicios.StatusMessage,
-                                                                        "Cerrar");
-                            RefrescarGrilla();
-
-                            await Application.Current.MainPage.Navigation.PopAsync();
+                            await Volver();
                         }
                         else
                         {
@@ -88,24 +78,12 @@ namespace LoginsAdmin.Presentation.ViewModels
             });
         }
 
-        internal void SetServiceToEdit(Servicio service)
-        {
-            if (service != null)
-            {
-                ServiceToEdit = service;
-                Id = ServiceToEdit.Id;
-                Nombre = ServiceToEdit.Name;
-                Usuario = ServiceToEdit.User;
-                Clave = ServiceToEdit.Password;
-                OtrosDatos = ServiceToEdit.ExtraData;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEditMode)));
-            }
-        }
 
-        private void RefrescarGrilla()
-        {
-            ServicesModified?.Invoke(null, null);
-        }
+        private Servicio ServiceToEdit { get; set; }
+        
+        public bool IsEditMode { get => ServiceToEdit != null; }
+        
+        public bool IsValidServiceName { get => !string.IsNullOrWhiteSpace(Nombre); }
 
         public int Id
         {
@@ -121,10 +99,11 @@ namespace LoginsAdmin.Presentation.ViewModels
             get => _nombre;
             set
             {
+                if (_nombre == value) return;
                 _nombre = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Nombre)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsValidServiceName)));
-            } 
+                OnPropertyChanged(nameof(Nombre));
+                OnPropertyChanged(nameof(IsValidServiceName));
+            }
         }
 
         public string Usuario
@@ -132,8 +111,9 @@ namespace LoginsAdmin.Presentation.ViewModels
             get => string.IsNullOrWhiteSpace(_usuario) ? "" : _usuario;
             set
             {
-                _usuario= value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Usuario)));
+                if (_usuario == value) return;
+                _usuario = value;
+                OnPropertyChanged(nameof(Usuario));
             }
         }
 
@@ -142,8 +122,9 @@ namespace LoginsAdmin.Presentation.ViewModels
             get => string.IsNullOrWhiteSpace(_clave) ? "" : _clave;
             set
             {
-                _clave= value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Clave)));
+                if (_clave == value) return;
+                _clave = value;
+                OnPropertyChanged(nameof(Clave));
             }
         }
 
@@ -152,11 +133,41 @@ namespace LoginsAdmin.Presentation.ViewModels
             get => string.IsNullOrWhiteSpace(_otrosDatos) ? "" : _otrosDatos;
             set
             {
-                _otrosDatos= value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OtrosDatos)));
+                if (_otrosDatos == value) return;
+                _otrosDatos = value;
+                OnPropertyChanged(nameof(OtrosDatos));
             }
         }
 
 
+        public void SetServiceToEdit(Servicio service)
+        {
+            if (service != null)
+            {
+                ServiceToEdit = service;
+                Id = ServiceToEdit.Id;
+                Nombre = ServiceToEdit.Name;
+                Usuario = ServiceToEdit.User;
+                Clave = ServiceToEdit.Password;
+                OtrosDatos = ServiceToEdit.ExtraData;
+                OnPropertyChanged(nameof(IsEditMode));
+            }
+        }
+
+        private void RefrescarGrilla()
+        {
+            ServicesModified?.Invoke();
+        }
+
+        private async Task Volver()
+        {
+            RefrescarGrilla();
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

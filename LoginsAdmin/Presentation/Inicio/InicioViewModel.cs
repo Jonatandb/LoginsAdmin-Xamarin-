@@ -3,68 +3,41 @@ using System.ComponentModel;
 using LoginsAdmin.Domain.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System;
-using Xamarin.Essentials;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
     public class InicioViewModel : INotifyPropertyChanged
     {
-        string searchText;
+        string _searchText;
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand AddServiceCommand { get; }
-        public ICommand EditServiceCommand { get; }
-        public ObservableCollection<Servicio> Servicios { get; }
-        public Servicio SelectedService { get; set; }
+        
+        public ICommand AddEditServiceCommand { get; }
+        
+
         public InicioViewModel()
         {
             Servicios = new ObservableCollection<Servicio>();
-
-            AddServiceCommand = new Command(async () =>
-            {
-                SelectedService = null;
-                ShowABM();
-                SearchText = "";
-            });
-
-            EditServiceCommand = new Command(() =>
-            {
-                ShowABM();
-                SearchText = "";
-            });
+            AddEditServiceCommand = new Command(ShowABM);
         }
 
-        private void ShowABM()
-        {
-            ContentPage ABM = new ABM();
-            ((ABMViewModel)ABM.BindingContext).SetServiceToEdit(SelectedService);
-            ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
-            NavigationPage.SetHasBackButton(ABM, false);
-            NavigationPage.SetHasNavigationBar(ABM, false);
-            Application.Current.MainPage.Navigation.PushAsync(ABM);
-        }
 
-        public void RecargarGrilla(object sender = null, object e = null)
-        {
-            SelectedService = null;
-            Servicios.Clear();
-            App.RepoServicios.ObtenerServicios(SearchText).ForEach(s => Servicios.Add(s));
-            PropertyChanged(nameof(ResultSearchText), new PropertyChangedEventArgs(nameof(ResultSearchText)));
-        }
-
+        public ObservableCollection<Servicio> Servicios { get; }
+        
+        public Servicio SelectedService { get; set; }
+        
         public string SearchText
         {
-            get => string.IsNullOrWhiteSpace(searchText) ? "" : searchText;
+            get => string.IsNullOrWhiteSpace(_searchText) ? "" : _searchText;
             set
             {
-                searchText = value;
-
-                var args = new PropertyChangedEventArgs(nameof(SearchText));
-                PropertyChanged?.Invoke(this, args);
+                if (_searchText == value) return;
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
                 RecargarGrilla();
             }
         }
-
+        
         public string ResultSearchText { 
             get 
             {
@@ -90,5 +63,29 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
         }
 
+
+        public void RecargarGrilla()
+        {
+            SelectedService = null;
+            Servicios.Clear();
+            App.RepoServicios.ObtenerServicios(SearchText).ForEach(s => Servicios.Add(s));
+            OnPropertyChanged(nameof(ResultSearchText));
+        }
+        
+        private async void ShowABM()
+        {
+            ContentPage ABM = new ABM();
+            ((ABMViewModel)ABM.BindingContext).SetServiceToEdit(SelectedService);
+            ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
+            NavigationPage.SetHasBackButton(ABM, false);
+            NavigationPage.SetHasNavigationBar(ABM, false);
+            await Application.Current.MainPage.Navigation.PushAsync(ABM);
+            SelectedService = null;
+        }
+        
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

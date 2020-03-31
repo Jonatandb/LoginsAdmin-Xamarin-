@@ -134,7 +134,7 @@
                 BackgroundColor="Transparent"
                 AbsoluteLayout.LayoutFlags="PositionProportional"  
                 AbsoluteLayout.LayoutBounds=".90,.92,50,50" 
-                Command="{Binding AddServiceCommand}"/>
+                Command="{Binding AddEditServiceCommand}"/>
         </AbsoluteLayout>
 
     </ContentPage.Content>

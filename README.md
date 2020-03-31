@@ -5,6 +5,13 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
 <img src="Screenshot_V0.4.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
+---
+
+## Última versión:
+- v0.4-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.4-alpha">Agregado de ABM de Servicios</a>
+
+---	
+
 
 ### Páginas consultadas:
 
@@ -56,29 +63,53 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/app-lifecycle/?tabs=vswin" target="_blank">Tutorial sobre el ciclo de vida de las aplicaciones de Xamarin.Forms</a>
 
+ - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/label/?tabs=vswin">Tutorial sobre las etiquetas de Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/get-started/tutorials/stacklayout/?tabs=vswin">Tutorial sobre el diseño de pila de Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/margin-and-padding">Margen y relleno</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/layout-options">Opciones de diseño de Xamarin.Forms</a>
+
+ - <a href="https://www.youtube.com/watch?v=pr03CYqhFr4&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=2&t=0s">Xamarin.Forms 101: Data Binding | The Xamarin Show</a>
+
+---	
+
 
 ### Pendientes y "Nice to have":
 
-	- Refactorizar login para agregar ViewModel
-	- Exportación/Importación de datos
-	- Que se pueda configurar:
-		- Que se pueda elegir que la busqueda respete mayusculas
-		- Reestablecer scroll de la grilla al agregar un servicio
-		- Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
-		- Que se pida confirmación al eliminar un servicio
-	- Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
-		https://www.google.com/s2/favicons?domain=www.google.com
-	- ¿Agrego texto clickeable que diga "Click aquí para crear el servicio + SearchText" cuando no exista el servicio buscado?
-	- Agregar íconos para copiar al portapapeles los valores de los campos
-		https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
-	- Corregir altura filas grilla principal, los nombres muestran las letras cortadas, ej: g
-	- Corregir diseño abm, el campo otros datos no deja editar correctamente, no se ve completo tampoco
-		- Agregar ScrollView a campo Otros datos, porque cuando son muchos no se pueden leer ni copiar	
-    - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
-    - Centrar la contraseña a medida que es ingresada
-        https://forums.xamarin.com/discussion/42438/align-center-text-entry
-        https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
+    - Corregir:
+        - Altura filas grilla principal, los nombres muestran las letras cortadas, ej: g
+        - Diseño abm, el campo otros datos no deja editar correctamente, ni se ve completo tampoco
+            - Posible fix: Agregar ScrollView a campo Otros datos
+        - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
+        - Centrar la contraseña a medida que es ingresada
+            - https://forums.xamarin.com/discussion/42438/align-center-text-entry
+            - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
 
+    - Posibles agregados:
+        - Refactorizar login para agregar ViewModel
+	    - Exportación/Importación de datos
+            -   Que se soliciten las credenciales para algún servicio de almacenamiento online (DropBox, Drive, etc) y se guarde ahí un archivo con los datos de los servicios
+            -   Que se genere y descargue un archivo XLS con contraseña: la utilizada para acceder a la aplicación.
+                -   Contra: desde el celular no lo podrían abrir sin tener instalado Office.
+            -   Que se genere y descargue un archivo .Zip con contraseña: la utilizada para acceder a la aplicación.
+                -   Adentro podría tener un simple archivo txt, json, xls...
+                -   Contra: desde el celular no lo podrían abrir y revisar ya que no se pueden abrir archivos .zip
+	    - Que se pueda configurar:
+            - Que se pueda elegir que la busqueda respete mayusculas
+		    - Reestablecer scroll de la grilla al agregar un servicio
+		    - Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
+		    - Que se pida confirmación al eliminar un servicio
+	    - Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
+            - https://www.google.com/s2/favicons?domain=www.google.com
+	    - Cuando no exista el servicio buscado: Hacer aparecer texto clickeable que diga "Click aquí para crear el servicio + SearchText"
+	    - Iconos juntos a los campos del ABM que permitan copiar al portapapeles los valores tales campos
+		    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
+
+    - Sugerencias recibidas:
+        - Especificar en texto en rojo incial que se deberá reinstalar la aplicación si se olvida la contraseña
+        - Agregar opción que permita guardar contraseñas anteriores
 
 ### Otras pruebas:
 - Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:

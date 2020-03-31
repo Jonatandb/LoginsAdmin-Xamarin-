@@ -17,7 +17,7 @@ namespace LoginsAdmin.Presentation
         private void GrillaServicios_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             ((InicioViewModel)BindingContext).SelectedService = (Servicio)e.Item;
-            ((InicioViewModel)BindingContext).EditServiceCommand.Execute(null);
+            ((InicioViewModel)BindingContext).AddEditServiceCommand.Execute(null);
         }
     }
 }
