@@ -15,14 +15,15 @@ namespace LoginsAdmin.Presentation._Controles
 
             AboutCommand = new Command(async () =>
             {
-                string action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin (" + AppInfo.VersionString + ")", "Aceptar", null, "Email", "Github", "LinkedIn");
+                string appVersion = AppInfo.VersionString;
+                string action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin (" + appVersion + ")", "Aceptar", null, "Email", "Github", "LinkedIn");
                 if (!string.IsNullOrEmpty(action))
                 {
                     string url;
                     switch (action)
                     {
                         case "Email":
-                            url = "mailto:jonatandb@gmail.com?subject=Acerca%20de%20LoginsAdmin&body=Hola%20Jonatandb!,%20";
+                            url = "mailto:jonatandb@gmail.com?subject=Acerca%20de%20LoginsAdmin%20(" + appVersion + ")&body=Hola%20Jonatandb!,%20";
                             break;
                         case "Github":
                             url = "https://github.com/Jonatandb";

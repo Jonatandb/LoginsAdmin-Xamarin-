@@ -114,7 +114,7 @@
                                         <Label  VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"
                                                Text="{Binding Name}" FontSize="Body" BackgroundColor="White"/>
 
-                                        <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                                        <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Margin="0, 0, 5, 0"
                                                Text="{Binding User}" FontSize="Micro"/>
                                     </StackLayout>
                                 </Grid>
