@@ -90,7 +90,7 @@
                 <ListView  Grid.Row="3"
                     SeparatorColor="Blue" 
                     BackgroundColor="#448fff"
-                    SelectionMode="Single"
+                    SelectionMode="None"
                     x:Name="GrillaServicios"
                     ItemsSource="{Binding Servicios}"
                     ItemTapped="GrillaServicios_ItemTapped">

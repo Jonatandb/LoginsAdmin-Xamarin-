@@ -1,17 +1,52 @@
 # LoginsAdmin (Xamarin)
 
 
-Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
+Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Forms)
 
 <img src="Screenshot_v0.5-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ---
 
 ## Última versión:
-- v0.5-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.5-alpha">Agregado de ABM de Servicios</a>
+- v0.5-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.5-alpha">Rediseño de grilla principal</a>
 
 ---	
 
+### Pendientes y "Nice to have":
+
+    - Corregir:
+        - Diseño abm, el campo otros datos no deja editar correctamente, ni se ve completo tampoco
+            - Posible fix: Agregar ScrollView a campo Otros datos
+        - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
+        - Centrar la contraseña a medida que es ingresada
+            - https://forums.xamarin.com/discussion/42438/align-center-text-entry
+            - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
+
+    - Posibles agregados:
+        - Refactorizar login para agregar ViewModel
+	    - Exportación/Importación de datos
+            -   Que se soliciten las credenciales para algún servicio de almacenamiento online (DropBox, Drive, etc) y se guarde ahí un archivo con los datos de los servicios
+            -   Que se genere y descargue un archivo XLS con contraseña: la utilizada para acceder a la aplicación.
+                -   Contra: desde el celular no lo podrían abrir sin tener instalado Office.
+            -   Que se genere y descargue un archivo .Zip con contraseña: la utilizada para acceder a la aplicación.
+                -   Adentro podría tener un simple archivo txt, json, xls...
+                -   Contra: desde el celular no lo podrían abrir y revisar ya que no se pueden abrir archivos .zip
+	    - Que se pueda configurar:
+            - Que se pueda elegir que la busqueda respete mayusculas
+		    - Reestablecer scroll de la grilla al agregar un servicio
+		    - Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
+		    - Que se pida confirmación al eliminar un servicio
+	    - Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
+            - https://www.google.com/s2/favicons?domain=www.google.com
+	    - Cuando no exista el servicio buscado: Hacer aparecer texto clickeable que diga "Click aquí para crear el servicio + SearchText"
+	    - Iconos juntos a los campos del ABM que permitan copiar al portapapeles los valores tales campos
+		    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
+
+    - Sugerencias recibidas:
+        - Especificar en texto en rojo incial que se deberá reinstalar la aplicación si se olvida la contraseña
+        - Agregar opción que permita guardar contraseñas anteriores
+
+---
 
 ### Páginas consultadas:
 
@@ -75,42 +110,9 @@ Repositorio de LoginsAdmin para la versión para Android hecha con Xamarin.Forms
 
  - <a href="https://forums.xamarin.com/discussion/11102/what-is-equivalent-to-getapplicationcontext-in-xamarin-android" target="_blank">What is equivalent to getApplicationContext() in Xamarin Android</a>
 
----	
+ - <a href="https://stackoverflow.com/questions/25885238/xamarin-forms-listview-set-the-highlight-color-of-a-tapped-item" target="_blank"> Xamarin.Forms ListView: Set the highlight color of a tapped item</a>
 
-
-### Pendientes y "Nice to have":
-
-    - Corregir:
-        - Diseño abm, el campo otros datos no deja editar correctamente, ni se ve completo tampoco
-            - Posible fix: Agregar ScrollView a campo Otros datos
-        - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
-        - Centrar la contraseña a medida que es ingresada
-            - https://forums.xamarin.com/discussion/42438/align-center-text-entry
-            - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
-
-    - Posibles agregados:
-        - Refactorizar login para agregar ViewModel
-	    - Exportación/Importación de datos
-            -   Que se soliciten las credenciales para algún servicio de almacenamiento online (DropBox, Drive, etc) y se guarde ahí un archivo con los datos de los servicios
-            -   Que se genere y descargue un archivo XLS con contraseña: la utilizada para acceder a la aplicación.
-                -   Contra: desde el celular no lo podrían abrir sin tener instalado Office.
-            -   Que se genere y descargue un archivo .Zip con contraseña: la utilizada para acceder a la aplicación.
-                -   Adentro podría tener un simple archivo txt, json, xls...
-                -   Contra: desde el celular no lo podrían abrir y revisar ya que no se pueden abrir archivos .zip
-	    - Que se pueda configurar:
-            - Que se pueda elegir que la busqueda respete mayusculas
-		    - Reestablecer scroll de la grilla al agregar un servicio
-		    - Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
-		    - Que se pida confirmación al eliminar un servicio
-	    - Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
-            - https://www.google.com/s2/favicons?domain=www.google.com
-	    - Cuando no exista el servicio buscado: Hacer aparecer texto clickeable que diga "Click aquí para crear el servicio + SearchText"
-	    - Iconos juntos a los campos del ABM que permitan copiar al portapapeles los valores tales campos
-		    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
-
-    - Sugerencias recibidas:
-        - Especificar en texto en rojo incial que se deberá reinstalar la aplicación si se olvida la contraseña
-        - Agregar opción que permita guardar contraseñas anteriores
+---
 
 ### Otras pruebas:
 - Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:
