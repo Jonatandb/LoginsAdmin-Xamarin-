@@ -81,29 +81,25 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackLayout 
-                        Grid.Row="0"
+                    <StackLayout Grid.Row="0"
                         Orientation="Vertical">
                         <Label Text="Nombre del servicio:" TextColor="White"/>
                         <Entry Text="{Binding Nombre}" MaxLength="200"/>
                     </StackLayout>
 
-                    <StackLayout 
-                        Grid.Row="1"
+                    <StackLayout Grid.Row="1"
                         Orientation="Vertical">
                         <Label Text="Usuario:" TextColor="White"/>
                         <Entry Text="{Binding Usuario}" MaxLength="200"/>
                     </StackLayout>
 
-                    <StackLayout 
-                        Grid.Row="2"
+                    <StackLayout Grid.Row="2"
                         Orientation="Vertical">
                         <Label Text="Clave:" TextColor="White"/>
                         <Entry Text="{Binding Clave}" MaxLength="200"/>
                     </StackLayout>
 
-                    <StackLayout 
-                        Grid.Row="3"
+                    <StackLayout Grid.Row="3"
                         Orientation="Vertical">
                         <Label Text="Otros datos:" TextColor="White"/>
                         <Editor Text="{Binding OtrosDatos}"/>
@@ -111,15 +107,19 @@
                 </Grid>
 
                 <!-- Guardar - Eliminar -->
-                <StackLayout Grid.Row="2" BackgroundColor="#7DA7F5" Orientation="Vertical">
+                <StackLayout Grid.Row="2"
+                    BackgroundColor="#7DA7F5" 
+                    Orientation="Vertical">
                     <Button Text="Guardar"
-                        Command="{Binding GuardarCommand}" IsEnabled="{Binding IsValidServiceName}"/>
+                            Command="{Binding GuardarCommand}" />
                     <Button Text="Eliminar"
-                        Command="{Binding EliminarCommand}" IsVisible="{Binding IsEditMode}"/>
+                            Command="{Binding EliminarCommand}" IsVisible="{Binding IsEditMode}"/>
                 </StackLayout>
                 
                 <!-- Footer -->
-                <StackLayout Grid.Row="3" BackgroundColor="#7DA7F5" VerticalOptions="Fill">
+                <StackLayout Grid.Row="3" 
+                    BackgroundColor="#7DA7F5" 
+                    VerticalOptions="Fill">
                     <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>                
                 </StackLayout>
             </Grid>

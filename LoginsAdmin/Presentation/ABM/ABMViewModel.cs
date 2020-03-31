@@ -3,12 +3,12 @@ using System.ComponentModel;
 using LoginsAdmin.Domain.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
     public class ABMViewModel : INotifyPropertyChanged
     {
-        int _id;
         string _nombre, _usuario, _clave, _otrosDatos;
 
         public delegate void ServicesModifiedEventHandler();
@@ -21,78 +21,15 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public ABMViewModel()
         {
-            GuardarCommand = new Command(async () =>
-            {
-                if (string.IsNullOrWhiteSpace(Nombre))
-                {
-                    await App.Current.MainPage.DisplayAlert("Atención",
-                                                      "Se requiere que al menos se especifíque un nombre para el servicio.",
-                                                      "Aceptar");
-                }
-                else
-                {
-                    Servicio servicio = new Servicio
-                    {
-                        Id = IsEditMode ? ServiceToEdit.Id : -1,
-                        Name = Nombre.Trim(),
-                        User = Usuario.Trim(),
-                        Password = Clave.Trim(),
-                        ExtraData = OtrosDatos.Trim()
-                    };
-
-                    if (App.RepoServicios.AgregarEditarServicio(servicio))
-                    {
-                        await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                  App.RepoServicios.StatusMessage,
-                                                                  "Cerrar");
-                        await Volver();
-                    }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                  App.RepoServicios.StatusMessage,
-                                                                  "Cerrar");
-                    }
-                }
-            });
-
-            EliminarCommand = new Command( async () =>
-            {
-                bool respuesta = await Application.Current.MainPage.DisplayAlert("Atención", "¿Está seguro que desea eliminar este servicio?", "Si", "No");
-                if(respuesta)
-                {
-                    if (IsEditMode)
-                    {
-                        if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
-                        {
-                            await Volver();
-                        }
-                        else
-                        {
-                            await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                                                        App.RepoServicios.StatusMessage,
-                                                                        "Cerrar");
-                        }
-                    }
-                }
-            });
+            GuardarCommand = new Command(Guardar, IsSaveButtonEnabled);
+            EliminarCommand = new Command(Eliminar);
         }
-
 
         private Servicio ServiceToEdit { get; set; }
         
         public bool IsEditMode { get => ServiceToEdit != null; }
         
-        public bool IsValidServiceName { get => !string.IsNullOrWhiteSpace(Nombre); }
-
-        public int Id
-        {
-            get => _id;
-            set
-            {
-                _id = value;
-            }
-        }
+        private int Id { get; set; }
 
         public string Nombre
         {
@@ -102,13 +39,13 @@ namespace LoginsAdmin.Presentation.ViewModels
                 if (_nombre == value) return;
                 _nombre = value;
                 OnPropertyChanged(nameof(Nombre));
-                OnPropertyChanged(nameof(IsValidServiceName));
+                ((Command)GuardarCommand).ChangeCanExecute();
             }
         }
 
         public string Usuario
         {
-            get => string.IsNullOrWhiteSpace(_usuario) ? "" : _usuario;
+            get => _usuario;
             set
             {
                 if (_usuario == value) return;
@@ -119,7 +56,7 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public string Clave
         {
-            get => string.IsNullOrWhiteSpace(_clave) ? "" : _clave;
+            get => _clave;
             set
             {
                 if (_clave == value) return;
@@ -130,7 +67,7 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public string OtrosDatos
         {
-            get => string.IsNullOrWhiteSpace(_otrosDatos) ? "" : _otrosDatos;
+            get => _otrosDatos;
             set
             {
                 if (_otrosDatos == value) return;
@@ -139,6 +76,11 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
         }
 
+
+        private bool IsSaveButtonEnabled()
+        {
+            return !string.IsNullOrWhiteSpace(Nombre);
+        }
 
         public void SetServiceToEdit(Servicio service)
         {
@@ -157,6 +99,90 @@ namespace LoginsAdmin.Presentation.ViewModels
         private void RefrescarGrilla()
         {
             ServicesModified?.Invoke();
+        }
+
+        private async void Guardar()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Nombre))
+                {
+                    await App.Current.MainPage.DisplayAlert(
+                        "Atención",
+                        "Se requiere que al menos se especifíque un nombre para el servicio.",
+                        "Aceptar");
+                }
+                else
+                {
+                    Servicio servicio = new Servicio
+                    {
+                        Id = IsEditMode ? ServiceToEdit.Id : -1,
+                        Name = Nombre.Trim(),
+                        User = string.IsNullOrWhiteSpace(Usuario) ? "" : Usuario.Trim(),
+                        Password = string.IsNullOrWhiteSpace(Clave) ? "" : Clave.Trim(),
+                        ExtraData = string.IsNullOrWhiteSpace(OtrosDatos) ? "" : OtrosDatos.Trim()
+                    };
+
+                    if (App.RepoServicios.AgregarEditarServicio(servicio))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                            "LoginsAdmin",
+                            App.RepoServicios.StatusMessage,
+                            "Cerrar");
+                        await Volver();
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                            "LoginsAdmin",
+                            App.RepoServicios.StatusMessage,
+                            "Cerrar");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    "Atención",
+                    "No se pudo guardar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Guadar(): " + ex.Message,
+                    "Aceptar");
+            }
+        }
+
+        private async void Eliminar()
+        {
+            try
+            {
+                bool respuesta = await Application.Current.MainPage.DisplayAlert(
+                    "Atención", 
+                    "¿Está seguro que desea eliminar este servicio?", 
+                    "Si", 
+                    "No");
+                if (respuesta)
+                {
+                    if (IsEditMode)
+                    {
+                        if (App.RepoServicios.EliminarServicio(ServiceToEdit.Id))
+                        {
+                            await Volver();
+                        }
+                        else
+                        {
+                            await Application.Current.MainPage.DisplayAlert(
+                                "LoginsAdmin",
+                                App.RepoServicios.StatusMessage,
+                                "Cerrar");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    "Atención",
+                    "No se pudo eliminar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Eliminar(): " + ex.Message,
+                    "Aceptar");
+            }
         }
 
         private async Task Volver()

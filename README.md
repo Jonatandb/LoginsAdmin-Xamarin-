@@ -39,7 +39,7 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
 	    - Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
             - https://www.google.com/s2/favicons?domain=www.google.com
 	    - Cuando no exista el servicio buscado: Hacer aparecer texto clickeable que diga "Click aquí para crear el servicio + SearchText"
-	    - Iconos juntos a los campos del ABM que permitan copiar al portapapeles los valores tales campos
+	    - Iconos juntos a los campos del ABM que permitan copiar al portapapeles los valores de tales campos
 		    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
 
     - Sugerencias recibidas:

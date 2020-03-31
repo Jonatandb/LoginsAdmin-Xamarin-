@@ -23,9 +23,9 @@ namespace LoginsAdmin.Presentation
             if(usuario == null)
             {
                 this.DisplayAlert(
-                                "Atención",
-                                "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\n" + App.RepoServicios.StatusMessage,
-                                "Cerrar");
+                    "Atención",
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.OnAppearing(): " + App.RepoServicios.StatusMessage,
+                    "Cerrar");
             }
             else
             {
@@ -51,75 +51,90 @@ namespace LoginsAdmin.Presentation
 
         private async void btnEstablecerPassword_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.txtNewPassword.Text))
+            try
             {
-                await this.DisplayAlert(
-                                    "Atención",
-                                    "Se requiere que al menos se especifíque una contraseña.",
-                                    "Aceptar");
-                this.txtNewPassword.Focus();
-            }
-            else
-            {
-                string nuevaClave = this.txtNewPassword.Text.Trim();
-                if ( ! App.RepoServicios.EstablecerClaveUsuarioPrincipal(nuevaClave))
+                if (string.IsNullOrEmpty(this.txtNewPassword.Text))
                 {
                     await this.DisplayAlert(
                         "Atención",
-                        "Se produjo un error al establecer la contraseña.\n\nPor favor contactarse con jonatandb@gmail.com\n\n" + App.RepoServicios.StatusMessage,
-                        "Cerrar");
+                        "Se requiere que al menos se especifíque una contraseña.",
+                        "Aceptar");
+                    this.txtNewPassword.Focus();
                 }
                 else
                 {
-                    await this.DisplayAlert(
-                        "LoginsAdmin",
-                        "Contraseña: '" + nuevaClave + "', establecida exitosamente!",
-                        "Continuar");
+                    string nuevaClave = this.txtNewPassword.Text.Trim();
+                    if ( ! App.RepoServicios.EstablecerClaveUsuarioPrincipal(nuevaClave))
+                    {
+                        await this.DisplayAlert(
+                            "Atención",
+                            "Se produjo un error al establecer la contraseña.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnEstablecerPassword_Clicked(): " + App.RepoServicios.StatusMessage,
+                            "Cerrar");
+                    }
+                    else
+                    {
+                        await this.DisplayAlert(
+                            "LoginsAdmin",
+                            "Contraseña: '" + nuevaClave + "', establecida exitosamente!",
+                            "Continuar");
 
-                    PantallaPrincipal();
+                        PantallaPrincipal();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    "Atención",
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnEstablecerPassword_Clicked(): " + ex.Message,
+                    "Aceptar");
             }
         }
 
         private async void btnAcceder_Clicked(object sender, EventArgs e)
         {
-            if (!App.RepoServicios.Login(this.txtPassword.Text.Trim()))
+            try
             {
-                if(App.RepoServicios.StatusMessage != "")
+                if (!App.RepoServicios.Login(this.txtPassword.Text.Trim()))
                 {
-                    await this.DisplayAlert(
-                        "Atención",
-                        "Se produjo un error al iniciar sesión.\n\nPor favor contactarse con jonatandb@gmail.com\n\nDetalles del error: \n" + App.RepoServicios.StatusMessage,
-                        "Cerrar");
-                }   
+                    if(App.RepoServicios.StatusMessage != "")
+                    {
+                        await this.DisplayAlert(
+                            "Atención",
+                            "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnAcceder_Clicked(): " + App.RepoServicios.StatusMessage,
+                            "Cerrar");
+                    }   
+                    else
+                    {
+                        await this.DisplayAlert(
+                            "Atención",
+                            "Contraseña incorrecta",
+                            "Reintentar");
+                        this.txtPassword.Text = "";
+                        this.txtPassword.Focus();
+                    }
+                }
                 else
                 {
-                    await this.DisplayAlert(
-                        "Atención",
-                        "Contraseña incorrecta",
-                        "Reintentar");
-                    this.txtPassword.Text = "";
-                    this.txtPassword.Focus();
+                    PantallaPrincipal();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                PantallaPrincipal();
+                await App.Current.MainPage.DisplayAlert(
+                    "Atención",
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnAcceder_Clicked(): " + ex.Message,
+                    "Aceptar");
             }
         }
 
         private void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // El botón de Acceder solo aparece habilitado si se ingresa texto
-
             this.btnAcceder.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
-
         }
 
         private void txtNewPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // El botón de Crear contraseña solo aparece habilitado si se ingresa texto
-
             this.btnEstablecerPassword.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
         }
 
@@ -135,6 +150,5 @@ namespace LoginsAdmin.Presentation
             Navigation.InsertPageBefore(mainPage, this);
             Navigation.PopAsync();
         }
-
     }
 }
