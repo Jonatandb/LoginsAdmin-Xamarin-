@@ -112,6 +112,8 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
 
  - <a href="https://stackoverflow.com/questions/25885238/xamarin-forms-listview-set-the-highlight-color-of-a-tapped-item" target="_blank"> Xamarin.Forms ListView: Set the highlight color of a tapped item</a>
 
+ - <a href="https://stackoverflow.com/questions/45767440/this-app-isnt-compatible-with-your-phone-android-7-0" target="_blank">“This app isn't compatible with your phone” Android 7.0</a>
+
 ---
 
 ### Otras pruebas:
