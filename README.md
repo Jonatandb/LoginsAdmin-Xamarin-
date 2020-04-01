@@ -1,7 +1,9 @@
-# LoginsAdmin (Xamarin)
+# LoginsAdmin
 
+## Administrador de contraseñas gratuito para Android 
 
-Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Forms)
+Realizado con Xamarin.Forms y C#
+
 
 <img src="Screenshot_v0.6-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
