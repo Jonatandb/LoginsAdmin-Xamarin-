@@ -6,6 +6,15 @@
              mc:Ignorable="d"
              x:Class="LoginsAdmin.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="MainBlue">#1C41D7</Color>
+            <Color x:Key="MainLightBlue">#7DA7F5</Color>
+            <Color x:Key="BackgroundLightBlue">#448fff</Color>
+            <Color x:Key="TextColorLight">White</Color>
+            <Color x:Key="TextColorDark">Gray</Color>
+            <Color x:Key="TextColorError">Red</Color>
+            
+            <x:String x:Key="AppName">LoginsAdmin</x:String>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

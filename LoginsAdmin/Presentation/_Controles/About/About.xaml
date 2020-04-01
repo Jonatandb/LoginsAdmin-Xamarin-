@@ -17,9 +17,9 @@
     <Label>
         <Label.FormattedText>
             <FormattedString>
-                <Span Text="Hecho con ♥ por " FontSize="Micro"/>
+                <Span Text="Hecho con ♥ por " FontSize="Micro" TextColor="{StaticResource TextColorLight}"/>
                 <Span Text="jonatandb@gmail.com"
-                                    TextColor="Blue"
+                                    TextColor="{StaticResource MainBlue}"
                                     TextDecorations="Underline"
                                     FontSize="Micro">
                     <Span.GestureRecognizers>

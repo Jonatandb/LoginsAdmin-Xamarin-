@@ -143,7 +143,7 @@ namespace LoginsAdmin.Repository
                     });
                     usuario = conn.Find<Usuario>(1);
                 }
-                // /*DEBUG*/ usuario.Password = "loginsadmindefaultpassword";                /// ***** Fuerzo a que siempre se pida crear una clave
+                // /*DEBUG*/ usuario.Password = "loginsadmindefaultpassword";
                 return usuario;
             }
             catch (Exception ex)

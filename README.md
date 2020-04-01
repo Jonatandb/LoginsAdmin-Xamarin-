@@ -3,24 +3,23 @@
 
 Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Forms)
 
-<img src="Screenshot_v0.5-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+<img src="Screenshot_v0.6-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ---
 
 ## Última versión:
-- v0.5-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.5-alpha">Rediseño de grilla principal</a>
+- v0.6-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.6-alpha">Rediseño general para adaptación a múltiples pantallas y tamaños de fuente</a>
 
 ---	
 
 ### Pendientes y "Nice to have":
 
     - Corregir:
-        - Diseño abm, el campo otros datos no deja editar correctamente, ni se ve completo tampoco
-            - Posible fix: Agregar ScrollView a campo Otros datos
         - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
         - Centrar la contraseña a medida que es ingresada
             - https://forums.xamarin.com/discussion/42438/align-center-text-entry
             - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
+        - Cuando se presiona el botón continuar más de una vez, la app no vuelve a pedir la contraseña al volver del segundo plano
 
     - Posibles agregados:
         - Refactorizar login para agregar ViewModel
@@ -43,7 +42,6 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
 		    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
 
     - Sugerencias recibidas:
-        - Especificar en texto en rojo incial que se deberá reinstalar la aplicación si se olvida la contraseña
         - Agregar opción que permita guardar contraseñas anteriores
 
 ---
@@ -113,6 +111,20 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
  - <a href="https://stackoverflow.com/questions/25885238/xamarin-forms-listview-set-the-highlight-color-of-a-tapped-item" target="_blank"> Xamarin.Forms ListView: Set the highlight color of a tapped item</a>
 
  - <a href="https://stackoverflow.com/questions/45767440/this-app-isnt-compatible-with-your-phone-android-7-0" target="_blank">“This app isn't compatible with your phone” Android 7.0</a>
+
+ - <a href="https://www.youtube.com/watch?v=mqI6mMZTeVE&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=2" target="_blank">Xamarin.Forms 101: Commands | The Xamarin Show</a>
+
+ - <a href="https://www.youtube.com/watch?v=4hYVgWI3APc&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=3" target="_blank">Xamarin.Forms 101: Commands Parameters | The Xamarin Show</a>
+
+ - <a href="https://www.youtube.com/watch?v=ewctH8RyDiA&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=4" target="_blank">Xamarin.Forms 101: Control Reference Binding (View-to-View)</a>
+
+ - <a href="https://www.youtube.com/watch?v=RvwMqYU-6qA&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=5" target="_blank">Xamarin.Forms 101: Application Resources</a>
+
+ - <a href="https://stackoverflow.com/questions/44728008/how-to-autosize-the-height-of-a-list-view-in-xaml" target="_blank">How to autosize the height of a list view in XAML</a>
+
+ - <a href="https://heartbeat.fritz.ai/techniques-for-improving-performance-in-a-xamarin-forms-application-b439f2f04156" target="_blank">Techniques for Improving Performance in a Xamarin.Forms Application</a>
+
+ - <a href="https://stackoverflow.com/questions/52985095/xamarin-forms-editor-autosize-does-not-work" target="_blank">Xamarin forms Editor AutoSize does not work</a>
 
 ---
 

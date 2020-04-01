@@ -6,136 +6,104 @@
              xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.Inicio"
-             x:Name="ParentView">
+             x:Class="LoginsAdmin.Presentation.Inicio">
     
     <ContentPage.BindingContext>
         <local:InicioViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <AbsoluteLayout 
-            BackgroundColor="#7DA7F5" 
-            Padding="0"
-            Margin="0">
-            <Grid 
-                Padding="0" 
-                RowSpacing="1" 
-                ColumnSpacing="1" 
-                Margin="5, 0, 5, 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="20*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
+        <AbsoluteLayout BackgroundColor="{StaticResource MainLightBlue}">
+            <StackLayout Orientation="Vertical"
+                        Margin="10, 0, 10, 0"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                
                 <!-- Header -->
-                <Grid Grid.Row="0"
-                    Margin="5,0,0,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="6*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image 
-                        Grid.Column="0" 
-                        Source="icon" 
-                        HorizontalOptions="Center"/>
-
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label 
-                            Grid.Column="1"
-                            Text="LoginsAdmin" 
-                            TextColor="#1C41D7" 
-                            FontSize="Title" 
-                            HorizontalTextAlignment="Center" 
-                            VerticalTextAlignment="Center"
-                            FontAttributes="Bold"/>
-                    </Grid>
-
-                </Grid>
+                <ctrls:HeaderLoginsAdmin/>
 
                 <!-- SearchBar -->
-                <SearchBar Grid.Row="1"
-                            Placeholder="Buscar por nombre, usuario, etc."
-                            TextColor="White"
-                            Text="{Binding SearchText}"/>
+                <SearchBar Placeholder="Buscar por nombre, usuario, etc."
+                            TextColor="{StaticResource TextColorLight}"
+                            Text="{Binding SearchText}"
+                            IsSpellCheckEnabled="False"/>
 
                 <!--Estado--> 
-                <Label Grid.Row="2" 
-                    FontSize="Caption" 
-                    TextColor="White"
-                    TextDecorations="Underline"
-                    FontAttributes="Italic"
-                    Text="{Binding ResultSearchText}"
-                    MaxLines="1"/>
+                <Label Text="{Binding ResultSearchText}"
+                        FontSize="Caption" 
+                        TextColor="{StaticResource TextColorLight}"
+                        TextDecorations="Underline"
+                        FontAttributes="Italic"/>
 
                 <!-- Grilla -->
-                <ListView  Grid.Row="3"
-                    SeparatorColor="Blue" 
-                    BackgroundColor="#448fff"
-                    SelectionMode="None"
-                    x:Name="GrillaServicios"
-                    ItemsSource="{Binding Servicios}"
-                    ItemTapped="GrillaServicios_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Margin="5" ColumnSpacing="5" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="34"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <ListView x:Name="GrillaServicios" 
+                            IsVisible="True"
+                            SeparatorColor="{StaticResource MainLightBlue}" 
+                            BackgroundColor="{StaticResource BackgroundLightBlue}"
+                            SelectionMode="None"
+                            ItemsSource="{Binding Servicios}"
+                            ItemTapped="GrillaServicios_ItemTapped"
+                            HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="5" 
+                                          ColumnSpacing="5" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="34"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <StackLayout Grid.Column="0" BackgroundColor="#7DA7F5" >
-                                        <BoxView HeightRequest="34" WidthRequest="34" BackgroundColor="#7DA7F5" HorizontalOptions="Start"/>
-                                    </StackLayout>
+                                        <StackLayout Grid.Column="0" 
+                                                     BackgroundColor="{StaticResource MainLightBlue}" >
+                                            <BoxView HeightRequest="34" 
+                                                     WidthRequest="34" 
+                                                     BackgroundColor="{StaticResource MainLightBlue}" 
+                                                     HorizontalOptions="Start"/>
+                                        </StackLayout>
 
-                                    <StackLayout Grid.Column="1" Orientation="Horizontal" BackgroundColor="White">
-                                        <Label  VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Margin="5, 0, 0, 0"
-                                               Text="{Binding Name}" FontSize="Body" BackgroundColor="White"/>
+                                        <StackLayout Grid.Column="1" 
+                                                     Orientation="Horizontal" 
+                                                     BackgroundColor="{StaticResource TextColorLight}">
+                                            <Label VerticalTextAlignment="Center" 
+                                                   HorizontalOptions="StartAndExpand" 
+                                                   Margin="5, 0, 0, 0"
+                                                   Text="{Binding Name}" 
+                                                   FontSize="Body" 
+                                                   BackgroundColor="{StaticResource TextColorLight}" 
+                                                   TextColor="{StaticResource TextColorDark}"
+                                                   LineBreakMode="TailTruncation" />
 
-                                        <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Margin="0, 0, 5, 0"
-                                               Text="{Binding User}" FontSize="Micro"/>
-                                    </StackLayout>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <!-- Footer -->
-                <StackLayout Grid.Row="4">
-                    <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                            <Label Grid.Column="2" 
+                                                   VerticalTextAlignment="Center" 
+                                                   HorizontalTextAlignment="End" 
+                                                   Margin="0, 0, 5, 0"
+                                                   Text="{Binding User}" 
+                                                   FontSize="Micro" 
+                                                   BackgroundColor="{StaticResource TextColorLight}" 
+                                                   TextColor="{StaticResource TextColorDark}"
+                                                   LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
-            </Grid>
-
-            <ImageButton 
-                Source="AddButton" 
-                BackgroundColor="Transparent"
-                AbsoluteLayout.LayoutFlags="PositionProportional"  
-                AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
-                Command="{Binding AddEditServiceCommand}"/>
+                
+                <!-- Footer -->
+                <ctrls:About HorizontalOptions="Center" VerticalOptions="End"/>
+            </StackLayout>
+            
+            <ImageButton Source="AddButton" 
+                        BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"  
+                        AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
+                        Command="{Binding AddEditServiceCommand}"/>
         </AbsoluteLayout>
-
     </ContentPage.Content>
 </ContentPage>

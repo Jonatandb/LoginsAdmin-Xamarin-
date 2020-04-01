@@ -5,59 +5,72 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.Login"
-             BackgroundColor="#7DA7F5">
+             x:Class="LoginsAdmin.Presentation.Login">
     <ContentPage.Content>
-        <StackLayout 
-            HorizontalOptions="CenterAndExpand" 
-            VerticalOptions="CenterAndExpand"
-            Margin="15, 0, 15, 0">
-            <Image
-                 Source="icon"/>
-            <Label 
-                Text="LoginsAdmin" 
-                TextColor="#1C41D7" 
-                FontSize="Title" 
-                HorizontalTextAlignment="Center" 
-                VerticalTextAlignment="Center"
-                FontAttributes="Bold"/>
-            <Label 
-                Text="Administrador de credenciales by Jonatandb"
-                FontSize="Micro"
-                HorizontalOptions="Center" />
-            <StackLayout x:Name="stackCrearClave" IsVisible="False" Margin="0, 10, 0, 30">
-                <Label 
-                    Text="Bienvenido!" 
-                    FontSize="Title"/>
-                <Label FontSize="Body"
-                       Text="Para utilizar esta aplicación debe crear una contraseña, que luego le será solicitada en cada ingreso."/>
-                <Label FontAttributes="Bold"
-                       FontSize="Caption"
-                       TextColor="Red"
-                       Text="No la olvide, ya que la misma no podrá ser reestablecida ni recuperada!"/>
-                <Entry x:Name="txtNewPassword" 
-                       Placeholder="Contraseña" 
-                       TextChanged="txtNewPassword_TextChanged" 
-                       HorizontalOptions="Center" 
-                       HorizontalTextAlignment="Center"
-                       Completed="btnEstablecerPassword_Clicked"
-                       />
-                <Button x:Name="btnEstablecerPassword" Text="Crear contraseña" Clicked="btnEstablecerPassword_Clicked" IsEnabled="False"/>
-            </StackLayout>
+        <StackLayout BackgroundColor="{StaticResource MainLightBlue}"
+                    Orientation="Vertical">
+            <StackLayout Orientation="Vertical" 
+                        VerticalOptions="CenterAndExpand">
+                <Image
+                     Source="icon"/>
+                <Label Text="LoginsAdmin" 
+                        TextColor="{StaticResource MainBlue}" 
+                        FontSize="Title" 
+                        HorizontalTextAlignment="Center" 
+                        VerticalTextAlignment="Center"
+                        FontAttributes="Bold"/>
+                <Label Text="Administrador de credenciales by Jonatandb"
+                        FontSize="Micro"
+                        TextColor="{StaticResource TextColorLight}"
+                        HorizontalOptions="Center" />
+                
+                <StackLayout x:Name="stackCrearClave" 
+                            IsVisible="False" 
+                            HorizontalOptions="Center" 
+                            Margin="30, 20, 30, 0">
+                    <Label Text="Bienvenido!" 
+                            FontSize="Title"
+                            HorizontalOptions="Center"/>
+                    <Label FontSize="Body"
+                            Text="Para utilizar esta aplicación debe crear una contraseña, que luego le será solicitada en cada ingreso."
+                            HorizontalTextAlignment="Center"/>
+                    <Label FontAttributes="Bold"
+                            FontSize="Caption"
+                            TextColor="{StaticResource TextColorError}"
+                            HorizontalTextAlignment="Center"
+                            Text="No la olvide, ya que la misma no podrá ser reestablecida ni recuperada y la aplicación deberá ser reinstalada!"/>
+                    <Entry x:Name="txtNewPassword" 
+                            Placeholder="Contraseña" 
+                            TextChanged="txtNewPassword_TextChanged" 
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center" 
+                            Completed="btnEstablecerPassword_Clicked"
+                            IsSpellCheckEnabled="False"/>
+                    <Button x:Name="btnEstablecerPassword" 
+                            Text="Crear contraseña" 
+                            Clicked="btnEstablecerPassword_Clicked" 
+                            IsEnabled="False"/>
+                </StackLayout>
 
-            <StackLayout x:Name="stackIngresarClave" IsVisible="False"  Margin="0, 10, 0, 30">
-                <Entry x:Name="txtPassword" 
-                       IsPassword="True" 
-                       Placeholder="Ingrese la contraseña" 
-                       TextChanged="txtPassword_TextChanged" 
-                       HorizontalTextAlignment="Center"
-                       HorizontalOptions="CenterAndExpand"
-                       Completed="btnAcceder_Clicked"
-                       />
-                <Button x:Name="btnAcceder" Text="Continuar" Clicked="btnAcceder_Clicked" IsEnabled="False"/>
+                <StackLayout x:Name="stackIngresarClave" 
+                            IsVisible="False" 
+                            HorizontalOptions="Center" 
+                            Margin="30, 20, 30, 0">
+                    <Entry x:Name="txtPassword" 
+                            IsPassword="True" 
+                            Placeholder="Ingrese la contraseña" 
+                            TextChanged="txtPassword_TextChanged" 
+                            HorizontalTextAlignment="Center"
+                            Completed="btnAcceder_Clicked"
+                            IsSpellCheckEnabled="False"/>
+                    <Button x:Name="btnAcceder" 
+                            Text="Continuar" 
+                            Clicked="btnAcceder_Clicked" 
+                            IsEnabled="False"/>
+                </StackLayout>
             </StackLayout>
-            
-            <ctrls:About HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+            <ctrls:About HorizontalOptions="Center" 
+                        VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                mc:Ignorable="d"
+                x:Class="LoginsAdmin.Presentation._Controles.HeaderLoginsAdmin"
+                BackgroundColor="{StaticResource MainLightBlue}"
+                MinimumHeightRequest="80">
+    
+    <Image Source="icon" 
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, .15, 1"
+            Margin="0, 10, 0, 0"
+            BackgroundColor="{StaticResource MainLightBlue}"/>
+
+    <Label Text="{StaticResource AppName}" 
+            TextColor="{StaticResource MainBlue}" 
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0.8, .5, .85, .6"
+            FontSize="Title" 
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"/>
+
+</AbsoluteLayout>

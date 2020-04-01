@@ -17,8 +17,6 @@ namespace LoginsAdmin.Presentation
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            this.stackCrearClave.IsVisible = false;
-            this.stackIngresarClave.IsVisible = false;
             Usuario usuario = App.RepoServicios.ObtenerUsuarioPrincipal();
             if(usuario == null)
             {
@@ -78,7 +76,7 @@ namespace LoginsAdmin.Presentation
                             "Contraseña: '" + nuevaClave + "', establecida exitosamente!",
                             "Continuar");
 
-                        PantallaPrincipal();
+                        CargarPantallaPrincipal();
                     }
                 }
             }
@@ -116,7 +114,7 @@ namespace LoginsAdmin.Presentation
                 }
                 else
                 {
-                    PantallaPrincipal();
+                    CargarPantallaPrincipal();
                 }
             }
             catch (Exception ex)
@@ -138,10 +136,7 @@ namespace LoginsAdmin.Presentation
             this.btnEstablecerPassword.IsEnabled = !string.IsNullOrEmpty(e.NewTextValue.Trim());
         }
 
-        /// <summary>
-        /// Carga de la pantalla principal
-        /// </summary>
-        private void PantallaPrincipal()
+        private void CargarPantallaPrincipal()
         {
             App.IsUserLoggedIn = true;
             ContentPage mainPage = new Inicio();
