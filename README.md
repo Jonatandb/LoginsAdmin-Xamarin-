@@ -43,6 +43,7 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
 
     - Sugerencias recibidas:
         - Agregar opción que permita guardar contraseñas anteriores
+        - Agregar menú con opción de auto-actualización
 
 ---
 
@@ -137,3 +138,4 @@ Repositorio de LoginsAdmin para la versión para Android (hecha con Xamarin.Form
    - Ruta de keys:	C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android
    - Ruta de apks generados: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android\Archives\2020-03-29\LoginsAdmin.Android 3-29-20 1.06 AM.apkarchive
 - ** Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
+ - Investigar, puede que el error no haya estado relacionado con esto al 100%...

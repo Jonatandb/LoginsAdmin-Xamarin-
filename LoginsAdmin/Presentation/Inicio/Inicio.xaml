@@ -20,7 +20,7 @@
                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                 
                 <!-- Header -->
-                <ctrls:HeaderLoginsAdmin/>
+                <ctrls:HeaderLoginsAdmin />
 
                 <!-- SearchBar -->
                 <SearchBar Placeholder="Buscar por nombre, usuario, etc."

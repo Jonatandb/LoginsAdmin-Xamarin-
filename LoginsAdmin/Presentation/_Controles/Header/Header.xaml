@@ -6,21 +6,30 @@
                 mc:Ignorable="d"
                 x:Class="LoginsAdmin.Presentation._Controles.HeaderLoginsAdmin"
                 BackgroundColor="{StaticResource MainLightBlue}"
-                MinimumHeightRequest="80">
-    
-    <Image Source="icon" 
-            AbsoluteLayout.LayoutFlags="All"
-            AbsoluteLayout.LayoutBounds="0, 0, .15, 1"
-            Margin="0, 10, 0, 0"
-            BackgroundColor="{StaticResource MainLightBlue}"/>
+>
 
-    <Label Text="{StaticResource AppName}" 
-            TextColor="{StaticResource MainBlue}" 
-            AbsoluteLayout.LayoutFlags="All"
-            AbsoluteLayout.LayoutBounds="0.8, .5, .85, .6"
-            FontSize="Title" 
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Center"
-            VerticalTextAlignment="Center"/>
+
+    <StackLayout AbsoluteLayout.LayoutFlags="WidthProportional" 
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 70"
+                BackgroundColor="{StaticResource MainLightBlue}"
+    >
+
+        <Label Text="{StaticResource AppName}" 
+                TextColor="{StaticResource MainBlue}" 
+                FontSize="Title" 
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="CenterAndExpand" 
+                LineBreakMode="NoWrap"
+                Margin="70,0,0,0"
+                BackgroundColor="{StaticResource MainLightBlue}"
+        />
+
+    </StackLayout>
+    <Image Source="icon" 
+            AbsoluteLayout.LayoutBounds="0, 0, 70, 70"
+            BackgroundColor="{StaticResource MainLightBlue}"
+            Margin="5, 5, 0, 5"
+    />
 
 </AbsoluteLayout>
