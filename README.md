@@ -5,12 +5,12 @@
 Realizado con Xamarin.Forms y C#
 
 
-<img src="Screenshot_v0.6-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+<img src="Screenshot_v0.7-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ---
 
 ## Última versión:
-- v0.6-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.6-alpha">Rediseño general para adaptación a múltiples pantallas y tamaños de fuente</a>
+- v0.7-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.7-alpha">Rediseño de la grilla principal con mejoras en rendimiento general</a>
 
 ---	
 
