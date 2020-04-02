@@ -5,14 +5,11 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 mc:Ignorable="d"
                 x:Class="LoginsAdmin.Presentation._Controles.HeaderLoginsAdmin"
-                BackgroundColor="{StaticResource MainLightBlue}"
->
-
+                BackgroundColor="{StaticResource MainLightBlue}">
 
     <StackLayout AbsoluteLayout.LayoutFlags="WidthProportional" 
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 70"
-                BackgroundColor="{StaticResource MainLightBlue}"
-    >
+                BackgroundColor="{StaticResource MainLightBlue}">
 
         <Label Text="{StaticResource AppName}" 
                 TextColor="{StaticResource MainBlue}" 
@@ -22,14 +19,14 @@
                 VerticalOptions="CenterAndExpand" 
                 LineBreakMode="NoWrap"
                 Margin="70,0,0,0"
-                BackgroundColor="{StaticResource MainLightBlue}"
-        />
+                BackgroundColor="{StaticResource MainLightBlue}"/>
 
     </StackLayout>
+    
     <Image Source="icon" 
             AbsoluteLayout.LayoutBounds="0, 0, 70, 70"
             BackgroundColor="{StaticResource MainLightBlue}"
-            Margin="5, 5, 0, 5"
-    />
+            IsOpaque="True"
+            Margin="5, 5, 0, 5"/>
 
 </AbsoluteLayout>

@@ -9,7 +9,6 @@ namespace LoginsAdmin.Repository
     {
         SQLiteConnection conn;
 
-        public string StatusMessage { get; set; }
 
         public RepositoryServicios(string dbPath)
         {
@@ -17,6 +16,10 @@ namespace LoginsAdmin.Repository
             conn.CreateTable<Usuario>();
             conn.CreateTable<Servicio>();
         }
+
+
+        public string StatusMessage { get; set; }
+
 
         public bool AgregarEditarServicio(Servicio servicio)
         {

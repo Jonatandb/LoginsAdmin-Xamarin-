@@ -11,23 +11,39 @@
              x:Class="LoginsAdmin.Presentation._Controles.About">
 
     <StackLayout.BindingContext>
+        
         <local:AboutViewModel/>
+        
     </StackLayout.BindingContext>
 
-    <Label>
+    <Label LineBreakMode="TailTruncation">
+        
         <Label.FormattedText>
+            
             <FormattedString>
-                <Span Text="Hecho con ♥ por " FontSize="Micro" TextColor="{StaticResource TextColorLight}"/>
+                
+                <Span Text="Hecho con ♥ por " 
+                        FontSize="Micro" 
+                        TextColor="{StaticResource TextColorLight}"/>
+                
                 <Span Text="jonatandb@gmail.com"
-                                    TextColor="{StaticResource MainBlue}"
-                                    TextDecorations="Underline"
-                                    FontSize="Micro">
+                        TextColor="{StaticResource MainBlue}"
+                        TextDecorations="Underline"
+                        FontSize="Micro">
+                    
                     <Span.GestureRecognizers>
+                        
                         <TapGestureRecognizer Command="{Binding AboutCommand}"
-                                        CommandParameter="mailto:jonatandb@gmail.com" />
+                                                CommandParameter="mailto:jonatandb@gmail.com" />
+                        
                     </Span.GestureRecognizers>
+                    
                 </Span>
+                
             </FormattedString>
+            
         </Label.FormattedText>
+        
     </Label>
+    
 </StackLayout>

@@ -15,15 +15,15 @@ namespace LoginsAdmin.Presentation.ViewModels
         public event ServicesModifiedEventHandler ServicesModified;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand GuardarCommand { get; set; }
-        public ICommand EliminarCommand { get; set; }
-
 
         public ABMViewModel()
         {
             GuardarCommand = new Command(Guardar, IsSaveButtonEnabled);
             EliminarCommand = new Command(Eliminar);
         }
+
+        public ICommand GuardarCommand { get; set; }
+        public ICommand EliminarCommand { get; set; }
 
         private Servicio ServiceToEdit { get; set; }
         

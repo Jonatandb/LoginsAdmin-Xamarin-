@@ -9,55 +9,97 @@
              x:Class="LoginsAdmin.Presentation.ABM">
 
     <ContentPage.BindingContext>
+        
         <local:ABMViewModel/>
+        
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
+        
         <AbsoluteLayout BackgroundColor="{StaticResource MainLightBlue}">
+            
             <StackLayout Orientation="Vertical"
                         Margin="10, 0, 10, 0"
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        CompressedLayout.IsHeadless="true">
 
                 <!-- Header -->
                 <ctrls:HeaderLoginsAdmin />
 
                 <!-- Datos del servicio -->
-                <StackLayout BackgroundColor="{StaticResource BackgroundLightBlue}" Padding="2, 0, 2, 0">
+                <StackLayout BackgroundColor="{StaticResource BackgroundLightBlue}">
+                    
                     <Label Text="Nombre del servicio:" 
-                            TextColor="{StaticResource TextColorLight}"/>
+                            LineBreakMode="NoWrap"
+                            TextColor="{StaticResource TextColorLight}"
+                           Margin="5, 5, 0, 0"
+                    />
+                    
                     <Entry Text="{Binding Nombre}" 
                             MaxLength="200"
-                            IsSpellCheckEnabled="False"/>
+                            IsSpellCheckEnabled="False"
+                    />
 
                     <Label Text="Usuario:" 
-                            TextColor="{StaticResource TextColorLight}"/>
+                            LineBreakMode="NoWrap"
+                            TextColor="{StaticResource TextColorLight}"
+                            Margin="5, 5, 0, 0"
+                    />
+                    
                     <Entry Text="{Binding Usuario}" 
                             MaxLength="200"
                             IsSpellCheckEnabled="False"/>
 
                     <Label Text="Clave:" 
-                            TextColor="{StaticResource TextColorLight}"/>
+                            LineBreakMode="NoWrap"
+                            TextColor="{StaticResource TextColorLight}"
+                            Margin="5, 5, 0, 0"
+                    />
+                    
                     <Entry Text="{Binding Clave}" 
                             MaxLength="200"
                             IsSpellCheckEnabled="False"/>
 
                     <Label Text="Otros datos:" 
-                            TextColor="{StaticResource TextColorLight}"/>
-                    <Editor Text="{Binding OtrosDatos}" MinimumHeightRequest="95"/>
+                            LineBreakMode="NoWrap"
+                            TextColor="{StaticResource TextColorLight}"
+                            Margin="5, 5, 0, 0"
+                    />
+                    
+                    <ScrollView>
+                        
+                        <Editor Text="{Binding OtrosDatos}" />
+                        
+                    </ScrollView>
+
                 </StackLayout>
                 
                 <!-- Guardar - Eliminar -->
-                <StackLayout BackgroundColor="{StaticResource MainLightBlue}" VerticalOptions="EndAndExpand">
+                <StackLayout BackgroundColor="{StaticResource MainLightBlue}" 
+                            VerticalOptions="EndAndExpand" 
+                            Margin="0"
+                            Padding="0" 
+                            Spacing="0">
+                    
                     <Button Text="Guardar"
-                            Command="{Binding GuardarCommand}" />
+                            Command="{Binding GuardarCommand}"
+                            Margin="0" Padding="0"/>
+                    
                     <Button Text="Eliminar"
                             Command="{Binding EliminarCommand}" 
-                            IsVisible="{Binding IsEditMode}"/>
+                            IsVisible="{Binding IsEditMode}" 
+                            Margin="0" Padding="0"/>
+                    
                 </StackLayout>
 
-                <ctrls:About HorizontalOptions="Center" VerticalOptions="End"/>
+                <ctrls:About HorizontalOptions="Center" 
+                            VerticalOptions="End"/>
+                
             </StackLayout>
+            
         </AbsoluteLayout>
+        
     </ContentPage.Content>
+    
 </ContentPage>

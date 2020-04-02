@@ -12,15 +12,15 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         
-        public ICommand AddEditServiceCommand { get; }
         
-
         public InicioViewModel()
         {
             Servicios = new ObservableCollection<Servicio>();
             AddEditServiceCommand = new Command(ShowABM);
         }
 
+
+        public ICommand AddEditServiceCommand { get; }
 
         public ObservableCollection<Servicio> Servicios { get; }
         

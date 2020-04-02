@@ -9,15 +9,20 @@
              x:Class="LoginsAdmin.Presentation.Inicio">
     
     <ContentPage.BindingContext>
+        
         <local:InicioViewModel/>
+        
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
+        
         <AbsoluteLayout BackgroundColor="{StaticResource MainLightBlue}">
+            
             <StackLayout Orientation="Vertical"
                         Margin="10, 0, 10, 0"
                         AbsoluteLayout.LayoutFlags="All"
-                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        CompressedLayout.IsHeadless="true">
                 
                 <!-- Header -->
                 <ctrls:HeaderLoginsAdmin />
@@ -29,81 +34,90 @@
                             IsSpellCheckEnabled="False"/>
 
                 <!--Estado--> 
-                <Label Text="{Binding ResultSearchText}"
+                <Label Text="{Binding ResultSearchText}" d:Text="No hay resultados"
+                        LineBreakMode="NoWrap"
                         FontSize="Caption" 
                         TextColor="{StaticResource TextColorLight}"
                         TextDecorations="Underline"
                         FontAttributes="Italic"/>
 
                 <!-- Grilla -->
-                <StackLayout VerticalOptions="StartAndExpand">
+                <StackLayout VerticalOptions="StartAndExpand"
+                            CompressedLayout.IsHeadless="true">
+                    
                     <ListView x:Name="GrillaServicios" 
                             IsVisible="True"
-                            SeparatorColor="{StaticResource MainLightBlue}" 
+                            SeparatorColor="{StaticResource MainBlue}" 
                             BackgroundColor="{StaticResource BackgroundLightBlue}"
                             SelectionMode="None"
                             ItemsSource="{Binding Servicios}"
                             ItemTapped="GrillaServicios_ItemTapped"
-                            HasUnevenRows="True">
+                            CachingStrategy="RecycleElement"
+                            HasUnevenRows="True"
+                    >
+                        
                         <ListView.ItemTemplate>
+                        
                             <DataTemplate>
+
                                 <ViewCell>
-                                    <Grid Margin="5" 
-                                          ColumnSpacing="5" >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="34"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <StackLayout Grid.Column="0" 
-                                                     BackgroundColor="{StaticResource MainLightBlue}" >
-                                            <BoxView HeightRequest="34" 
-                                                     WidthRequest="34" 
-                                                     BackgroundColor="{StaticResource MainLightBlue}" 
-                                                     HorizontalOptions="Start"/>
+                                    
+                                    <StackLayout Orientation="Vertical">
+                                        
+                                        <StackLayout Orientation="Horizontal"
+                                                    CompressedLayout.IsHeadless="true">
+                                            
+                                            <StackLayout Orientation="Vertical" 
+                                                        HorizontalOptions="FillAndExpand"
+                                                        BackgroundColor="{StaticResource TextColorLight}"
+                                            >
+                                                
+                                                <Label Text="{Binding Name}"
+                                                        TextColor="{StaticResource TextColorDark}" 
+                                                        FontAttributes="Bold"
+                                                        LineBreakMode="TailTruncation"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Margin="5,0,5,0"
+                                                       FontSize="Title"
+                                                />
+                                            
+                                                <Label Text="{Binding User}"
+                                                        TextColor="{StaticResource MainLightBlue}" 
+                                                        LineBreakMode="TailTruncation"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Margin="5,0,5,0"
+                                                />
+                                                
+                                            </StackLayout>
+                                            
                                         </StackLayout>
-
-                                        <StackLayout Grid.Column="1" 
-                                                     Orientation="Horizontal" 
-                                                     BackgroundColor="{StaticResource TextColorLight}">
-                                            <Label VerticalTextAlignment="Center" 
-                                                   HorizontalOptions="StartAndExpand" 
-                                                   Margin="5, 0, 0, 0"
-                                                   Text="{Binding Name}" 
-                                                   FontSize="Body" 
-                                                   BackgroundColor="{StaticResource TextColorLight}" 
-                                                   TextColor="{StaticResource TextColorDark}"
-                                                   LineBreakMode="TailTruncation" />
-
-                                            <Label Grid.Column="2" 
-                                                   VerticalTextAlignment="Center" 
-                                                   HorizontalTextAlignment="End" 
-                                                   Margin="0, 0, 5, 0"
-                                                   Text="{Binding User}" 
-                                                   FontSize="Micro" 
-                                                   BackgroundColor="{StaticResource TextColorLight}" 
-                                                   TextColor="{StaticResource TextColorDark}"
-                                                   LineBreakMode="TailTruncation" />
-                                        </StackLayout>
-                                    </Grid>
+                                        
+                                    </StackLayout>
+                                    
                                 </ViewCell>
+                                
                             </DataTemplate>
+                            
                         </ListView.ItemTemplate>
+                        
                     </ListView>
+                    
                 </StackLayout>
                 
                 <!-- Footer -->
-                <ctrls:About HorizontalOptions="Center" VerticalOptions="End"/>
+                <ctrls:About HorizontalOptions="Center" 
+                            VerticalOptions="End"/>
             </StackLayout>
             
-            <ImageButton Source="AddButton" 
+            <ImageButton Source="AddButton"
                         BackgroundColor="Transparent"
                         AbsoluteLayout.LayoutFlags="PositionProportional"  
                         AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
+                        IsOpaque="True"
                         Command="{Binding AddEditServiceCommand}"/>
+            
         </AbsoluteLayout>
+        
     </ContentPage.Content>
+    
 </ContentPage>

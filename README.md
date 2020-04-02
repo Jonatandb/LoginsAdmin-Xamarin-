@@ -46,6 +46,7 @@ Realizado con Xamarin.Forms y C#
     - Sugerencias recibidas:
         - Agregar opción que permita guardar contraseñas anteriores
         - Agregar menú con opción de auto-actualización
+        - Que se pueda iniciar sesión con la huella digital
 
 ---
 
@@ -128,6 +129,46 @@ Realizado con Xamarin.Forms y C#
  - <a href="https://heartbeat.fritz.ai/techniques-for-improving-performance-in-a-xamarin-forms-application-b439f2f04156" target="_blank">Techniques for Improving Performance in a Xamarin.Forms Application</a>
 
  - <a href="https://stackoverflow.com/questions/52985095/xamarin-forms-editor-autosize-does-not-work" target="_blank">Xamarin forms Editor AutoSize does not work</a>
+
+ - <a href="https://www.youtube.com/watch?v=GhWm3ccS_9U&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=6" target="_blank">Xamarin.Forms 101: Dynamic Resources</a>
+
+ - <a href="https://www.youtube.com/watch?v=3DMCSJEwiR4&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=7" target="_blank">Xamarin.Forms 101: OnPlatform (Adjusting UI Based on Operating System)</a>
+
+ - <a href="https://www.youtube.com/watch?v=ccU1a7CgxqI&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=8" target="_blank">Xamarin.Forms 101: OnIdiom (Adjusting UI Based on Device Type)</a>
+
+ - <a href="https://www.youtube.com/watch?v=lwnDxQQs2Eo&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=9" target="_blank">Xamarin.Forms 101: XAML Previewer</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/listview/performance" target="_blank">Rendimiento de ListView</a>
+
+ - <a href="https://docs.microsoft.com/es-es/dotnet/api/xamarin.forms.listviewcachingstrategy?view=xamarin-forms" target="_blank">ListViewCachingStrategy Enumeración</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/layout-compression" target="_blank">Compresión de diseño</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/internals/fast-renderers" target="_blank">Xamarin.Forms Fast Renderers</a>
+
+ - <a href="https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.image.isopaque?view=xamarin-forms" target="_blank">Image.IsOpaque Property</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/android/app-fundamentals/resources-in-android/?tabs=windows" target="_blank">Android Resources</a>
+
+ - <a href="https://stackoverflow.com/questions/37025546/what-does-load-resources-from-content-instead-of-resource-mean" target="_blank">What does load resources from Content instead of Resource mean?</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/android/user-interface/controls/web-view" target="_blank">Xamarin.Android Web View</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/controls/" target="_blank">Controls Reference</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/controls/pages" target="_blank">Xamarin.Forms Pages</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/controls/layouts" target="_blank">Xamarin.Forms Layouts</a>
+
+ - <a href="https://docs.microsoft.com/es-es/samples/xamarin/xamarin-forms-samples/formsgallery/" target="_blank">Xamarin.Forms - FormsGallery</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/text/label" target="_blank">Etiqueta de Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/listview/customizing-cell-appearance" target="_blank">Personalizar la apariencia de una celda de ListView</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/listview/" target="_blank">ListView de Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/choose-layout#absolutelayout" target="_blank"> Elegir un diseño de Xamarin. Forms</a>
 
 ---
 

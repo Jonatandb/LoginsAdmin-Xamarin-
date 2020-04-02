@@ -14,6 +14,7 @@ namespace LoginsAdmin.Presentation
             InitializeComponent();
         }
 
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
