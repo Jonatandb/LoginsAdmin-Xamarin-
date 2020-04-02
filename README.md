@@ -9,8 +9,8 @@ Realizado con Xamarin.Forms y C#
 
 ---
 
-## Última versión:
-- v0.7-alpha: <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.7-alpha">Rediseño de la grilla principal con mejoras en rendimiento general</a>
+## Descarga e instalación de la última versión:
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.7-alpha">v0.7-alpha: Rediseño de la grilla principal con mejoras en rendimiento general</a>
 
 ---	
 
@@ -47,6 +47,7 @@ Realizado con Xamarin.Forms y C#
         - Agregar opción que permita guardar contraseñas anteriores
         - Agregar menú con opción de auto-actualización
         - Que se pueda iniciar sesión con la huella digital
+        - Mejorar el diseño de la grilla (agregar sombreado, bordes redondeados)
 
 ---
 
