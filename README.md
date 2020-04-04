@@ -5,7 +5,9 @@
 Realizado con Xamarin.Forms y C#
 
 <p align="center">
-<img src="Screenshot_v0.8-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">
+        <img src="Screenshot_v0.8-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+    </a>
 </p>
 
 ---
