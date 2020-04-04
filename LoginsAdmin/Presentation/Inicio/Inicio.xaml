@@ -53,8 +53,7 @@
                             ItemsSource="{Binding Servicios}"
                             ItemTapped="GrillaServicios_ItemTapped"
                             CachingStrategy="RecycleElement"
-                            HasUnevenRows="True"
-                    >
+                            HasUnevenRows="True">
                         
                         <ListView.ItemTemplate>
                         
@@ -69,8 +68,7 @@
                                             
                                             <StackLayout Orientation="Vertical" 
                                                         HorizontalOptions="FillAndExpand"
-                                                        BackgroundColor="{StaticResource TextColorLight}"
-                                            >
+                                                        BackgroundColor="{StaticResource TextColorLight}">
                                                 
                                                 <Label Text="{Binding Name}"
                                                         TextColor="{StaticResource TextColorDark}" 
@@ -78,15 +76,13 @@
                                                         LineBreakMode="TailTruncation"
                                                         HorizontalOptions="CenterAndExpand"
                                                         Margin="5,0,5,0"
-                                                       FontSize="Title"
-                                                />
+                                                       FontSize="Title"/>
                                             
                                                 <Label Text="{Binding User}"
                                                         TextColor="{StaticResource MainLightBlue}" 
                                                         LineBreakMode="TailTruncation"
                                                         HorizontalOptions="CenterAndExpand"
-                                                        Margin="5,0,5,0"
-                                                />
+                                                        Margin="5,0,5,0"/>
                                                 
                                             </StackLayout>
                                             

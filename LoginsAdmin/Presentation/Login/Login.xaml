@@ -4,8 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
+             xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.Login">
+    
+    <ContentPage.BindingContext>
+    
+        <local:LoginViewModel/>
+    
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         
         <StackLayout BackgroundColor="{StaticResource MainLightBlue}"
@@ -29,10 +37,9 @@
                         FontSize="Micro"
                         TextColor="{StaticResource TextColorLight}"
                         HorizontalTextAlignment="Center" 
-                        LineBreakMode="NoWrap"/>
-                
-                <StackLayout x:Name="stackCrearClave" 
-                            IsVisible="False" 
+                        LineBreakMode="WordWrap"/>
+
+                <StackLayout IsVisible="{Binding ShouldShowFirstAccessControls}" 
                             HorizontalOptions="Center" 
                             Margin="30, 20, 30, 0"
                             CompressedLayout.IsHeadless="true">
@@ -53,38 +60,33 @@
                             Text="No la olvide, ya que la misma no podrá ser reestablecida ni recuperada y la aplicación deberá ser reinstalada!"/>
                     
                     <Entry x:Name="txtNewPassword" 
-                            Placeholder="Contraseña" 
-                            TextChanged="txtNewPassword_TextChanged" 
                             HorizontalTextAlignment="Center"
                             HorizontalOptions="Center" 
-                            Completed="btnEstablecerPassword_Clicked"
+                            Placeholder="Contraseña" 
+                            Text="{Binding Clave}" 
+                            ReturnCommand="{Binding EstablecerClaveCommand}"
                             IsSpellCheckEnabled="False"/>
                     
-                    <Button x:Name="btnEstablecerPassword" 
-                            Text="Crear contraseña" 
-                            Clicked="btnEstablecerPassword_Clicked" 
-                            IsEnabled="False"/>
+                    <Button Text="Crear contraseña" 
+                            Command="{Binding EstablecerClaveCommand}"/>
                     
                 </StackLayout>
 
-                <StackLayout x:Name="stackIngresarClave" 
-                            IsVisible="False" 
+                <StackLayout  IsVisible="{Binding ShouldShowAccessControls}"
                             HorizontalOptions="Center" 
                             Margin="30, 20, 30, 0"
                             CompressedLayout.IsHeadless="true">
-                    
-                    <Entry x:Name="txtPassword" 
+
+                    <Entry  x:Name="txtPassword"
                             IsPassword="True" 
                             Placeholder="Ingrese la contraseña" 
-                            TextChanged="txtPassword_TextChanged" 
+                            Text="{Binding Clave}" 
                             HorizontalTextAlignment="Center"
-                            Completed="btnAcceder_Clicked"
+                            ReturnCommand="{Binding AccederCommand}"
                             IsSpellCheckEnabled="False"/>
                     
-                    <Button x:Name="btnAcceder" 
-                            Text="Continuar" 
-                            Clicked="btnAcceder_Clicked" 
-                            IsEnabled="False"/>
+                    <Button Text="Continuar" 
+                            Command="{Binding AccederCommand}"/>
                     
                 </StackLayout>
                 

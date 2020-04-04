@@ -10,9 +10,11 @@ namespace LoginsAdmin.Presentation.ViewModels
     public class ABMViewModel : INotifyPropertyChanged
     {
         string _nombre, _usuario, _clave, _otrosDatos;
-
+        
         public delegate void ServicesModifiedEventHandler();
+        
         public event ServicesModifiedEventHandler ServicesModified;
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -21,6 +23,8 @@ namespace LoginsAdmin.Presentation.ViewModels
             GuardarCommand = new Command(Guardar, IsSaveButtonEnabled);
             EliminarCommand = new Command(Eliminar);
         }
+
+
 
         public ICommand GuardarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
@@ -191,9 +195,9 @@ namespace LoginsAdmin.Presentation.ViewModels
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private void OnPropertyChanged(string name)
+        private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -83,9 +83,9 @@ namespace LoginsAdmin.Presentation.ViewModels
             SelectedService = null;
         }
         
-        private void OnPropertyChanged(string name)
+        private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

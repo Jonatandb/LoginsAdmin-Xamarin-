@@ -22,9 +22,11 @@ Realizado con Xamarin.Forms y C#
             - https://forums.xamarin.com/discussion/42438/align-center-text-entry
             - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
         - Cuando se presiona el botón continuar más de una vez, la app no vuelve a pedir la contraseña al volver del segundo plano
+        - Ver como mejorar el uso del flag para indicar que se ha salido de la aplicación para evitar mantenerlo en el codebehind de Login.xaml.cs
+            - ¿Por qué se ejecuta de nuevo la App cada vez que se toca el ícono en lugar de traer al primer plano la instancia que ya se está ejecuntado?
+        - Ver como evitar el manejador del evento ItemTapped de la grilla para evitar mantenerlo en el codebehind de Inicio.xaml.cs
 
     - Posibles agregados:
-        - Refactorizar login para agregar ViewModel
 	    - Exportación/Importación de datos
             -   Que se soliciten las credenciales para algún servicio de almacenamiento online (DropBox, Drive, etc) y se guarde ahí un archivo con los datos de los servicios
             -   Que se genere y descargue un archivo XLS con contraseña: la utilizada para acceder a la aplicación.
@@ -33,9 +35,9 @@ Realizado con Xamarin.Forms y C#
                 -   Adentro podría tener un simple archivo txt, json, xls...
                 -   Contra: desde el celular no lo podrían abrir y revisar ya que no se pueden abrir archivos .zip
 	    - Que se pueda configurar:
-            - Que se pueda elegir que la busqueda respete mayusculas
+            - Que se pueda elegir que la busqueda respete mayúsculas
 		    - Reestablecer scroll de la grilla al agregar un servicio
-		    - Si al estar creando un servicio se hace back y había algo escrito que se pida confirmación
+		    - Si al estar creando un servicio se hace back y había algo escrito, que se pida confirmación para descartar los datos ingresados
 		    - Que se pida confirmación al eliminar un servicio
 	    - Que aparezca una imagen junto a cada fila con el favicon del servicio (si el mismo contiene una url)
             - https://www.google.com/s2/favicons?domain=www.google.com
@@ -169,7 +171,23 @@ Realizado con Xamarin.Forms y C#
 
  - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/listview/" target="_blank">ListView de Xamarin.Forms</a>
 
- - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/choose-layout#absolutelayout" target="_blank"> Elegir un diseño de Xamarin. Forms</a>
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/layouts/choose-layout#absolutelayout" target="_blank">Elegir un diseño de Xamarin. Forms</a>
+
+ - <a href="https://www.youtube.com/watch?v=q7yl95pSjo0&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=11" target="_blank">Xamarin.Forms 101: Getting to Know your XAML Workspace - Visual Studio 2019 for Windows</a>
+
+ - <a href="https://www.youtube.com/watch?v=iqLt5GhDwY0&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=13" target="_blank">Xamarin.Forms 101: Styles</a>
+
+ - <a href="https://www.youtube.com/watch?v=q4EYysAgA9E&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=14" target="_blank">Xamarin.Forms 101: Compiled Bindings</a>
+
+ - <a href="https://stackoverflow.com/questions/42176182/xamarin-forms-set-focus-from-mvvm-viewmodel" target="_blank">Xamarin.Forms set focus from mvvm ViewModel</a> - <a href="https://chat.stackoverflow.com/rooms/135587/discussion-between-paul-karam-and-atlantis" target="_blank">(Chat)</a>
+
+ - <a href="https://channel9.msdn.com/Series/Windows-Phone-8-1-Development-for-Absolute-Beginners/Part-24-Binding-to-Commands-and-CommandParameters" target="_blank">Part 24 - Binding to Commands and CommandParameters</a>
+
+ - <a href="https://www.youtube.com/watch?v=Wd6ssAIdR30" target="_blank">Command in Xamarin.Forms</a>
+
+ - <a href="https://stackoverflow.com/questions/51877087/passing-button-value-as-command-parameter" target="_blank">Passing button value as command parameter</a>
+
+ - <a href="https://github.com/xamarin/Xamarin.Forms/issues/8918#issuecomment-570693886" target="_blank">[Bug] [UWP] Template Disappears when Command Parameter Binding Set #8918</a>
 
 ---
 
@@ -181,5 +199,5 @@ Realizado con Xamarin.Forms y C#
   - Validez:	30 años
    - Ruta de keys:	C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android
    - Ruta de apks generados: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android\Archives\2020-03-29\LoginsAdmin.Android 3-29-20 1.06 AM.apkarchive
-- ** Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
- - Investigar, puede que el error no haya estado relacionado con esto al 100%...
+  - ** Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
+   - Investigar, puede que el error no haya estado relacionado con esto al 100%...
