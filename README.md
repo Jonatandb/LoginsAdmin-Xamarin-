@@ -11,7 +11,7 @@ Realizado con Xamarin.Forms y C#
 ---
 
 ## Descarga e instalación de la última versión:
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">v0.8-alpha: Rediseño de la grilla principal con mejoras en rendimiento general</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">v0.8-alpha: Corrijo ordenamiento de la grilla y realizo mejoras visuales</a>
 
 ---	
 
