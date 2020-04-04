@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using SQLite;
+using System.Linq;
 
 namespace LoginsAdmin.Repository
 {
@@ -106,7 +107,7 @@ namespace LoginsAdmin.Repository
                 List<Servicio> listadoServicios = new List<Servicio>();
                 if (string.IsNullOrEmpty(textoABuscar))
                 {
-                    listadoServicios = conn.Table<Servicio>().OrderBy(s => s.Name).ToList();
+                    listadoServicios = conn.Table<Servicio>().OrderBy(s => s.Name, StringComparer.OrdinalIgnoreCase).ToList();
                 }
                 else
                 {
@@ -116,7 +117,7 @@ namespace LoginsAdmin.Repository
                                                 || s.User.ToLower().Contains(textoABuscar)
                                                 || s.Password.ToLower().Contains(textoABuscar)
                                                 || s.ExtraData.ToLower().Contains(textoABuscar)
-                                            )).OrderBy(s => s.Name).ToList();
+                                            )).OrderBy(s => s.Name, StringComparer.OrdinalIgnoreCase).ToList();
                 }
                 StatusMessage = listadoServicios.Count.ToString();
                 return listadoServicios;

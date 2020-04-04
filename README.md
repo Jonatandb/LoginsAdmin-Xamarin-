@@ -18,7 +18,6 @@ Realizado con Xamarin.Forms y C#
 ### Pendientes y "Nice to have":
 
     - Corregir:
-        - Mejorar el ordenamiento de la grilla principal para que tome por igual mayúsculas y minúsculas y no ordene primero servicios en mayúsculas y luego los que están en minúsculas.
         - Centrar la contraseña a medida que es ingresada
             - https://forums.xamarin.com/discussion/42438/align-center-text-entry
             - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
