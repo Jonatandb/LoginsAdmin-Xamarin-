@@ -230,6 +230,9 @@ Realizado con Xamarin.Forms y C#
 
  - <a href="https://www.youtube.com/watch?v=VVpbklb6vDc&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=17" target="_blank">Xamarin.Forms 101: Using Embedded Images</a>
 
+ - <a href="https://stackoverflow.com/questions/29903749/linq-orderby-igorning-case-with-true-ascii-ordering" target="_blank">LINQ OrderBy igorning case with true ASCII ordering</a>
+
+
 ---
 
 ### Otras pruebas:

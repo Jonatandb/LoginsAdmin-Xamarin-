@@ -33,6 +33,7 @@
                 <SearchBar Placeholder="Buscar por nombre, usuario, etc."
                             TextColor="{StaticResource TextColorLight}"
                             Text="{Binding SearchText, Mode=TwoWay}"
+                            FontSize="Body"
                             IsSpellCheckEnabled="False"/>
 
                 <!--Estado-->

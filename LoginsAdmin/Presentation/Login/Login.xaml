@@ -35,7 +35,7 @@
                         FontAttributes="Bold"/>
                 
                 <Label Text="Administrador de credenciales by Jonatandb"
-                        FontSize="Micro"
+                        FontSize="Caption"
                         TextColor="{StaticResource TextColorLight}"
                         HorizontalTextAlignment="Center" 
                         LineBreakMode="WordWrap"/>
@@ -83,6 +83,7 @@
                     </Entry>
                     
                     <Button Text="Crear contraseña" 
+                            HorizontalOptions="Center"
                             Command="{Binding EstablecerClaveCommand, Mode=OneTime}"
                             CommandParameter="{x:Reference txtNewPassword}"/>
                     
@@ -95,9 +96,10 @@
 
                     <Entry  x:Name="txtPassword"
                             IsPassword="True" 
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center" 
                             Placeholder="Ingrese la contraseña" 
                             Text="{Binding Clave, Mode=TwoWay}" 
-                            HorizontalTextAlignment="Center"
                             ReturnCommand="{Binding AccederCommand, Mode=OneTime}"
                             ReturnCommandParameter="{x:Reference txtPassword}"
                             IsSpellCheckEnabled="False">
@@ -116,7 +118,8 @@
                         
                     </Entry>
 
-                    <Button Text="Continuar" 
+                    <Button Text="Continuar"
+                            HorizontalOptions="Center"
                             Command="{Binding AccederCommand, Mode=OneTime}"
                             CommandParameter="{x:Reference txtPassword}"/>
                     

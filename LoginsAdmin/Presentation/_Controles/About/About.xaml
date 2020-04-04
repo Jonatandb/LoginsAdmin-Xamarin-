@@ -24,13 +24,13 @@
             <FormattedString>
                 
                 <Span Text="Hecho con ♥ por " 
-                        FontSize="Micro" 
+                        FontSize="Caption" 
                         TextColor="{StaticResource TextColorLight}"/>
                 
                 <Span Text="jonatandb@gmail.com"
                         TextColor="{StaticResource MainBlue}"
                         TextDecorations="Underline"
-                        FontSize="Micro">
+                        FontSize="Caption">
                     
                     <Span.GestureRecognizers>
                         
