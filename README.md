@@ -225,6 +225,12 @@ Realizado con Xamarin.Forms y C#
 
  - <a href="https://stackoverflow.com/questions/41186660/xamarin-forms-stacklayout-with-rounded-corners" target="_blank">Xamarin Forms: StackLayout with rounded corners</a>
 
+ - <a href="https://www.youtube.com/watch?v=mJpwudNNe_M&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=15" target="_blank">Xamarin.Forms 101: Entries and Editors</a>
+
+ - <a href="https://www.youtube.com/watch?v=oah-Q1kPOyI&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=16" target="_blank">Xamarin.Forms 101: Control Templates</a>
+
+ - <a href="https://www.youtube.com/watch?v=VVpbklb6vDc&list=PLM75ZaNQS_FaEPpqVjfQdnFaSR1EWCeNZ&index=17" target="_blank">Xamarin.Forms 101: Using Embedded Images</a>
+
 ---
 
 ### Otras pruebas:
