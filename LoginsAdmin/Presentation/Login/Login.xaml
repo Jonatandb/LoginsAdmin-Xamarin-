@@ -4,13 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
-             xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             xmlns:viewmodels="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             x:DataType="viewmodels:LoginViewModel"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.Login">
     
     <ContentPage.BindingContext>
     
-        <local:LoginViewModel/>
+        <viewmodels:LoginViewModel/>
     
     </ContentPage.BindingContext>
     
@@ -39,7 +40,7 @@
                         HorizontalTextAlignment="Center" 
                         LineBreakMode="WordWrap"/>
 
-                <StackLayout IsVisible="{Binding ShouldShowFirstAccessControls}" 
+                <StackLayout IsVisible="{Binding ShouldShowFirstAccessControls, Mode=OneTime}" 
                             HorizontalOptions="Center" 
                             Margin="30, 20, 30, 0"
                             CompressedLayout.IsHeadless="true">
@@ -63,16 +64,31 @@
                             HorizontalTextAlignment="Center"
                             HorizontalOptions="Center" 
                             Placeholder="Contraseña" 
-                            Text="{Binding Clave}" 
-                            ReturnCommand="{Binding EstablecerClaveCommand}"
-                            IsSpellCheckEnabled="False"/>
+                            Text="{Binding Clave, Mode=TwoWay}" 
+                            ReturnCommand="{Binding EstablecerClaveCommand, Mode=OneTime}"
+                            ReturnCommandParameter="{x:Reference txtNewPassword}"
+                            IsSpellCheckEnabled="False">
+                        
+                        <Entry.Triggers>
+                            
+                            <Trigger TargetType="Entry"
+                                    Property="IsFocused" Value="True">
+                                
+                                <Setter Property="BackgroundColor" Value="{x:StaticResource BackgroundLightBlue}" />
+                                
+                            </Trigger>
+                            
+                        </Entry.Triggers>
+                        
+                    </Entry>
                     
                     <Button Text="Crear contraseña" 
-                            Command="{Binding EstablecerClaveCommand}"/>
+                            Command="{Binding EstablecerClaveCommand, Mode=OneTime}"
+                            CommandParameter="{x:Reference txtNewPassword}"/>
                     
                 </StackLayout>
 
-                <StackLayout  IsVisible="{Binding ShouldShowAccessControls}"
+                <StackLayout IsVisible="{Binding ShouldShowAccessControls, Mode=OneTime}"
                             HorizontalOptions="Center" 
                             Margin="30, 20, 30, 0"
                             CompressedLayout.IsHeadless="true">
@@ -80,13 +96,29 @@
                     <Entry  x:Name="txtPassword"
                             IsPassword="True" 
                             Placeholder="Ingrese la contraseña" 
-                            Text="{Binding Clave}" 
+                            Text="{Binding Clave, Mode=TwoWay}" 
                             HorizontalTextAlignment="Center"
-                            ReturnCommand="{Binding AccederCommand}"
-                            IsSpellCheckEnabled="False"/>
-                    
+                            ReturnCommand="{Binding AccederCommand, Mode=OneTime}"
+                            ReturnCommandParameter="{x:Reference txtPassword}"
+                            IsSpellCheckEnabled="False">
+                        
+                        <Entry.Triggers>
+                            
+                            <Trigger TargetType="Entry"
+                                     
+                                    Property="IsFocused" Value="True">
+                                
+                                <Setter Property="BackgroundColor" Value="{x:StaticResource BackgroundLightBlue}" />
+                                
+                            </Trigger>
+                            
+                        </Entry.Triggers>
+                        
+                    </Entry>
+
                     <Button Text="Continuar" 
-                            Command="{Binding AccederCommand}"/>
+                            Command="{Binding AccederCommand, Mode=OneTime}"
+                            CommandParameter="{x:Reference txtPassword}"/>
                     
                 </StackLayout>
                 

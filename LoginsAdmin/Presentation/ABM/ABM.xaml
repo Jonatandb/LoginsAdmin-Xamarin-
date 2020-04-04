@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             xmlns:viewmodels="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             x:DataType="viewmodels:ABMViewModel"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.ABM">
 
     <ContentPage.BindingContext>
         
-        <local:ABMViewModel/>
+        <viewmodels:ABMViewModel/>
         
     </ContentPage.BindingContext>
 
@@ -35,8 +36,8 @@
                             TextColor="{StaticResource TextColorLight}"
                            Margin="5, 5, 0, 0"
                     />
-                    
-                    <Entry Text="{Binding Nombre}" 
+
+                    <Entry Text="{Binding Nombre, Mode=TwoWay}" 
                             MaxLength="200"
                             IsSpellCheckEnabled="False"
                     />
@@ -46,8 +47,8 @@
                             TextColor="{StaticResource TextColorLight}"
                             Margin="5, 5, 0, 0"
                     />
-                    
-                    <Entry Text="{Binding Usuario}" 
+
+                    <Entry Text="{Binding Usuario, Mode=TwoWay}" 
                             MaxLength="200"
                             IsSpellCheckEnabled="False"/>
 
@@ -56,8 +57,8 @@
                             TextColor="{StaticResource TextColorLight}"
                             Margin="5, 5, 0, 0"
                     />
-                    
-                    <Entry Text="{Binding Clave}" 
+
+                    <Entry Text="{Binding Clave, Mode=TwoWay}" 
                             MaxLength="200"
                             IsSpellCheckEnabled="False"/>
 
@@ -68,8 +69,8 @@
                     />
                     
                     <ScrollView>
-                        
-                        <Editor Text="{Binding OtrosDatos}" />
+
+                        <Editor Text="{Binding OtrosDatos, Mode=TwoWay}" />
                         
                     </ScrollView>
 
@@ -83,12 +84,12 @@
                             Spacing="0">
                     
                     <Button Text="Guardar"
-                            Command="{Binding GuardarCommand}"
+                            Command="{Binding GuardarCommand, Mode=OneTime}"
                             Margin="0" Padding="0"/>
                     
                     <Button Text="Eliminar"
-                            Command="{Binding EliminarCommand}" 
-                            IsVisible="{Binding IsEditMode}" 
+                            Command="{Binding EliminarCommand, Mode=OneTime}" 
+                            IsVisible="{Binding IsEditMode, Mode=OneWay}" 
                             Margin="0" Padding="0"/>
                     
                 </StackLayout>

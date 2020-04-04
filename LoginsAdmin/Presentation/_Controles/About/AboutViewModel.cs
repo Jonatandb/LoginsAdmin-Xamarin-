@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace LoginsAdmin.Presentation._Controles
+namespace LoginsAdmin.Presentation.ViewModels
 {
     public class AboutViewModel
     {

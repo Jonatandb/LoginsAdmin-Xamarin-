@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:LoginsAdmin.Presentation.ViewModels"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
+             xmlns:viewmodels="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             x:DataType="viewmodels:InicioViewModel"
+             xmlns:models="clr-namespace:LoginsAdmin.Domain.Models"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation.Inicio">
-    
+
     <ContentPage.BindingContext>
-        
-        <local:InicioViewModel/>
+
+        <viewmodels:InicioViewModel/>
         
     </ContentPage.BindingContext>
     
@@ -30,11 +32,11 @@
                 <!-- SearchBar -->
                 <SearchBar Placeholder="Buscar por nombre, usuario, etc."
                             TextColor="{StaticResource TextColorLight}"
-                            Text="{Binding SearchText}"
+                            Text="{Binding SearchText, Mode=TwoWay}"
                             IsSpellCheckEnabled="False"/>
 
-                <!--Estado--> 
-                <Label Text="{Binding ResultSearchText}" d:Text="No hay resultados"
+                <!--Estado-->
+                <Label Text="{Binding ResultSearchText, Mode=OneWay}" d:Text="No hay resultados"
                         LineBreakMode="NoWrap"
                         FontSize="Caption" 
                         TextColor="{StaticResource TextColorLight}"
@@ -46,50 +48,56 @@
                             CompressedLayout.IsHeadless="true">
                     
                     <ListView x:Name="GrillaServicios" 
-                            IsVisible="True"
-                            SeparatorColor="{StaticResource MainBlue}" 
-                            BackgroundColor="{StaticResource BackgroundLightBlue}"
+
+                            SeparatorColor="{StaticResource MainLightBlue}" 
+                            BackgroundColor="{StaticResource MainLightBlue}"
                             SelectionMode="None"
-                            ItemsSource="{Binding Servicios}"
+                            ItemsSource="{Binding Servicios, Mode=OneTime}"
                             ItemTapped="GrillaServicios_ItemTapped"
                             CachingStrategy="RecycleElement"
                             HasUnevenRows="True">
                         
                         <ListView.ItemTemplate>
                         
-                            <DataTemplate>
+                            <DataTemplate x:DataType="models:Servicio">
 
                                 <ViewCell>
                                     
-                                    <StackLayout Orientation="Vertical">
+                                    <Frame CornerRadius="10"  
+                                           OutlineColor="{StaticResource MainLightBlue}" 
+                                           Padding="0"
+                                           Margin="0, 0, 0, 5">
                                         
-                                        <StackLayout Orientation="Horizontal"
+                                        <StackLayout Orientation="Vertical">
+
+                                            <StackLayout Orientation="Horizontal"
                                                     CompressedLayout.IsHeadless="true">
-                                            
-                                            <StackLayout Orientation="Vertical" 
+
+                                                <StackLayout Orientation="Vertical" 
                                                         HorizontalOptions="FillAndExpand"
                                                         BackgroundColor="{StaticResource TextColorLight}">
-                                                
-                                                <Label Text="{Binding Name}"
+
+                                                    <Label Text="{Binding Name, Mode=OneTime}"
                                                         TextColor="{StaticResource TextColorDark}" 
                                                         FontAttributes="Bold"
                                                         LineBreakMode="TailTruncation"
                                                         HorizontalOptions="CenterAndExpand"
                                                         Margin="5,0,5,0"
                                                        FontSize="Title"/>
-                                            
-                                                <Label Text="{Binding User}"
+
+                                                    <Label Text="{Binding User, Mode=OneTime}"
                                                         TextColor="{StaticResource MainLightBlue}" 
                                                         LineBreakMode="TailTruncation"
                                                         HorizontalOptions="CenterAndExpand"
                                                         Margin="5,0,5,0"/>
-                                                
+
+                                                </StackLayout>
+
                                             </StackLayout>
-                                            
+
                                         </StackLayout>
-                                        
-                                    </StackLayout>
-                                    
+                                    </Frame>
+
                                 </ViewCell>
                                 
                             </DataTemplate>
@@ -110,7 +118,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"  
                         AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
                         IsOpaque="True"
-                        Command="{Binding AddEditServiceCommand}"/>
+                        Command="{Binding AddEditServiceCommand, Mode=OneTime}"/>
             
         </AbsoluteLayout>
         

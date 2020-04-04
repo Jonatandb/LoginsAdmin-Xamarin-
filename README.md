@@ -5,12 +5,12 @@
 Realizado con Xamarin.Forms y C#
 
 
-<img src="Screenshot_v0.7-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
+<img src="Screenshot_v0.8-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
 
 ---
 
 ## Descarga e instalación de la última versión:
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.7-alpha">v0.7-alpha: Rediseño de la grilla principal con mejoras en rendimiento general</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">v0.8-alpha: Rediseño de la grilla principal con mejoras en rendimiento general</a>
 
 ---	
 
@@ -24,7 +24,7 @@ Realizado con Xamarin.Forms y C#
         - Cuando se presiona el botón continuar más de una vez, la app no vuelve a pedir la contraseña al volver del segundo plano
         - Ver como mejorar el uso del flag para indicar que se ha salido de la aplicación para evitar mantenerlo en el codebehind de Login.xaml.cs
             - ¿Por qué se ejecuta de nuevo la App cada vez que se toca el ícono en lugar de traer al primer plano la instancia que ya se está ejecuntado?
-        - Ver como evitar el manejador del evento ItemTapped de la grilla para evitar mantenerlo en el codebehind de Inicio.xaml.cs
+        - Ver como evitar el manejador del evento ItemTapped de la grilla en el codebehind de Inicio.xaml.cs
 
     - Posibles agregados:
 	    - Exportación/Importación de datos
@@ -49,7 +49,6 @@ Realizado con Xamarin.Forms y C#
         - Agregar opción que permita guardar contraseñas anteriores
         - Agregar menú con opción de auto-actualización
         - Que se pueda iniciar sesión con la huella digital
-        - Mejorar el diseño de la grilla (agregar sombreado, bordes redondeados)
 
 ---
 
@@ -189,6 +188,42 @@ Realizado con Xamarin.Forms y C#
 
  - <a href="https://github.com/xamarin/Xamarin.Forms/issues/8918#issuecomment-570693886" target="_blank">[Bug] [UWP] Template Disappears when Command Parameter Binding Set #8918</a>
 
+ - <a href="https://stackoverflow.com/questions/32206200/how-to-set-focus-from-viewmodel-in-xamarin-forms" target="_blank">How to set focus from ViewModel in Xamarin Forms</a>
+
+ - <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/data-binding/" target="_blank">Xamarin.Forms Data Binding</a>
+
+ - <a href="https://docs.microsoft.com/es-es/samples/xamarin/xamarin-forms-samples/databindingdemos/" target="_blank">Xamarin.Forms - Data Binding Demos</a>
+
+ - <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/data-binding/commanding" target="_blank">The Xamarin.Forms Command Interface</a>
+
+ - <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/creating-mobile-apps-xamarin-forms/summaries/chapter18" target="_blank">Summary of Chapter 18. MVVM</a>
+
+ - <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/xamlc" target="_blank">XAML Compilation in Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings" target="_blank">Xamarin.Forms Compiled Bindings</a>
+
+ - <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.delay?view=netframework-4.8" target="_blank">Task.Delay Method</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/app-fundamentals/triggers" target="_blank">Desencadenadores de Xamarin.Forms</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/app-fundamentals/behaviors/introduction" target="_blank">Introducción a los comportamientos</a>
+
+ - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/controls/common-properties" target="_blank">Propiedades, métodos y eventos de controles comunes de Xamarin. Forms</a>
+
+ - <a href="https://stackoverflow.com/questions/40155726/xamarin-set-focus-mvvm" target="_blank">Xamarin set focus MVVM</a>
+
+ - <a href="https://forums.xamarin.com/discussion/79598/how-set-focus-a-entry-from-viewmodel-level" target="_blank">How set focus a entry from viewModel level?</a>
+
+ - <a href="https://stackoverflow.com/questions/28194231/automatically-select-all-text-on-focus-xamarin" target="_blank">Automatically select all text on focus Xamarin</a>
+
+ - <a href="https://forums.xamarin.com/discussion/99348/space-between-listview-cards" target="_blank">Space between Listview cards</a>
+
+ - <a href="https://stackoverflow.com/questions/25885238/xamarin-forms-listview-set-the-highlight-color-of-a-tapped-item/53079812#53079812" target="_blank">Xamarin.Forms ListView: Set the highlight color of a tapped item</a>
+
+ - <a href="https://stackoverflow.com/questions/53078214/xamarin-forms-listview-rounded-corner-cell-highlight-grayout" target="_blank">Xamarin Forms Listview Rounded Corner Cell highlight grayout</a>
+
+ - <a href="https://stackoverflow.com/questions/41186660/xamarin-forms-stacklayout-with-rounded-corners" target="_blank">Xamarin Forms: StackLayout with rounded corners</a>
+
 ---
 
 ### Otras pruebas:
@@ -201,3 +236,14 @@ Realizado con Xamarin.Forms y C#
    - Ruta de apks generados: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android\Archives\2020-03-29\LoginsAdmin.Android 3-29-20 1.06 AM.apkarchive
   - ** Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
    - Investigar, puede que el error no haya estado relacionado con esto al 100%...
+
+- Encontré varias formas de establecerle el foco a un control desde el ViewModel (utilicé la propiedad CommandParameter):
+  - 1 - Usar:
+    - var txtNewPassword = (Entry) App.Current.MainPage.Navigation.NavigationStack[0].FindByName("txtNewPassword");
+    - txtNewPassword.Focus();
+  - 2 - Usar: 
+    - // Esto requiere que previamente, en el codebehind, se cree una property pública que exponga el control txtPassword.
+    - var txtNewPassword = (Entry) ((Page) App.Current.MainPage.Navigation.NavigationStack[0]).TxtPassword;
+    - txtNewPassword.Focus();
+  - 3 - Usar una propiedad en el ViewModel que sea del tipo del control a manipular, luego que la vista instancie el ViewModel desde el codebehind y por último asigne a esa propiedad la referencia del control que se va a manipular desde el ViewModel.
+  - 4 - Finalmente utilicé la propiedad CommandParameter a la cual le pasé una referencia del control (CommandParameter={x:Reference txtPassword}}) y desde el ViewModel utilicé la sobrecarga del constructor de Command<Entry> para que se reciba el control como parámetro.

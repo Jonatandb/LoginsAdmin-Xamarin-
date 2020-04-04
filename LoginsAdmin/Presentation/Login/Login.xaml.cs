@@ -19,6 +19,5 @@ namespace LoginsAdmin.Presentation
             base.OnDisappearing();
             App.IsUserLoggedIn = false;
         }
-
     }
 }

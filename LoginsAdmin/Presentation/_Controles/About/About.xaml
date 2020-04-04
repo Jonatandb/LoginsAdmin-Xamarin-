@@ -6,13 +6,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:LoginsAdmin.Presentation._Controles"
+             xmlns:viewmodels="clr-namespace:LoginsAdmin.Presentation.ViewModels"
+             x:DataType="viewmodels:AboutViewModel"
              mc:Ignorable="d"
              x:Class="LoginsAdmin.Presentation._Controles.About">
 
     <StackLayout.BindingContext>
         
-        <local:AboutViewModel/>
+        <viewmodels:AboutViewModel/>
         
     </StackLayout.BindingContext>
 
@@ -33,7 +34,7 @@
                     
                     <Span.GestureRecognizers>
                         
-                        <TapGestureRecognizer Command="{Binding AboutCommand}"
+                        <TapGestureRecognizer Command="{Binding AboutCommand, Mode=OneTime}"
                                                 CommandParameter="mailto:jonatandb@gmail.com" />
                         
                     </Span.GestureRecognizers>

@@ -17,8 +17,8 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         public LoginViewModel()
         {
-            AccederCommand = new Command(Acceder, IsAccessButtonEnabled);
-            EstablecerClaveCommand = new Command(EstablecerClave, IsAccessButtonEnabled);
+            AccederCommand = new Command<Entry>(Acceder, IsAccessButtonEnabled);
+            EstablecerClaveCommand = new Command<Entry>(EstablecerClave, IsAccessButtonEnabled);
             VerifyFirstAccess();
         }
 
@@ -65,7 +65,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
-                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.OnAppearing(): " + App.RepoServicios.StatusMessage,
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.VerifyFirstAccess(): " + App.RepoServicios.StatusMessage,
                     "Cerrar");
             }
             else
@@ -80,12 +80,12 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
         }
 
-        private bool IsAccessButtonEnabled()
+        private bool IsAccessButtonEnabled(object obj)
         {
             return !string.IsNullOrWhiteSpace(Clave);
         }
 
-        private async void Acceder()
+        private async void Acceder(Entry txtPassword)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                     {
                         await App.Current.MainPage.DisplayAlert(
                             "Atención",
-                            "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnAcceder_Clicked(): " + App.RepoServicios.StatusMessage,
+                            "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.Acceder(): " + App.RepoServicios.StatusMessage,
                             "Cerrar");
                     }
                     else
@@ -104,7 +104,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                             "Atención",
                             "Contraseña incorrecta",
                             "Reintentar");
-                        EstablecerFoco();
+                        EstablecerFoco(txtPassword);
                     }
                 }
                 else
@@ -116,12 +116,12 @@ namespace LoginsAdmin.Presentation.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
-                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnAcceder_Clicked(): " + ex.Message,
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.Acceder(): " + ex.Message,
                     "Aceptar");
             }
         }
 
-        private async void EstablecerClave()
+        private async void EstablecerClave(Entry txtNewPassword)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                         "Atención",
                         "Se requiere que al menos se especifíque una contraseña.",
                         "Aceptar");
-                    EstablecerFoco();
+                    EstablecerFoco(txtNewPassword);
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                     {
                         await App.Current.MainPage.DisplayAlert(
                             "Atención",
-                            "Se produjo un error al establecer la contraseña.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnEstablecerPassword_Clicked(): " + App.RepoServicios.StatusMessage,
+                            "Se produjo un error al establecer la contraseña.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.EstablecerClave(): " + App.RepoServicios.StatusMessage,
                             "Cerrar");
                     }
                     else
@@ -149,7 +149,6 @@ namespace LoginsAdmin.Presentation.ViewModels
                             "LoginsAdmin",
                             "Contraseña: '" + nuevaClave + "', establecida exitosamente!",
                             "Continuar");
-
                         CargarPantallaPrincipal();
                     }
                 }
@@ -158,25 +157,17 @@ namespace LoginsAdmin.Presentation.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
-                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLogin.btnEstablecerPassword_Clicked(): " + ex.Message,
+                    "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.EstablecerClave(): " + ex.Message,
                     "Aceptar");
             }
         }
 
-        private void EstablecerFoco()
+        private void EstablecerFoco(Entry txt)
         {
-            if (_firstAccess)
-            {
-                var txtNewPassword = App.Current.MainPage.Navigation.NavigationStack[0].FindByName("txtNewPassword");
-                (txtNewPassword as Entry).Focus();
-            }
-            else
-            {
-                var txtPassword = App.Current.MainPage.Navigation.NavigationStack[0].FindByName("txtPassword");
-                (txtPassword as Entry).Focus();
-            }
+            txt.CursorPosition = 0;
+            txt.SelectionLength = txt.Text.Length;
+            txt.Focus();
         }
-
         private async void CargarPantallaPrincipal()
         {
             App.IsUserLoggedIn = true;
