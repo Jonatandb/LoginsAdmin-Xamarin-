@@ -29,6 +29,30 @@ Realizado con Xamarin.Forms y C#
 
 - <a href="https://docs.microsoft.com/es-es/samples/xamarin/xamarin-forms-samples/navigation-loginflow/" target="_blank">Xamarin.Forms - LoginFlow</a>
 
+- <a href="https://docs.microsoft.com/es-es/xamarin/essentials/file-system-helpers?context=xamarin%2Fandroid&tabs=android" target="_blank">Xamarin.Essentials: Asistentes del sistema de archivos</a>
+
+- <a href="https://docs.microsoft.com/es-es/xamarin/essentials/secure-storage?context=xamarin%2Fandroid&tabs=android" target="_blank">Xamarin.Essentials: Almacenamiento seguro</a>
+
+- <a href="https://docs.microsoft.com/es-es/xamarin/android/platform/files/" target="_blank">Almacenamiento y acceso a archivos con Xamarin.Android</a>
+
+- <a href="https://docs.microsoft.com/es-es/xamarin/android/platform/files/external-storage?tabs=windows" target="_blank">Almacenamiento externo</a>
+
+- <a href="https://forums.xamarin.com/discussion/6990/how-to-correctly-save-and-read-files" target="_blank">How to correctly save and read files</a>
+
+- <a href="https://developer.android.com/training/data-storage/files/external#PublicFiles" target="_blank">Cómo guardar un archivo en almacenamiento externo</a>
+
+- <a href="https://developer.android.com/training/data-storage/files" target="_blank">Cómo guardar archivos en un dispositivo de almacenamiento</a>
+
+- <a href="https://stackoverflow.com/questions/28183893/how-to-store-files-generated-from-app-in-downloads-folder-of-android" target="_blank">How to store files generated from app in “Downloads” folder of Android?</a>
+
+- <a href="https://stackoverflow.com/questions/33872592/android-save-local-file-to-downloads-folder-and-make-it-visible" target="_blank">Android: Save local File to Downloads Folder and make it visible</a>
+
+- <a href="https://developer.android.com/guide/topics/providers/document-provider#create" target="_blank">Cómo crear un documento nuevo</a>
+
+- <a href="https://developer.android.com/guide/topics/data/autobackup" target="_blank">Cómo crear una copia de seguridad automática para los datos del usuario</a>
+
+- <a href="https://www.techrepublic.com/blog/software-engineer/export-sqlite-data-from-your-android-device/" target="_blank">SQLite DB to SD Demo</a>
+
 - <a href="https://channel9.msdn.com/Series/Xamarin-101" target="_blank">Xamarin Tutorial 101</a>
 
 - <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/user-interface/searchbar" target="_blank">SearchBar de Xamarin.Forms</a>
