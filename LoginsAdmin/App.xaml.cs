@@ -6,7 +6,9 @@ namespace LoginsAdmin
 {
     public partial class App : Application
     {
-        string dbPath => FileAccessHelper.GetLocalFilePath("loginsadmin.db3");
+        public string DbPath => FileAccessHelper.GetLocalFilePath("loginsadmin.db3");
+
+        public static string BackupFilePath { get; set; }
 
         public static bool IsUserLoggedIn { get; set; }
 
@@ -17,7 +19,8 @@ namespace LoginsAdmin
             InitializeComponent();
             try
             {
-                RepoServicios = new RepositoryServicios(dbPath);
+                RepoServicios = new RepositoryServicios(DbPath);
+
                 if (!IsUserLoggedIn)
                 {
                     ContentPage loginPage = new Login();

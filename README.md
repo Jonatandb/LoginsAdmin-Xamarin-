@@ -5,7 +5,7 @@
 Realizado con Xamarin.Forms y C#
 
 <p align="center">
-    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">
+    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.9-alpha">
         <img src="Screenshot_v0.8-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
     </a>
 </p>
@@ -14,48 +14,8 @@ Realizado con Xamarin.Forms y C#
 
 ## Descarga e instalación de la última versión:
 
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.8-alpha">v0.8-alpha: Corrijo ordenamiento de la grilla y realizo mejoras visuales</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.9-alpha">v0.9-alpha: Agregado de opciones para exportar e importar datos (Datos_LoginsAdmin.csv)</a>
 
----
-
-### Pendientes y "Nice to have":
-
-    - Corregir:
-        - Centrar la contraseña a medida que es ingresada
-            - https://forums.xamarin.com/discussion/42438/align-center-text-entry
-            - https://stackoverflow.com/questions/50763662/center-text-in-xamarin-entry
-            - Descubrí que con la nueva versión de Xamarin.Forms 4.5 el centrado funciona, pero los botones se ven mal, con texto en varias líneas.
-        - Cuando se presiona el botón continuar más de una vez, la app no vuelve a pedir la contraseña al cambiar a otra y volver
-        - Ver como mejorar el uso del flag para indicar que se ha salido de la aplicación, para evitar mantenerlo en el codebehind de Login.xaml.cs
-            - ¿Por qué se ejecuta de nuevo la App cada vez que se toca el ícono en lugar de traer al primer plano la instancia que ya se está ejecutando?
-        - Ver como evitar el manejador del evento ItemTapped de la grilla en el codebehind de Inicio.xaml.cs
-
-    - Posibles agregados:
-        - Exportación/Importación de datos
-            -   Que se soliciten las credenciales para algún servicio de almacenamiento online (DropBox, Drive, etc) y se guarde ahí un archivo con los datos de los servicios
-            -   Que se genere y descargue un archivo XLS con contraseña (la utilizada para acceder a la aplicación)
-                -   Contra: desde el celular no lo podrían abrir sin tener instalado Office.
-            -   Que se genere y descargue un archivo .zip con contraseña (la utilizada para acceder a la aplicación)
-                -   Adentro podría tener un simple archivo txt, json, xls...
-                -   Contra: desde el celular no lo podrían abrir y revisar ya que no se pueden abrir archivos .zip
-        - Que se pueda configurar:
-            - Que se pueda elegir que la búsqueda respete mayúsculas
-    	    - Que se pueda elegir reestablecer o no el scroll de la grilla luego de agregar un servicio
-    	    - Que se pueda elegir que si al estar creando un servicio se hace back, y había algo escrito, se pida confirmación para descartar los datos ingresados
-    	    - Que se pueda elegir que se pida confirmación al eliminar un servicio
-        - Que aparezca una imagen junto a cada servicio con el favicon, si el mismo contiene una url
-            - https://www.google.com/s2/favicons?domain=www.google.com
-        - Cuando no exista el servicio buscado: Hacer aparecer texto clickeable que diga "Click aquí para agregar este servicio"
-        - Íconos junto a los campos del ABM que permitan copiar al portapapeles los valores de tales campos
-    	    - https://docs.microsoft.com/en-us/xamarin/essentials/clipboard
-        - Ícono de ojito junto al campo contraseña en el formulario de ABM para que la misma aparezca siempre oculta por defecto
-
-    - Sugerencias recibidas:
-        - Agregar opción que permita guardar contraseñas anteriores
-        - Agregar menú con opción de auto-actualización
-        - Que se pueda iniciar sesión con la huella digital
-
----
 
 ### Páginas consultadas:
 
@@ -237,28 +197,30 @@ Realizado con Xamarin.Forms y C#
 
 - <a href="https://stackoverflow.com/questions/29903749/linq-orderby-igorning-case-with-true-ascii-ordering" target="_blank">LINQ OrderBy igorning case with true ASCII ordering</a>
 
----
+- <a href="https://www.nuget.org/packages/CsvHelper/" target="_blank">CsvHelper</a>
 
-### Otras pruebas:
+- <a href="https://joshclose.github.io/CsvHelper/" target="_blank">CsvHelper - A .NET library for reading and writing CSV files. Extremely fast, flexible, and easy to use.</a>
 
-- Cree un almacén de claves AdHoc Android de prueba, pero después lo borré, tenía estos datos:
+- <a href="https://joshclose.github.io/CsvHelper/getting-started" target="_blank">Getting Started</a>
 
-  - Alias: Jonatandb
-  - Contraseña: loginsadmin
-  - Nombre: Jonatandb@gmail.com
-  - Validez: 30 años
-  - Ruta de keys: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android
-  - Ruta de apks generados: C:\Users\Jonatandb\AppData\Local\Xamarin\Mono for Android\Archives\2020-03-29\LoginsAdmin.Android 3-29-20 1.06 AM.apkarchive
-  - \*\* Lo borré porque lo usé para generar el apk desde el Archive Manager, pero el apk generado, aunque lo firmé, no se instaló en el dispositivo, tiró error de "Aplicación no instalada" y nada más.
-  - Investigar, puede que el error no haya estado relacionado con esto al 100%...
+- <a href="https://joshclose.github.io/CsvHelper/api/CsvHelper.Configuration/Configuration" target="_blank">Configuration Class</a>
 
-- Encontré varias formas de establecerle el foco a un control desde el ViewModel (utilicé la propiedad CommandParameter):
-  - 1 - Usar:
-    - var txtNewPassword = (Entry) App.Current.MainPage.Navigation.NavigationStack[0].FindByName("txtNewPassword");
-    - txtNewPassword.Focus();
-  - 2 - Usar:
-    - // Esto requiere que previamente, en el codebehind, se cree una property pública que exponga el control txtPassword.
-    - var txtNewPassword = (Entry) ((Page) App.Current.MainPage.Navigation.NavigationStack[0]).TxtPassword;
-    - txtNewPassword.Focus();
-  - 3 - Usar una propiedad en el ViewModel que sea del tipo del control a manipular, luego que la vista instancie el ViewModel desde el codebehind y por último asigne a esa propiedad la referencia del control que se va a manipular desde el ViewModel.
-  - 4 - Finalmente utilicé la propiedad CommandParameter a la cual le pasé una referencia del control (CommandParameter={x:Reference txtPassword}}) y desde el ViewModel utilicé la sobrecarga del constructor de Command<Entry> para que se reciba el control como parámetro.
+- <a href="https://joshclose.github.io/CsvHelper/examples/prerequisites/reading-writing-files" target="_blank">Reading and Writing Files</a>
+
+- <a href="https://docs.microsoft.com/es-es/xamarin/xamarin-forms/data-cloud/data/files?tabs=windows" target="_blank">Control de archivos en Xamarin.Forms</a>
+
+- <a href="https://docs.microsoft.com/es-es/samples/xamarin/xamarin-forms-samples/workingwithfiles/" target="_blank">Xamarin.Forms - Working with Files</a>
+
+- <a href="https://forums.xamarin.com/discussion/138266/how-to-hit-an-url-to-download-a-file" target="_blank">How to hit an URL to download a file ?</a>
+
+- <a href="https://github.com/SimonSimCity/Xamarin-CrossDownloadManager#where-are-the-files-stored" target="_blank">Xamarin-CrossDownloadManager - A cross platform download manager for Xamarin</a>
+
+- <a href="https://forums.xamarin.com/discussion/71203/how-to-download-a-file-in-xamarin-forms-and-store-it-in-the-device-storage" target="_blank">How to download a file in Xamarin Forms and store it in the device storage ?</a>
+
+- <a href="https://stackoverflow.com/questions/48511181/select-path-for-storing-file-in-xamarin-forms" target="_blank">Select path for storing file in Xamarin Forms</a>
+
+- <a href="https://stackoverflow.com/questions/8066679/how-to-do-a-simple-file-search-in-cmd" target="_blank">How to do a simple file search in cmd</a>
+
+- <a href="https://stackoverflow.com/questions/20834241/how-to-use-adb-command-to-push-a-file-on-device-without-sd-card" target="_blank">how to use adb command to push a file on device without sd card</a>
+
+- <a href="https://forums.xamarin.com/discussion/19656/get-current-page-in-xamarin-forms" target="_blank">Get current page in xamarin forms</a>
