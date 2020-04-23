@@ -248,3 +248,13 @@ Realizado con Xamarin.Forms y C#
 - <a href="https://stackoverflow.com/questions/20834241/how-to-use-adb-command-to-push-a-file-on-device-without-sd-card" target="_blank">how to use adb command to push a file on device without sd card</a>
 
 - <a href="https://forums.xamarin.com/discussion/19656/get-current-page-in-xamarin-forms" target="_blank">Get current page in xamarin forms</a>
+
+
+
+--- 
+
+<p align="center">
+    <a href="https://ko-fi.com/L3L31N4GV" target="_blank">
+            <img src="https://www.ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi"/>
+    </a>
+</p>
