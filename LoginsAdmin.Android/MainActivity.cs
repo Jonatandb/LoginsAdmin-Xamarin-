@@ -11,7 +11,7 @@ namespace LoginsAdmin.Droid
                 Theme = "@style/MainTheme", 
                 ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, 
                 ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -23,16 +23,12 @@ namespace LoginsAdmin.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            ConfigureBackupFilesPath();
-
-            LoadApplication(new App());
+            LoadApplication(new App(GetExternalStorageDownloadsDirectoryPath()));
         }
 
-        private static void ConfigureBackupFilesPath()
+        private static string GetExternalStorageDownloadsDirectoryPath()
         {
-            string downloadsDiretory = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads);
-            string backupFilePath = Path.Combine(downloadsDiretory, "Datos_LoginsAdmin.csv");
-            App.BackupFilePath = backupFilePath;
+            return Path.Combine(Environment.ExternalStorageDirectory.AbsolutePath, Environment.DirectoryDownloads);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

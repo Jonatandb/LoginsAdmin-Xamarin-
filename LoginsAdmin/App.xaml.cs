@@ -1,25 +1,31 @@
 ﻿using LoginsAdmin.Presentation;
 using LoginsAdmin.Repository;
 using LoginsAdmin.Utils;
+using System;
 using Xamarin.Forms;
 namespace LoginsAdmin
 {
     public partial class App : Application
     {
-        public string DbPath => FileAccessHelper.GetLocalFilePath("loginsadmin.db3");
+        public static string DataBaseName = "loginsadmin.db3";
+        public static string ErrorsFileName = "LoginsAdmin_Errores.txt";
+        public static string BackupDataFileName = "LoginsAdmin_Datos.csv";
 
-        public static string BackupFilePath { get; set; }
+        public static string OutputFilesFolderPath { get; set; }
 
         public static bool IsUserLoggedIn { get; set; }
 
         public static RepositoryServicios RepoServicios { get; private set; }
 
-        public App()
+        public App(string externalStorageDownloadsDirectoryPath)
         {
             InitializeComponent();
+
+            OutputFilesFolderPath = externalStorageDownloadsDirectoryPath;
+
             try
             {
-                RepoServicios = new RepositoryServicios(DbPath);
+                RepoServicios = new RepositoryServicios();
 
                 if (!IsUserLoggedIn)
                 {
@@ -33,9 +39,9 @@ namespace LoginsAdmin
                     MainPage = new Inicio();
                 }
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                // Se produjo algún error relacionado con las tablas...
+                LoggerHelper.Log(ex.Message, "App.App()");
                 MainPage = new ErrorSQLite();
             }
         }

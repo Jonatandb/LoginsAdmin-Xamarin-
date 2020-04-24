@@ -1,4 +1,5 @@
-﻿using Xamarin.Essentials;
+﻿using System.IO;
+using Xamarin.Essentials;
 
 namespace LoginsAdmin.Utils
 {
@@ -6,7 +7,12 @@ namespace LoginsAdmin.Utils
     {
         public static string GetLocalFilePath(string filename)
         {
-            return System.IO.Path.Combine(FileSystem.AppDataDirectory, filename);
+            return Path.Combine(FileSystem.AppDataDirectory, filename);
+        }
+
+        public static string GetLocalDatabaseFilePath()
+        {
+            return GetLocalFilePath(App.DataBaseName);
         }
     }
 }

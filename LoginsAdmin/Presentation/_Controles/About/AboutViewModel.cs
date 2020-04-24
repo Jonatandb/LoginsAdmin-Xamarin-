@@ -35,7 +35,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             }            
             else
             {
-                action = string.Empty; await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin " + appVersion, "Aceptar", null, "Email", "Github", "LinkedIn");
+                action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin " + appVersion, "Aceptar", null, "Email", "Github", "LinkedIn");
             }
 
             if (!string.IsNullOrEmpty(action))

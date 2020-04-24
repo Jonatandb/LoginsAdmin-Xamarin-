@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="v0.9-alpha" package="com.jonatandb.loginsadmin" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="1" 
+					android:versionName="v1.0-alpha" 
+          package="com.jonatandb.loginsadmin" 
+					android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<application android:label="LoginsAdmin - Administrador de credenciales by Jonatandb" android:icon="@drawable/icon"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

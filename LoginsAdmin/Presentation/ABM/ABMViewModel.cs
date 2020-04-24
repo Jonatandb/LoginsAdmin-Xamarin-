@@ -4,6 +4,7 @@ using LoginsAdmin.Domain.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System;
+using LoginsAdmin.Utils;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
@@ -127,28 +128,21 @@ namespace LoginsAdmin.Presentation.ViewModels
                         ExtraData = string.IsNullOrWhiteSpace(OtrosDatos) ? "" : OtrosDatos.Trim()
                     };
 
-                    if (App.RepoServicios.AgregarEditarServicio(servicio))
-                    {
-                        await Application.Current.MainPage.DisplayAlert(
-                            "LoginsAdmin",
-                            App.RepoServicios.StatusMessage,
-                            "Cerrar");
+                    bool success = App.RepoServicios.AgregarEditarServicio(servicio);
+                    await Application.Current.MainPage.DisplayAlert(
+                        "LoginsAdmin",
+                        App.RepoServicios.StatusMessage,
+                        "Cerrar");
+                    if (success)
                         await Volver();
-                    }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert(
-                            "LoginsAdmin",
-                            App.RepoServicios.StatusMessage,
-                            "Cerrar");
-                    }
                 }
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "ABMViewModel.Guardar()");
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
-                    "No se pudo guardar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Guadar(): " + ex.Message,
+                    "No se pudo guardar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Guardar(): " + ex.Message,
                     "Aceptar");
             }
         }
@@ -182,9 +176,10 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "ABMViewModel.Eliminar()");
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
-                    "No se pudo eliminar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Eliminar(): " + ex.Message,
+                   "No se pudo eliminar el usuario.\n\nPor favor contactarse con jonatandb@gmail.com\n\nABMViewModel.Eliminar(): " + ex.Message,
                     "Aceptar");
             }
         }

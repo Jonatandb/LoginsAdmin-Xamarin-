@@ -8,7 +8,7 @@ namespace LoginsAdmin.Domain.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [MaxLength(250), Unique]
+        [MaxLength(250)]
         public string Name { get; set; }
         
         [MaxLength(250)]

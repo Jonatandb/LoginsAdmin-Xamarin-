@@ -5,7 +5,7 @@
 Realizado con Xamarin.Forms y C#
 
 <p align="center">
-    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.9-alpha">
+    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v1.0-alpha">
         <img src="Screenshot_v0.8-alpha.png" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
     </a>
 </p>
@@ -14,7 +14,7 @@ Realizado con Xamarin.Forms y C#
 
 ## Descarga e instalación de la última versión:
 
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v0.9-alpha">v0.9-alpha: Agregado de opciones para exportar e importar datos (Datos_LoginsAdmin.csv)</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v1.0-alpha">v1.0-alpha: Se permite crear servicios con nombres duplicados</a>
 
 
 ### Páginas consultadas:
@@ -249,7 +249,25 @@ Realizado con Xamarin.Forms y C#
 
 - <a href="https://forums.xamarin.com/discussion/19656/get-current-page-in-xamarin-forms" target="_blank">Get current page in xamarin forms</a>
 
+- <a href="https://www.techonthenet.com/sqlite/tables/alter_table.php" target="_blank">SQLite: ALTER TABLE Statement</a>
 
+- <a href="https://www.w3schools.com/sql/sql_insert_into_select.asp" target="_blank">SQL INSERT INTO SELECT Statement</a>
+
+- <a href="https://gist.github.com/matpag/b2545cc22c8e22449cd7eaf6b4910396" target="_blank">Xamarin Forms SQLite database upgrade strategy</a>
+
+- <a href="https://www.reddit.com/r/androiddev/comments/ci22rc/android_device_monitor_ddms_doesnt_show_any_app/" target="_blank">Android Device Monitor (DDMS) doesn't show any app processes for my phone</a>
+
+- <a href="https://www.nuget.org/packages/sqlite-net-pcl/" target="_blank">Nuget.org: sqlite-net-pcl 1.6.292</a>
+
+- <a href="https://github.com/praeclarum/sqlite-net/blob/master/src/SQLite.cs" target="_blank">Github: praeclarum/sqlite-net/src/SQLite.cs</a>
+
+- <a href="https://docs.microsoft.com/en-us/xamarin/android/data-cloud/data-access/using-sqlite-orm" target="_blank">Using SQLite.NET with Android (Basic Data Access, SQLite Attributes, etc)</a>
+
+- <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/data/databases" target="_blank">Xamarin.Forms Local Databases (Integrate SQLite.NET into mobile apps)</a>
+
+- <a href="https://docs.microsoft.com/en-us/dotnet/api/system.datetime?view=netframework-4.8" target="_blank">DateTime Struct</a>
+
+- <a href="https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/permissions?tabs=windows" target="_blank">Permissions In Xamarin.Android</a>
 
 --- 
 

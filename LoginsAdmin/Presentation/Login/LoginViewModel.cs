@@ -1,4 +1,5 @@
 ﻿using LoginsAdmin.Domain.Models;
+using LoginsAdmin.Utils;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -114,6 +115,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "LoginViewModel.Guardar()");
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
                     "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.Acceder(): " + ex.Message,
@@ -155,6 +157,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "LoginViewModel.EstablecerClave()");
                 await App.Current.MainPage.DisplayAlert(
                     "Atención",
                     "Se produjo un error inesperado.\n\nPor favor contactarse con jonatandb@gmail.com\n\nLoginViewModel.EstablecerClave(): " + ex.Message,
@@ -168,14 +171,22 @@ namespace LoginsAdmin.Presentation.ViewModels
             txt.SelectionLength = txt.Text.Length;
             txt.Focus();
         }
+        
         private async void CargarPantallaPrincipal()
         {
-            App.IsUserLoggedIn = true;
-            ContentPage mainPage = new Inicio();
-            NavigationPage.SetHasBackButton(mainPage, false);
-            NavigationPage.SetHasNavigationBar(mainPage, false);
-            App.Current.MainPage.Navigation.InsertPageBefore(mainPage, App.Current.MainPage.Navigation.NavigationStack[0]);
-            await App.Current.MainPage.Navigation.PopAsync();
+            try
+            {
+                App.IsUserLoggedIn = true;
+                ContentPage mainPage = new Inicio();
+                NavigationPage.SetHasBackButton(mainPage, false);
+                NavigationPage.SetHasNavigationBar(mainPage, false);
+                App.Current.MainPage.Navigation.InsertPageBefore(mainPage, App.Current.MainPage.Navigation.NavigationStack[0]);
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Log(ex.Message, "LoginViewModel.CargarPantallaPrincipal()");
+            }
         }
 
         private void OnPropertyChanged(string propertyName)

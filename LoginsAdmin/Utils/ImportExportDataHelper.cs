@@ -2,6 +2,7 @@
 using LoginsAdmin.Domain.Models;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace LoginsAdmin.Utils
 
         internal static bool ExportData()
         {
-            string ruta_al_csv = App.BackupFilePath;
             bool result = false;
             try
             {
-                using (var writer = new StreamWriter(ruta_al_csv))
+                string exportDataFilePath = Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName);
+                using (var writer = new StreamWriter(exportDataFilePath))
                 {
                     var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture);
                     csvConfig.Encoding = Encoding.UTF8;
@@ -29,11 +30,12 @@ namespace LoginsAdmin.Utils
                         csv.WriteRecords(ObtenerRegistrosSanitizados());
                     }
                 }
-                StatusMessage = ruta_al_csv;
+                StatusMessage = exportDataFilePath;
                 result = true;
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ExportData()");
                 StatusMessage = ex.Message;
             }
             return result;
@@ -42,20 +44,25 @@ namespace LoginsAdmin.Utils
         private static IEnumerable ObtenerRegistrosSanitizados()
         {
             var servicios = App.RepoServicios.ObtenerServicios();
-            servicios.ForEach(servicio => servicio.ExtraData = servicio.ExtraData.Replace('\n', ' ')); // Reemplazo saltos de línea por espacios
+            try
+            {
+                servicios.ForEach(servicio => servicio.ExtraData = servicio.ExtraData.Replace('\n', ' ')); // Reemplazo saltos de línea por espacios
+            }
+            catch (Exception ex)
+            {
+                LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ObtenerRegistrosSanitizados()");
+            }
             return servicios;
         }
 
         internal static bool ImportData()
         {
             bool result = false;
-            var duplicados = 0;
             var insertados = 0;
-            var erroneos = 0;
+            var erroneos = new List<string>();
             try
             {
-                string ruta_al_csv = App.BackupFilePath;
-                using (var reader = new StreamReader(ruta_al_csv))
+                using (var reader = new StreamReader(Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName)))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     csv.Configuration.RegisterClassMap<ServicioMap>();
@@ -69,44 +76,28 @@ namespace LoginsAdmin.Utils
                         }
                         else
                         {
-                            if(App.RepoServicios.StatusMessage == string.Format("Ya existe un servicio con el nombre {0}", servicio.Name))
-                            {
-                                duplicados++;
-                            }
-                            else
-                            {
-                                erroneos++;
-                            }
+                            erroneos.Add(App.RepoServicios.StatusMessage);
                         }
                     });
                 }
                 StringBuilder importResults = new StringBuilder();
                 if (insertados > 0)
                     importResults.AppendLine("Importados: " + insertados);
-                if (duplicados > 0)
-                    importResults.AppendLine("Duplicados ignorados: " + duplicados);
-                if (erroneos > 0)
-                    importResults.AppendLine("Erróneos: " + erroneos);
+                if (erroneos.Count > 0)
+                {
+                    importResults.AppendLine("Erróneos: " + erroneos.Count);
+                    importResults.AppendLine("Detalle de los errores:");
+                    erroneos.ForEach(e => importResults.AppendLine(e));
+                }
                 StatusMessage = importResults.ToString();
                 result = true;
             }
             catch (Exception ex)
             {
+                LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ImportData()");
                 StatusMessage = ex.Message;
             }
             return result;
-        }
-    }
-    
-    public class ServicioMap : CsvHelper.Configuration.ClassMap<Servicio>
-    {
-        public ServicioMap()
-        {
-            Map(m => m.Id).Index(0).Name("Id");
-            Map(m => m.Name).Index(1).Name("Servicio");
-            Map(m => m.User).Index(2).Name("Usuario");
-            Map(m => m.Password).Index(3).Name("Clave");
-            Map(m => m.ExtraData).Index(4).Name("Otros datos");
         }
     }
 }
