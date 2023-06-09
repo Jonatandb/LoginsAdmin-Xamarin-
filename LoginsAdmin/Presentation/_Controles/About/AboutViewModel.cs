@@ -10,7 +10,7 @@ namespace LoginsAdmin.Presentation.ViewModels
     {
 
         public AboutViewModel()
-        {
+       {
             AboutCommand = new Command(About);
         }
 
@@ -20,7 +20,7 @@ namespace LoginsAdmin.Presentation.ViewModels
         {
             string appVersion = "(" + AppInfo.VersionString + ")";
 
-            string action = string.Empty;
+            string action;
 
             Page currentPage = null;
             if (Application.Current.MainPage.Navigation.NavigationStack.Count > 0)
@@ -57,6 +57,8 @@ namespace LoginsAdmin.Presentation.ViewModels
                             await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
                                 "Importación finalizada.\n\n" + ImportExportDataHelper.StatusMessage,
                                 "Cerrar");
+                            var inicioVM = Application.Current.MainPage.Navigation.NavigationStack[0].BindingContext as InicioViewModel;
+                            inicioVM.RecargarGrilla();
                         }
                         else
                         {
