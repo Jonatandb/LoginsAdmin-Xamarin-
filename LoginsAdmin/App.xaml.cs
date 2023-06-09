@@ -9,7 +9,7 @@ namespace LoginsAdmin
     {
         public static string DataBaseName = "loginsadmin.db3";
         public static string ErrorsFileName = "LoginsAdmin_Errores.txt";
-        public static string BackupDataFileName = "LoginsAdmin_Datos.csv";
+        public static string BackupDataFileName = "LoginsAdmin_Datos.xlsx";
 
         public static string OutputFilesFolderPath { get; set; }
 
