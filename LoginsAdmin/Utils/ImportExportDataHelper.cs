@@ -1,12 +1,9 @@
-﻿using CsvHelper;
-using LoginsAdmin.Domain.Models;
+﻿using LoginsAdmin.Domain.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
+using OfficeOpenXml;
 
 namespace LoginsAdmin.Utils
 {
@@ -14,88 +11,216 @@ namespace LoginsAdmin.Utils
     {
         public static string StatusMessage { get; internal set; }
 
+        private static string GetAppPassword()
+        {
+            return App.RepoServicios.ObtenerUsuarioPrincipal().Password;
+        }
+
+        private static string GetBackupFilePath()
+        {
+            return Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName);
+        }
+
+        private static string ConvertToExcelCoordinates(int row, int column)
+        {
+            string result = "";
+
+            // Convertir la columna a letra
+            int dividend = column;
+            string columnName = "";
+
+            while (dividend > 0)
+            {
+                int modulo = (dividend - 1) % 26;
+                columnName = Convert.ToChar('A' + modulo) + columnName;
+                dividend = (dividend - modulo) / 26;
+            }
+
+            // Concatenar la letra de la columna con el número de fila
+            result = columnName + row.ToString();
+
+            return result;
+        }
+
+        private static string GetCurrentDateTimeString()
+        {
+            DateTime now = DateTime.Now;
+            string dateTimeString = now.ToString("dd-MM-yyyy__HH-mm'hs'");
+            return dateTimeString;
+        }
+
+        private static void GenerateHeaders(ExcelWorksheet worksheet)
+        {
+            worksheet.Cells["A1"].Value = "Id";
+            worksheet.Cells["B1"].Value = "Servicio";
+            worksheet.Cells["C1"].Value = "Usuario";
+            worksheet.Cells["D1"].Value = "Clave";
+            worksheet.Cells["E1"].Value = "Otros datos";
+        }
+
         internal static bool ExportData()
         {
             bool result = false;
+
             try
             {
-                string exportDataFilePath = Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName);
-                using (var writer = new StreamWriter(exportDataFilePath))
+                if (App.RepoServicios.ObtenerServicios().Count == 0)
                 {
-                    var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture);
-                    csvConfig.Encoding = Encoding.UTF8;
-                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                    {
-                        csv.Configuration.RegisterClassMap<ServicioMap>();
-                        csv.WriteRecords(ObtenerRegistrosSanitizados());
-                    }
+                    StatusMessage = "No hay datos para exportar.";
+                    return false;
                 }
+
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                
+                string exportDataFilePath = GetBackupFilePath();
+
+                // Crear el archivo de Excel
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    // Agregar una nueva hoja de cálculo al libro
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(GetCurrentDateTimeString());
+
+                    // Agregar contenido a la hoja de cálculo
+                    GenerateHeaders(worksheet);
+
+                    int row = 3;
+                    foreach (Servicio service in App.RepoServicios.ObtenerServicios())
+                    {
+                        worksheet.Cells[ConvertToExcelCoordinates(row, 1)].Value = service.Id;
+                        worksheet.Cells[ConvertToExcelCoordinates(row, 2)].Value = service.Name;
+                        worksheet.Cells[ConvertToExcelCoordinates(row, 3)].Value = service.User;
+                        worksheet.Cells[ConvertToExcelCoordinates(row, 4)].AddComment(service.Password);
+                        worksheet.Cells[ConvertToExcelCoordinates(row, 5)].Value = service.ExtraData;
+                        row++;
+                    }
+
+                    // Proteger el archivo de Excel con contraseña
+                    package.Encryption.Password = GetAppPassword();
+
+                    // Guardar el archivo de Excel
+                    package.SaveAs(new FileInfo(exportDataFilePath));
+                }
+
                 StatusMessage = exportDataFilePath;
                 result = true;
             }
             catch (Exception ex)
             {
                 LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ExportData()");
-                StatusMessage = ex.Message;
+                if (ex.Message.Contains("saving"))
+                {
+                    StatusMessage = "No se pudo crear el archivo: " + GetBackupFilePath() + "\n\nVerifique que la aplicación tiene permiso para acceder al almacenamiento interno: 'App permissions -> Storage'.";
+                }
+                else
+                {
+                    StatusMessage = ex.Message;
+                }
             }
             return result;
-        }
-
-        private static IEnumerable ObtenerRegistrosSanitizados()
-        {
-            var servicios = App.RepoServicios.ObtenerServicios();
-            try
-            {
-                servicios.ForEach(servicio => servicio.ExtraData = servicio.ExtraData.Replace('\n', ' ')); // Reemplazo saltos de línea por espacios
-            }
-            catch (Exception ex)
-            {
-                LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ObtenerRegistrosSanitizados()");
-            }
-            return servicios;
         }
 
         internal static bool ImportData()
         {
             bool result = false;
-            var insertados = 0;
-            var erroneos = new List<string>();
+
             try
             {
-                using (var reader = new StreamReader(Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName)))
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                string filePath = GetBackupFilePath();
+                string password = GetAppPassword();
+
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath), password))
                 {
-                    csv.Configuration.RegisterClassMap<ServicioMap>();
-                    var records = csv.GetRecords<Servicio>().ToList();
-                    records.ForEach(servicio =>
+
+                    ExcelWorksheet worksheet;
+
+                    try
                     {
-                        servicio.Id = -1;
-                        if (App.RepoServicios.AgregarEditarServicio(servicio))
+                        // Acceso a la primera hoja de trabajo
+                        worksheet = package.Workbook.Worksheets[0];
+                    }
+                    catch
+                    {
+                        throw new Exception("No se pudo abrir el archivo: " + filePath + "\n\nVerifique que el archivo existe y que la aplicación tiene permiso para acceder a él: 'App permissions -> Storage'.");
+                    }
+
+                    var importedServices = new List<Servicio>();
+                    int row = 3;
+                    try
+                    {
+                        while (worksheet.Cells[ConvertToExcelCoordinates(row, 1)].Value != null)
                         {
-                            insertados++;
+                            var newService = new Servicio();
+                            newService.Id = -1;
+
+                            newService.Name = "";
+                            newService.User = "";
+                            newService.Password = "";
+                            newService.ExtraData = "";
+                            try
+                            {
+                                newService.Name = worksheet.Cells[ConvertToExcelCoordinates(row, 2)].Value.ToString();
+                            } catch{}
+                            try
+                            {
+                                newService.User = worksheet.Cells[ConvertToExcelCoordinates(row, 3)].Value.ToString();
+                            } catch{}
+                            try
+                            {
+                                newService.Password = worksheet.Cells[ConvertToExcelCoordinates(row, 4)].Comment.Text;
+                            } catch{}
+                            try
+                            {
+                                newService.ExtraData = worksheet.Cells[ConvertToExcelCoordinates(row, 5)].Value.ToString();
+                            } catch {}
+                            importedServices.Add(newService);
+                            row++;
                         }
-                        else
+                    }
+                    catch { }
+                    finally
+                    {
+                        package.Dispose();
+                    }
+
+                    var insertados = 0;
+                    var erroneos = new List<string>();
+                    if (importedServices.Count > 0)
+                    {
+                        foreach(Servicio service in importedServices)
                         {
-                            erroneos.Add(App.RepoServicios.StatusMessage);
+                            if (App.RepoServicios.AgregarEditarServicio(service))
+                            {
+                                insertados++;
+                            }
+                            else
+                            {
+                                erroneos.Add(App.RepoServicios.StatusMessage);
+                            }
                         }
-                    });
+                        StringBuilder importResults = new StringBuilder();
+                        if (insertados > 0)
+                            importResults.AppendLine("Importados: " + insertados);
+                        if (erroneos.Count > 0)
+                        {
+                            importResults.AppendLine("Erróneos: " + erroneos.Count);
+                            importResults.AppendLine("Detalle de los errores:");
+                            erroneos.ForEach(e => importResults.AppendLine(e));
+                        }
+                        StatusMessage = importResults.ToString();
+                    }
+                    else
+                    {
+                        StatusMessage = "No se encontraron datos para importar.";
+                    }
                 }
-                StringBuilder importResults = new StringBuilder();
-                if (insertados > 0)
-                    importResults.AppendLine("Importados: " + insertados);
-                if (erroneos.Count > 0)
-                {
-                    importResults.AppendLine("Erróneos: " + erroneos.Count);
-                    importResults.AppendLine("Detalle de los errores:");
-                    erroneos.ForEach(e => importResults.AppendLine(e));
-                }
-                StatusMessage = importResults.ToString();
                 result = true;
             }
             catch (Exception ex)
             {
                 LoggerHelper.Log(ex.Message, "ImportExportDataHelper.ImportData()");
-                StatusMessage = ex.Message;
+                StatusMessage = ex.Message + "\n\nVerifique que el archivo existe y que la aplicación tiene permiso para acceder a él: 'App permissions -> Storage'.";
             }
             return result;
         }

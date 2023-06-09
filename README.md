@@ -269,6 +269,10 @@ Realizado con Xamarin.Forms y C#
 
 - <a href="https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/permissions?tabs=windows" target="_blank">Permissions In Xamarin.Android</a>
 
+- <a href="https://gist.github.com/mobilemind/7883996" target="_blank">How to delete a git tag locally and remote</a>
+
+- <a href="https://github.com/EPPlusSoftware/EPPlus/wiki/Getting-Started" target="_blank">EPPlus - Excel spreadsheets for .NET</a>
+
 --- 
 
 <p align="center">
