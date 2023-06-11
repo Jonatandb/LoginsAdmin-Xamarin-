@@ -8,7 +8,9 @@
              x:DataType="viewmodels:InicioViewModel"
              xmlns:models="clr-namespace:LoginsAdmin.Domain.Models"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.Inicio">
+             x:Class="LoginsAdmin.Presentation.Inicio"
+             NavigationPage.HasBackButton="False" 
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
 
@@ -109,18 +111,26 @@
                     
                 </StackLayout>
                 
-                <!-- Footer -->
-                <ctrls:About HorizontalOptions="Center" 
-                            VerticalOptions="End"/>
             </StackLayout>
-            
-            <ImageButton Source="AddButton"
-                        BackgroundColor="Transparent"
-                        AbsoluteLayout.LayoutFlags="PositionProportional"  
-                        AbsoluteLayout.LayoutBounds=".90, .92, 50, 50" 
+
+            <Grid AbsoluteLayout.LayoutFlags="PositionProportional"  
+                  AbsoluteLayout.LayoutBounds=".90, .92, 50, 50">
+
+                <ImageButton Source="AddButton"
                         IsOpaque="True"
-                        Command="{Binding AddEditServiceCommand, Mode=OneTime}"/>
-            
+                        BackgroundColor="Transparent"
+                        Command="{Binding AddEditServiceCommand, Mode=OneTime}"
+                        Margin="0,0,0,15" />
+
+                <Label Text="Agregar" 
+                       FontSize="Micro" 
+                       TextColor="{StaticResource MainBlue}" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="End" />
+
+            </Grid>
+
         </AbsoluteLayout>
         
     </ContentPage.Content>

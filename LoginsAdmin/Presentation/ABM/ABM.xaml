@@ -7,7 +7,9 @@
              x:DataType="viewmodels:ABMViewModel"
              xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.ABM">
+             x:Class="LoginsAdmin.Presentation.ABM"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
         
@@ -94,9 +96,6 @@
                     
                 </StackLayout>
 
-                <ctrls:About HorizontalOptions="Center" 
-                            VerticalOptions="End"/>
-                
             </StackLayout>
             
         </AbsoluteLayout>

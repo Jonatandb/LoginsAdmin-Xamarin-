@@ -10,5 +10,10 @@ namespace LoginsAdmin.Presentation
         {
             InitializeComponent();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Application.Current.MainPage.Navigation.PopAsync(false);
+            return true;
+        }
     }
 }

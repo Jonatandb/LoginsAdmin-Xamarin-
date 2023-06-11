@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using System.IO;
+using Android;
 
 namespace LoginsAdmin.Droid
 {
@@ -13,6 +14,8 @@ namespace LoginsAdmin.Droid
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        const int RequestStoragePermissionId = 0;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -22,6 +25,14 @@ namespace LoginsAdmin.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            if ((int)Build.VERSION.SdkInt >= 23)
+            {
+                if (CheckSelfPermission(Manifest.Permission.WriteExternalStorage) != Permission.Granted)
+                {
+                    RequestPermissions(new[] { Manifest.Permission.WriteExternalStorage }, RequestStoragePermissionId);
+                }
+            }
 
             LoadApplication(new App(GetExternalStorageDownloadsDirectoryPath()));
         }

@@ -178,10 +178,8 @@ namespace LoginsAdmin.Presentation.ViewModels
             {
                 App.IsUserLoggedIn = true;
                 ContentPage mainPage = new Inicio();
-                NavigationPage.SetHasBackButton(mainPage, false);
-                NavigationPage.SetHasNavigationBar(mainPage, false);
                 App.Current.MainPage.Navigation.InsertPageBefore(mainPage, App.Current.MainPage.Navigation.NavigationStack[0]);
-                await App.Current.MainPage.Navigation.PopAsync();
+                await App.Current.MainPage.Navigation.PopAsync(false);
             }
             catch (Exception ex)
             {
