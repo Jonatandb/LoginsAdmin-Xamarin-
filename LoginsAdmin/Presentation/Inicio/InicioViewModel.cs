@@ -77,9 +77,7 @@ namespace LoginsAdmin.Presentation.ViewModels
             ContentPage ABM = new ABM();
             ((ABMViewModel)ABM.BindingContext).SetServiceToEdit(SelectedService);
             ((ABMViewModel)ABM.BindingContext).ServicesModified += RecargarGrilla;
-            NavigationPage.SetHasBackButton(ABM, false);
-            NavigationPage.SetHasNavigationBar(ABM, false);
-            await Application.Current.MainPage.Navigation.PushAsync(ABM);
+            await Application.Current.MainPage.Navigation.PushAsync(ABM, false);
             SelectedService = null;
         }
         

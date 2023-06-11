@@ -5,11 +5,12 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 mc:Ignorable="d"
                 x:Class="LoginsAdmin.Presentation._Controles.HeaderLoginsAdmin"
+                xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
                 BackgroundColor="{StaticResource MainLightBlue}">
-
+    
     <StackLayout AbsoluteLayout.LayoutFlags="WidthProportional" 
-                AbsoluteLayout.LayoutBounds="0, 0, 1, 70"
-                BackgroundColor="{StaticResource MainLightBlue}">
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 70"
+            BackgroundColor="{StaticResource MainLightBlue}">
 
         <Label Text="{StaticResource AppName}" 
                 TextColor="{StaticResource MainBlue}" 
@@ -18,8 +19,9 @@
                 HorizontalTextAlignment="Center"
                 VerticalOptions="CenterAndExpand" 
                 LineBreakMode="NoWrap"
-                Margin="70,0,0,0"
                 BackgroundColor="{StaticResource MainLightBlue}"/>
+            
+        <ctrls:About HorizontalOptions="Center" VerticalOptions="End"/>
 
     </StackLayout>
     

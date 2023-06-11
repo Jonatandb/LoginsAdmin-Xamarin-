@@ -7,7 +7,9 @@
              xmlns:viewmodels="clr-namespace:LoginsAdmin.Presentation.ViewModels"
              x:DataType="viewmodels:LoginViewModel"
              mc:Ignorable="d"
-             x:Class="LoginsAdmin.Presentation.Login">
+             x:Class="LoginsAdmin.Presentation.Login"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
     
     <ContentPage.BindingContext>
     

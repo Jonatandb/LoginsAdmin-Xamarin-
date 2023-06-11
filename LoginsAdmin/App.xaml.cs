@@ -30,8 +30,6 @@ namespace LoginsAdmin
                 if (!IsUserLoggedIn)
                 {
                     ContentPage loginPage = new Login();
-                    NavigationPage.SetHasBackButton(loginPage, false);
-                    NavigationPage.SetHasNavigationBar(loginPage, false);
                     MainPage = new NavigationPage(loginPage);
                 }
                 else

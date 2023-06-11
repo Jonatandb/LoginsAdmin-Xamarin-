@@ -187,7 +187,7 @@ namespace LoginsAdmin.Presentation.ViewModels
         private async Task Volver()
         {
             RefrescarGrilla();
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync(false);
         }
 
         private void OnPropertyChanged(string propertyName)
