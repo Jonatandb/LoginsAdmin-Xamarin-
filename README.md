@@ -14,7 +14,7 @@ Realizado con Xamarin.Forms y C#
 
 ## Descarga e instalación de la última versión:
 
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v1.0-alpha">v1.0-alpha: Se permite crear servicios con nombres duplicados</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.0-alpha">v2.0-alpha: Se agrega funcionalidad que exporta e importa a un archivo de Excel con contraseña.</a>
 
 
 ### Páginas consultadas:
