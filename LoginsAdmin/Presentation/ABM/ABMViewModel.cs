@@ -7,7 +7,6 @@ using System;
 using LoginsAdmin.Utils;
 using System.Reflection;
 
-
 namespace LoginsAdmin.Presentation.ViewModels
 {
     public class ABMViewModel : INotifyPropertyChanged
@@ -20,6 +19,7 @@ namespace LoginsAdmin.Presentation.ViewModels
         
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler PerformIconVisualFeedback;
 
         public ABMViewModel()
         {
@@ -27,8 +27,6 @@ namespace LoginsAdmin.Presentation.ViewModels
             EliminarCommand = new Command(Eliminar);
             CopiarCommand = new Command<string>(Copiar);
         }
-
-
 
         public ICommand GuardarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
@@ -197,6 +195,7 @@ namespace LoginsAdmin.Presentation.ViewModels
         private async void Copiar(string fieldName)
         {
             await Xamarin.Essentials.Clipboard.SetTextAsync(getPropertyValue(fieldName));
+            CopyIconTapped(fieldName);
         }
 
         private string getPropertyValue(string propertyName)
@@ -211,9 +210,15 @@ namespace LoginsAdmin.Presentation.ViewModels
             return value;
         }
 
+        private void CopyIconTapped(string iconName)
+        {
+            PerformIconVisualFeedback?.Invoke(this, new IconTouchedEventArgs(iconName));
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 }

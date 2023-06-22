@@ -57,6 +57,7 @@
                                     Grid.Column="0"
                                     Grid.Row="1"/>
                                 <Image 
+                                    x:Name="CopiarNombre"
                                     Source="CopyButton.png" 
                                     HeightRequest="20" 
                                     Grid.Column="1"
@@ -92,6 +93,7 @@
                                     Grid.Column="0"
                                     Grid.Row="1"/>
                                 <Image 
+                                    x:Name="CopiarUsuario"
                                     Source="CopyButton.png" 
                                     HeightRequest="20" 
                                     Grid.Column="1"
@@ -114,7 +116,6 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="0.1*" />
                                 </Grid.ColumnDefinitions>
-
                                 <Label
                                     Text="Clave:" 
                                     LineBreakMode="NoWrap"
@@ -128,6 +129,7 @@
                                     Grid.Column="0"
                                     Grid.Row="1"/>
                                 <Image 
+                                    x:Name="CopiarClave"
                                     Source="CopyButton.png" 
                                     HeightRequest="20" 
                                     Grid.Column="1"
