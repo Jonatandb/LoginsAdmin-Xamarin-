@@ -2,7 +2,7 @@
 
 ## Administrador de contraseñas gratuito para Android
 
-Realizado con Xamarin.Forms y C#
+### Realizado con Xamarin.Forms y C#:
 
 <p align="center">
     <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.1-alpha">
@@ -14,9 +14,9 @@ Realizado con Xamarin.Forms y C#
 
 ## Descarga e instalación de la última versión:
 
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.1-alpha">v2.1-alpha: Se agrega funcionalidad que exporta e importa a un archivo de Excel con contraseña.</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.1-alpha">v2.1-alpha: Se agrega funcionalidad que permite enviar archivo de claves por email.</a>
 
-
+--- 
 ### Páginas consultadas:
 
 - <a href="https://docs.microsoft.com/es-es/learn/modules/create-a-mobile-app-with-xamarin-forms/2-create-a-xf-project-in-vs" target="_blank">Creación de un proyecto de Xamarin.Forms en Visual Studio</a>
