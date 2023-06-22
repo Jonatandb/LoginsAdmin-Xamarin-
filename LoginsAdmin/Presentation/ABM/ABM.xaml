@@ -31,53 +31,130 @@
                 <ctrls:HeaderLoginsAdmin />
 
                 <!-- Datos del servicio -->
-                <StackLayout BackgroundColor="{StaticResource BackgroundLightBlue}">
-                    
-                    <Label Text="Nombre del servicio:" 
-                            LineBreakMode="NoWrap"
-                            TextColor="{StaticResource TextColorLight}"
-                           Margin="5, 5, 0, 0"
-                    />
+                <Frame CornerRadius="10" BackgroundColor="{StaticResource MainLightBlue}" Padding="0" Margin="0,15,0,0" HasShadow="False">
+                    <ScrollView BackgroundColor="{StaticResource BackgroundLightBlue}">
+                        <StackLayout>
 
-                    <Entry Text="{Binding Nombre, Mode=TwoWay}" 
-                            MaxLength="200"
-                            IsSpellCheckEnabled="False"
-                    />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.1*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Text="Nombre del servicio:" 
+                                    LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource TextColorLight}"
+                                    Margin="5, 5, 0, 0"
+                                    Grid.Row="0"/>
+                                <Entry 
+                                    Text="{Binding Nombre, Mode=TwoWay}" 
+                                    MaxLength="200"
+                                    IsSpellCheckEnabled="False"
+                                    Grid.Column="0"
+                                    Grid.Row="1"/>
+                                <Image 
+                                    Source="CopyButton.png" 
+                                    HeightRequest="20" 
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    Margin="0,0,10,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                        Command="{Binding CopiarCommand, Mode=OneWay}" 
+                                        CommandParameter="Nombre" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
 
-                    <Label Text="Usuario:" 
-                            LineBreakMode="NoWrap"
-                            TextColor="{StaticResource TextColorLight}"
-                            Margin="5, 5, 0, 0"
-                    />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.1*" />
+                                </Grid.ColumnDefinitions>
+                                <Label 
+                                    Text="Usuario:" 
+                                    LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource TextColorLight}"
+                                    Margin="5, 5, 0, 0"
+                                    Grid.Row="0"/>
+                                <Entry 
+                                    Text="{Binding Usuario, Mode=TwoWay}" 
+                                    MaxLength="200"
+                                    IsSpellCheckEnabled="False"
+                                    Grid.Column="0"
+                                    Grid.Row="1"/>
+                                <Image 
+                                    Source="CopyButton.png" 
+                                    HeightRequest="20" 
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    Margin="0,0,10,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                        Command="{Binding CopiarCommand, Mode=OneWay}" 
+                                        CommandParameter="Usuario" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
 
-                    <Entry Text="{Binding Usuario, Mode=TwoWay}" 
-                            MaxLength="200"
-                            IsSpellCheckEnabled="False"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.1*" />
+                                </Grid.ColumnDefinitions>
 
-                    <Label Text="Clave:" 
-                            LineBreakMode="NoWrap"
-                            TextColor="{StaticResource TextColorLight}"
-                            Margin="5, 5, 0, 0"
-                    />
+                                <Label
+                                    Text="Clave:" 
+                                    LineBreakMode="NoWrap"
+                                    TextColor="{StaticResource TextColorLight}"
+                                    Margin="5, 5, 0, 0"
+                                    Grid.Row="0"/>
+                                <Entry 
+                                    Text="{Binding Clave, Mode=TwoWay}" 
+                                    MaxLength="200"
+                                    IsSpellCheckEnabled="False"
+                                    Grid.Column="0"
+                                    Grid.Row="1"/>
+                                <Image 
+                                    Source="CopyButton.png" 
+                                    HeightRequest="20" 
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    Margin="0,0,10,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                        Command="{Binding CopiarCommand, Mode=OneWay}" 
+                                        CommandParameter="Clave" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
 
-                    <Entry Text="{Binding Clave, Mode=TwoWay}" 
-                            MaxLength="200"
-                            IsSpellCheckEnabled="False"/>
+                            <Label 
+                                Text="Otros datos:" 
+                                LineBreakMode="NoWrap"
+                                TextColor="{StaticResource TextColorLight}"
+                                Margin="5, 5, 0, 0"/>
 
-                    <Label Text="Otros datos:" 
-                            LineBreakMode="NoWrap"
-                            TextColor="{StaticResource TextColorLight}"
-                            Margin="5, 5, 0, 0"
-                    />
-                    
-                    <ScrollView>
-
-                        <Editor Text="{Binding OtrosDatos, Mode=TwoWay}" />
-                        
+                            <ScrollView>
+                                <Editor Text="{Binding OtrosDatos, Mode=TwoWay}" />
+                            </ScrollView>
+                        </StackLayout>
                     </ScrollView>
+                </Frame>
 
-                </StackLayout>
-                
+
                 <!-- Guardar - Eliminar -->
                 <StackLayout BackgroundColor="{StaticResource MainLightBlue}" 
                             VerticalOptions="EndAndExpand" 

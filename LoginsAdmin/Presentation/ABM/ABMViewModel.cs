@@ -5,6 +5,8 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System;
 using LoginsAdmin.Utils;
+using System.Reflection;
+
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
@@ -23,12 +25,14 @@ namespace LoginsAdmin.Presentation.ViewModels
         {
             GuardarCommand = new Command(Guardar, IsSaveButtonEnabled);
             EliminarCommand = new Command(Eliminar);
+            CopiarCommand = new Command<string>(Copiar);
         }
 
 
 
         public ICommand GuardarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
+        public ICommand CopiarCommand { get; set; }
 
         private Servicio ServiceToEdit { get; set; }
         
@@ -188,6 +192,23 @@ namespace LoginsAdmin.Presentation.ViewModels
         {
             RefrescarGrilla();
             await Application.Current.MainPage.Navigation.PopAsync(false);
+        }
+
+        private async void Copiar(string fieldName)
+        {
+            await Xamarin.Essentials.Clipboard.SetTextAsync(getPropertyValue(fieldName));
+        }
+
+        private string getPropertyValue(string propertyName)
+        {
+            string value = "";
+            PropertyInfo propertyInfo = GetType().GetProperty(propertyName);
+            if (propertyInfo != null)
+            {
+                object propertyValue = propertyInfo.GetValue(this);
+                value = propertyValue as string;
+            }
+            return value;
         }
 
         private void OnPropertyChanged(string propertyName)

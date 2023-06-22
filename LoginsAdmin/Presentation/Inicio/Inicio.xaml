@@ -51,7 +51,6 @@
                             CompressedLayout.IsHeadless="true">
                     
                     <ListView x:Name="GrillaServicios" 
-
                             SeparatorColor="{StaticResource MainLightBlue}" 
                             BackgroundColor="{StaticResource MainLightBlue}"
                             SelectionMode="None"
@@ -86,7 +85,7 @@
                                                         LineBreakMode="TailTruncation"
                                                         HorizontalOptions="CenterAndExpand"
                                                         Margin="5,0,5,0"
-                                                       FontSize="Title"/>
+                                                        FontSize="Title"/>
 
                                                     <Label Text="{Binding User, Mode=OneTime}"
                                                         TextColor="{StaticResource MainLightBlue}" 
@@ -113,21 +112,27 @@
                 
             </StackLayout>
 
+            <!-- Botón "Agregar" -->
             <Grid AbsoluteLayout.LayoutFlags="PositionProportional"  
                   AbsoluteLayout.LayoutBounds=".90, .92, 50, 50">
-
+                
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddEditServiceCommand, Mode=OneWay}" />
+                </Grid.GestureRecognizers>
+                
                 <ImageButton Source="AddButton"
                         IsOpaque="True"
                         BackgroundColor="Transparent"
-                        Command="{Binding AddEditServiceCommand, Mode=OneTime}"
-                        Margin="0,0,0,15" />
+                        Margin="0,0,0,15"
+                        InputTransparent="True" />
 
                 <Label Text="Agregar" 
                        FontSize="Micro" 
                        TextColor="{StaticResource MainBlue}" 
                        FontAttributes="Bold" 
                        HorizontalOptions="CenterAndExpand" 
-                       VerticalOptions="End" />
+                       VerticalOptions="End"
+                       InputTransparent="True" />
 
             </Grid>
 
