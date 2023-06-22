@@ -16,30 +16,9 @@ namespace LoginsAdmin.Utils
             return App.RepoServicios.ObtenerUsuarioPrincipal().Password;
         }
 
-        private static string GetBackupFilePath()
+        public static string GetBackupFilePath()
         {
             return Path.Combine(App.OutputFilesFolderPath, App.BackupDataFileName);
-        }
-
-        private static string ConvertToExcelCoordinates(int row, int column)
-        {
-            string result = "";
-
-            // Convertir la columna a letra
-            int dividend = column;
-            string columnName = "";
-
-            while (dividend > 0)
-            {
-                int modulo = (dividend - 1) % 26;
-                columnName = Convert.ToChar('A' + modulo) + columnName;
-                dividend = (dividend - modulo) / 26;
-            }
-
-            // Concatenar la letra de la columna con el número de fila
-            result = columnName + row.ToString();
-
-            return result;
         }
 
         private static string GetCurrentDateTimeString()
@@ -86,11 +65,11 @@ namespace LoginsAdmin.Utils
                     int row = 3;
                     foreach (Servicio service in App.RepoServicios.ObtenerServicios())
                     {
-                        worksheet.Cells[ConvertToExcelCoordinates(row, 1)].Value = service.Id;
-                        worksheet.Cells[ConvertToExcelCoordinates(row, 2)].Value = service.Name;
-                        worksheet.Cells[ConvertToExcelCoordinates(row, 3)].Value = service.User;
-                        worksheet.Cells[ConvertToExcelCoordinates(row, 4)].AddComment(service.Password);
-                        worksheet.Cells[ConvertToExcelCoordinates(row, 5)].Value = service.ExtraData;
+                        worksheet.Cells["A" + row.ToString()].Value = service.Id;
+                        worksheet.Cells["B" + row.ToString()].Value = service.Name;
+                        worksheet.Cells["C" + row.ToString()].Value = service.User;
+                        worksheet.Cells["D" + row.ToString()].AddComment(service.Password);
+                        worksheet.Cells["E" + row.ToString()].Value = service.ExtraData;
                         row++;
                     }
 
@@ -149,7 +128,7 @@ namespace LoginsAdmin.Utils
                     int row = 3;
                     try
                     {
-                        while (worksheet.Cells[ConvertToExcelCoordinates(row, 1)].Value != null)
+                        while (worksheet.Cells["B" + row.ToString()].Value != null)
                         {
                             var newService = new Servicio();
                             newService.Id = -1;
@@ -160,19 +139,19 @@ namespace LoginsAdmin.Utils
                             newService.ExtraData = "";
                             try
                             {
-                                newService.Name = worksheet.Cells[ConvertToExcelCoordinates(row, 2)].Value.ToString();
+                                newService.Name = worksheet.Cells["B" + row.ToString()].Value.ToString();
                             } catch{}
                             try
                             {
-                                newService.User = worksheet.Cells[ConvertToExcelCoordinates(row, 3)].Value.ToString();
+                                newService.User = worksheet.Cells["C" + row.ToString()].Value.ToString();
                             } catch{}
                             try
                             {
-                                newService.Password = worksheet.Cells[ConvertToExcelCoordinates(row, 4)].Comment.Text;
+                                newService.Password = worksheet.Cells["D" + row.ToString()].Comment.Text;
                             } catch{}
                             try
                             {
-                                newService.ExtraData = worksheet.Cells[ConvertToExcelCoordinates(row, 5)].Value.ToString();
+                                newService.ExtraData = worksheet.Cells["E" + row.ToString()].Value.ToString();
                             } catch {}
                             importedServices.Add(newService);
                             row++;

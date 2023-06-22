@@ -1,16 +1,18 @@
 ﻿using LoginsAdmin.Utils;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
-    public class AboutViewModel
+    public class AboutViewModel 
     {
 
         public AboutViewModel()
-       {
+        {
             AboutCommand = new Command(About);
         }
 
@@ -31,7 +33,13 @@ namespace LoginsAdmin.Presentation.ViewModels
 
             if(currentPage != null && currentPage.ToString() == "LoginsAdmin.Presentation.Inicio")
             {
-                action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin " + appVersion, "Aceptar", null, "Email", "Github", "LinkedIn", "Exportar Datos", "Importar Datos");
+                if (VerifyBackupFileExists())
+                {
+                    action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin " + appVersion, "Aceptar", null, "Email", "Github", "LinkedIn", "Exportar Datos", "Enviar archivo de datos por mail", "Importar Datos");
+                } else
+                {
+                    action = await Application.Current.MainPage.DisplayActionSheet("LoginsAdmin " + appVersion, "Aceptar", null, "Email", "Github", "LinkedIn", "Exportar Datos", "Importar Datos");
+                }
             }            
             else
             {
@@ -71,7 +79,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                         if (ImportExportDataHelper.ExportData())
                         {
                             await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
-                                "Exportación finalizada.\n\n" + ImportExportDataHelper.StatusMessage,
+                                "Exportación finalizada!\n\nSe creó el archivo:\n" + ImportExportDataHelper.StatusMessage + "\n\n* Recuerde que este archivo tiene la contraseña de esta aplicación.",
                                 "Cerrar");
                         }
                         else
@@ -81,6 +89,10 @@ namespace LoginsAdmin.Presentation.ViewModels
                                 "Cerrar");
                         }
                         break;
+                    case "Enviar archivo de datos por mail":
+                            await CompartirArchivoAdjunto();
+                        break;
+
                     default:
                         break;
                 }
@@ -92,6 +104,32 @@ namespace LoginsAdmin.Presentation.ViewModels
             if (!string.IsNullOrEmpty(url))
                 if (await Launcher.CanOpenAsync(new Uri(url)))
                     await Launcher.OpenAsync(new Uri(url));
+        }
+
+        private async Task CompartirArchivoAdjunto()
+        {
+            try
+            {
+                var file = new ShareFile(ImportExportDataHelper.GetBackupFilePath());
+                await Share.RequestAsync(new ShareFileRequest
+                {
+                    Title = "Datos LoginsAdmin",
+                    File = file
+                });
+            }
+            catch{}
+        }
+
+        private bool VerifyBackupFileExists()
+        {
+            try
+            {
+                return new FileInfo(ImportExportDataHelper.GetBackupFilePath()).Exists;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }
