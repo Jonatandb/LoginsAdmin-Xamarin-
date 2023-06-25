@@ -6,29 +6,40 @@
                 mc:Ignorable="d"
                 x:Class="LoginsAdmin.Presentation._Controles.HeaderLoginsAdmin"
                 xmlns:ctrls="clr-namespace:LoginsAdmin.Presentation._Controles"
-                BackgroundColor="{StaticResource MainLightBlue}">
+                BackgroundColor="Transparent"  Padding="0" Margin="0" >
     
-    <StackLayout AbsoluteLayout.LayoutFlags="WidthProportional" 
-            AbsoluteLayout.LayoutBounds="0, 0, 1, 70"
-            BackgroundColor="{StaticResource MainLightBlue}">
+    <Frame BorderColor="Transparent" BackgroundColor="Transparent"  Padding="0" Margin="0" >
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="316" />
+            </Grid.ColumnDefinitions>
 
-        <Label Text="{StaticResource AppName}" 
-                TextColor="{StaticResource MainBlue}" 
-                FontSize="Title" 
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center"
-                VerticalOptions="CenterAndExpand" 
-                LineBreakMode="NoWrap"
-                BackgroundColor="{StaticResource MainLightBlue}"/>
-            
-        <ctrls:About HorizontalOptions="Center" VerticalOptions="End"/>
+            <!-- Logo -->
+            <Frame BackgroundColor="Transparent" Margin="10,10,0,0" Padding="0" Grid.Column="0">
+                <Image Source="icon" />
+            </Frame>
 
-    </StackLayout>
-    
-    <Image Source="icon" 
-            AbsoluteLayout.LayoutBounds="0, 0, 70, 70"
-            BackgroundColor="{StaticResource MainLightBlue}"
-            IsOpaque="True"
-            Margin="5, 5, 0, 5"/>
+            <!-- LoginsAdmin-->
+            <Frame BorderColor="Transparent" Padding="0" Margin="0" BackgroundColor="Transparent" VerticalOptions="Start" Grid.Column="1">
+                <Label 
+                       Text="{StaticResource AppName}"
+                       TextColor="{StaticResource MainBlue}"
+                       FontSize="Title"
+                       FontAttributes="Bold"
+                       LineBreakMode="NoWrap" 
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- Email -->
+            <Frame BorderColor="Transparent" Padding="0" Margin="0" BackgroundColor="Transparent" HorizontalOptions="Center"  VerticalOptions="End"  Grid.Column="1">
+                <ctrls:About />
+            </Frame>
+
+        </Grid>
+    </Frame>
 
 </AbsoluteLayout>
