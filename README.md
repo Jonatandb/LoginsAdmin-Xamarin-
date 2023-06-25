@@ -5,7 +5,7 @@
 ### Realizado con Xamarin.Forms y C#:
 
 <p align="center">
-    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.1-alpha">
+    <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.2-alpha">
         <img src="Screenshot_v2.1-alpha.gif" alt="LoginsAdmin | Administrador de credenciales - Hecho con ❤ por Jonatandb! (Versión C#/Xamarin.Forms - Android)"/>
     </a>
 </p>
@@ -14,7 +14,7 @@
 
 ## Descarga e instalación de la última versión:
 
-- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.1-alpha">v2.1-alpha: Se agrega funcionalidad que permite enviar archivo de claves por email.</a>
+- <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.2-alpha">v2.2-alpha: Rediseño de la cabecera y botón de Agregar. Optimizaciones y mejoras internas varias.</a>
 
 --- 
 ### Páginas consultadas:

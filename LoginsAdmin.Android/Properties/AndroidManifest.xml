@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           android:versionCode="2"
-          android:versionName="v2.1-alpha"
+          android:versionName="v2.2-alpha"
           package="com.jonatandb.loginsadmin"
           android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
