@@ -1,20 +1,15 @@
 ﻿using LoginsAdmin.Domain.Models;
 using LoginsAdmin.Utils;
 using System;
-using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
         private string _clave;
-        
         private bool _firstAccess; 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         public LoginViewModel()
         {
@@ -23,10 +18,9 @@ namespace LoginsAdmin.Presentation.ViewModels
             VerifyFirstAccess();
         }
 
-
         public ICommand AccederCommand { get; set; }
-
         public ICommand EstablecerClaveCommand { get; set; }
+
 
         public string Clave {
             get
@@ -187,9 +181,5 @@ namespace LoginsAdmin.Presentation.ViewModels
             }
         }
 
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(propertyName)));
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LoginsAdmin.Presentation;
+﻿using LoginsAdmin.Domain.Models;
+using LoginsAdmin.Presentation;
 using LoginsAdmin.Repository;
 using LoginsAdmin.Utils;
 using System;
@@ -16,6 +17,8 @@ namespace LoginsAdmin
         public static bool IsUserLoggedIn { get; set; }
 
         public static RepositoryServicios RepoServicios { get; private set; }
+
+        public static Servicio SelectedService { get; set; }
 
         public App(string externalStorageDownloadsDirectoryPath)
         {

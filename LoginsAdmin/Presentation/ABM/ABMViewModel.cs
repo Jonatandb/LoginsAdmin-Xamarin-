@@ -1,5 +1,4 @@
 ﻿using Xamarin.Forms;
-using System.ComponentModel;
 using LoginsAdmin.Domain.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
@@ -7,17 +6,12 @@ using System;
 using LoginsAdmin.Utils;
 using System.Reflection;
 
+
 namespace LoginsAdmin.Presentation.ViewModels
 {
-    public class ABMViewModel : INotifyPropertyChanged
+    public class ABMViewModel : BaseViewModel
     {
         string _nombre, _usuario, _clave, _otrosDatos;
-        
-        public delegate void ServicesModifiedEventHandler();
-        
-        public event ServicesModifiedEventHandler ServicesModified;
-        
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler PerformIconVisualFeedback;
 
@@ -26,16 +20,20 @@ namespace LoginsAdmin.Presentation.ViewModels
             GuardarCommand = new Command(Guardar, IsSaveButtonEnabled);
             EliminarCommand = new Command(Eliminar);
             CopiarCommand = new Command<string>(Copiar);
+            SetServiceToEdit(App.SelectedService);
         }
 
+
         public ICommand GuardarCommand { get; set; }
+
         public ICommand EliminarCommand { get; set; }
+
         public ICommand CopiarCommand { get; set; }
 
         private Servicio ServiceToEdit { get; set; }
-        
+
         public bool IsEditMode { get => ServiceToEdit != null; }
-        
+
         private int Id { get; set; }
 
         public string Nombre
@@ -105,7 +103,8 @@ namespace LoginsAdmin.Presentation.ViewModels
 
         private void RefrescarGrilla()
         {
-            ServicesModified?.Invoke();
+            MessagingCenter.Send((BaseViewModel)this, "ServicesModified");
+            App.SelectedService = null;
         }
 
         private async void Guardar()
@@ -215,10 +214,6 @@ namespace LoginsAdmin.Presentation.ViewModels
             PerformIconVisualFeedback?.Invoke(this, new IconTouchedEventArgs(iconName));
         }
 
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 
 }

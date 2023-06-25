@@ -8,17 +8,17 @@ using Xamarin.Forms;
 
 namespace LoginsAdmin.Presentation.ViewModels
 {
-    public class AboutViewModel 
+    public class AboutViewModel : BaseViewModel
     {
 
         public AboutViewModel()
         {
-            AboutCommand = new Command(About);
+            AboutCommand = new Command(MostrarMenu);
         }
 
         public ICommand AboutCommand { get; }
 
-        public async void About()
+        public async void MostrarMenu()
         {
             string appVersion = "(" + AppInfo.VersionString + ")";
 
@@ -60,13 +60,13 @@ namespace LoginsAdmin.Presentation.ViewModels
                         OpenURL("https://www.linkedin.com/in/jonatandb/");
                         break;
                     case "Importar Datos":
+                        MessagingCenter.Send((BaseViewModel)this, "Processing", true);
                         if (ImportExportDataHelper.ImportData())
                         {
                             await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
                                 "Importación finalizada.\n\n" + ImportExportDataHelper.StatusMessage,
                                 "Cerrar");
-                            var inicioVM = Application.Current.MainPage.Navigation.NavigationStack[0].BindingContext as InicioViewModel;
-                            inicioVM.RecargarGrilla();
+                            MessagingCenter.Send((BaseViewModel)this, "ServicesModified");
                         }
                         else
                         {
@@ -74,8 +74,10 @@ namespace LoginsAdmin.Presentation.ViewModels
                                 "Falló la importación.\n\n" + ImportExportDataHelper.StatusMessage,
                                 "Cerrar");
                         }
+                        MessagingCenter.Send((BaseViewModel)this, "Processing", false);
                         break;
                     case "Exportar Datos":
+                        MessagingCenter.Send((BaseViewModel)this, "Processing", true);
                         if (ImportExportDataHelper.ExportData())
                         {
                             await Application.Current.MainPage.DisplayAlert("LoginsAdmin",
@@ -88,6 +90,7 @@ namespace LoginsAdmin.Presentation.ViewModels
                                 "Falló la exportación.\n\n" + ImportExportDataHelper.StatusMessage,
                                 "Cerrar");
                         }
+                        MessagingCenter.Send((BaseViewModel)this, "Processing", false);
                         break;
                     case "Enviar archivo de datos por mail":
                             await CompartirArchivoAdjunto();
