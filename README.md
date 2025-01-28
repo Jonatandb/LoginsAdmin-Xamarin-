@@ -1,4 +1,4 @@
-# LoginsAdmin
+# 🔐 LoginsAdmin
 
 - Administrador de credenciales gratuito para Android
 
