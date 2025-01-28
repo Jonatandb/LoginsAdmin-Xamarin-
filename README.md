@@ -1,6 +1,6 @@
 # LoginsAdmin
 
-## Administrador de contraseñas gratuito para Android
+## Administrador de credenciales gratuito para Android
 
 ### Realizado con Xamarin.Forms y C#:
 
