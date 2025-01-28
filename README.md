@@ -1,8 +1,8 @@
 # LoginsAdmin
 
-## Administrador de credenciales gratuito para Android
+- Administrador de credenciales gratuito para Android
 
-### Realizado con Xamarin.Forms y C#:
+--- 
 
 <p align="center">
     <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.2-alpha">
@@ -10,13 +10,20 @@
     </a>
 </p>
 
----
 
-## Descarga e instalación de la última versión:
+## 🚀 Descarga y guía de instalación
 
 - <a href="https://github.com/Jonatandb/LoginsAdmin-Xamarin-/releases/tag/v2.2-alpha">v2.2-alpha: Rediseño de la cabecera y botón de Agregar. Optimizaciones y mejoras internas varias.</a>
 
 --- 
+
+## 👨🏻‍💻 Tecnologías usadas
+- Xamarin.Forms
+- C#
+- SQLite
+
+---
+
 ### Páginas consultadas:
 
 - <a href="https://docs.microsoft.com/es-es/learn/modules/create-a-mobile-app-with-xamarin-forms/2-create-a-xf-project-in-vs" target="_blank">Creación de un proyecto de Xamarin.Forms en Visual Studio</a>
